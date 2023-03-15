@@ -1,11 +1,37 @@
 version: "2"
 
 services:
+  mysql:
+    image: mysql:5
+    restart: always
+    volumes:
+      - ./DB:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_DATABASE=codesohoj_main
+      - MYSQL_ROOT_PASSWORD=root
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - "8080:80"
+
   web:
     build: ./web
     restart: always
     image: web
     ports:
       - 80:80
+    environment:
+      - CODESOHOJ_SQL_USER=root
+      - CODESOHOJ_SQL_PASS=root
+      - CODESOHOJ_SQL_DB=codesohoj_main
+      - CODESOHOJ_SQL_HOST=mysql
     volumes:
       - ./conf:/etc/apache2/sites-enabled
