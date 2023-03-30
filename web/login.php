@@ -1,3 +1,18 @@
+<?php
+require_once "config.php";
+include_once "functions.php";
+
+$_SESSION["url"] = $_SERVER["REQUEST_URI"]; // used by process.php to send to last visited page
+if (isset($_SESSION["loggedin"]) && !isAdmin()) {
+  session_destroy();
+  session_regenerate_id(true);
+  session_start();
+  $_SESSION["msg"] =
+    "Judge is in Lockdown mode and so you have been logged out.";
+  redirectTo(SITE_URL . "/");
+}
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -21,90 +36,7 @@
     <title>Login | Codesohoj</title>
   </head>
   <body class="text-gray-800 antialiased">
-    <nav
-      class="sticky top-0 bg-blue-600 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3"
-    >
-      <div
-        class="container px-4 mx-auto flex flex-wrap items-center justify-between"
-      >
-        <div
-          class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start"
-        >
-          <img
-            src="./assets/img/main_logo_white.svg"
-            alt="Codesohoj"
-            style="height: 50px"
-          /><button
-            class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
-            type="button"
-            onclick="toggleNavbar('example-collapse-navbar')"
-          >
-            <i class="text-white fas fa-bars"></i>
-          </button>
-        </div>
-        <div
-          class="lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none hidden"
-          id="example-collapse-navbar"
-        >
-          <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
-            <li class="p-2" data-te-nav-item-ref>
-              <a
-                class="text-white disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                href="#"
-                data-te-nav-link-ref
-                >Dashboard</a
-              >
-            </li>
-            <li class="p-2" data-te-nav-item-ref>
-              <a
-                class="p-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                href="#"
-                data-te-nav-link-ref
-                >Problems</a
-              >
-            </li>
-            <li class="p-2" data-te-nav-item-ref>
-              <a
-                class="p-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                href="#"
-                data-te-nav-link-ref
-                >Contests</a
-              >
-            </li>
-
-            <li class="p-2" data-te-nav-item-ref>
-              <a
-                class="p-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                href="#"
-                data-te-nav-link-ref
-                >Learn</a
-              >
-            </li>
-
-            <li class="p-2" data-te-nav-item-ref>
-              <a
-                class="p-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                href="#"
-                data-te-nav-link-ref
-                >Blogs</a
-              >
-            </li>
-
-            <li class="flex items-center">
-              <button
-                class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
-                type="button"
-                style="transition: all 0.15s ease 0s"
-              >
-                <a href="/signup.php">
-                  <i class="fas fa-regular fa-right-to-bracket"></i> Sign UP
-                </a>
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+     
     <main>
       <section class="absolute w-full h-full">
         <div
@@ -114,7 +46,10 @@
             background-size: 100%;
             background-repeat: no-repeat;
           "
-        ></div>
+        >
+        <div class='col-md-9' id='mainbar'>
+                  
+                </div></div>
         <div class="container mx-auto px-4 h-full">
           <div class="flex content-center items-center justify-center h-full">
             <div class="w-full lg:w-4/12 px-4">
@@ -122,6 +57,8 @@
                 class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300 border-0"
               >
                 <div class="rounded-t mb-0 px-6 py-6">
+
+              
                   <div class="text-center mb-3">
                     <h6 class="text-gray-600 text-sm font-bold">
                       Sign in with
@@ -156,14 +93,32 @@
                   <div class="text-gray-500 text-center mb-3 font-bold">
                     <small>Or sign in with credentials</small>
                   </div>
-                  <form action="/process.php" method="post">
+                  <?php if (
+                    isset($_SESSION["msg"]) &&
+                    $_SESSION["msg"] != ""
+                  ) { ?>
+                    <div class="my-10 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+  <strong class="font-bold">Error!</strong>
+  <span class="block sm:inline"><?php
+  echo $_SESSION["msg"];
+  unset($_SESSION["msg"]);
+  ?></span>
+  <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+    <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+  </span>
+</div>
+                        
+                        <?php } ?>
+                        
+                        
+                  <form action = "<?php echo SITE_URL; ?>/process.php" method="post">
                     <div class="relative w-full mb-3">
                       <label
                         class="block uppercase text-gray-700 text-xs font-bold mb-2"
                         for="grid-password"
                         >Username</label
                       ><input
-                        type="useername"
+                        type="username"
                         name = "username"
                         class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                         placeholder="Username"
@@ -205,16 +160,16 @@
                       </button>
                     </div>
                   </form>
-                </div>
-              </div>
-              <div class="flex flex-wrap mt-6">
-                <div class="w-1/2">
-                  <a href="#pablo" class="text-gray-300"
-                    ><small>Forgot password?</small></a
-                  >
-                </div>
-              </div>
+                  
+                <div class="text-gray-700 my-8 text-center mb-3 font-bold">
+                   <a class=" text-center" href="<?php echo SITE_URL; ?>/register.php">Create New Account </a>
+                  </div>
+          
+                </div> 
+               
             </div>
+              </div>
+             
           </div>
         </div>
       </section>

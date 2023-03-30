@@ -6,3 +6,11 @@ Codesohoj is a online judge and a learning platform for all the coders which is 
 - Problem Solving
 - Contests
 - DSA Simulations
+
+sudo /etc/init.d/apache2 stop 
+sudo /etc/init.d/mysql stop 
+sudo /etc/init.d/proftpd stop
+sudo /opt/lampp/lampp start
+php -S localhost:8000 -t web/
+
+

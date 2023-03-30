@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: mysql
--- Generation Time: Mar 14, 2023 at 08:23 PM
--- Server version: 5.7.41
--- PHP Version: 8.1.15
+-- Host: localhost
+-- Generation Time: Mar 15, 2023 at 07:25 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,48 +24,46 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Notices`
+-- Table structure for table `Users`
 --
 
-CREATE TABLE `Notices` (
-  `id` int(11) NOT NULL,
-  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `added` varchar(50) NOT NULL DEFAULT 'admin',
-  `title` varchar(100) NOT NULL,
-  `description` text,
-  `likes` int(11) DEFAULT '0',
-  `views` int(11) DEFAULT '0',
-  `dislikes` int(11) DEFAULT '0',
-  `cover` varchar(100) DEFAULT NULL,
-  `user_id` varchar(20) NOT NULL DEFAULT 'Admin'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `Notices`
---
-
-INSERT INTO `Notices` (`id`, `time`, `added`, `title`, `description`, `likes`, `views`, `dislikes`, `cover`, `user_id`) VALUES
-(1, '2023-03-14 11:46:44', 'Code Sohoj admin', 'This is First Blogs in This site', 'Codesohoj = Code + Sohoj + OJ\r\nCodesohoj is an online platform that combines the benefits of an online judge and a coding learning platform. It offers programming problems, educational content, and supports multiple programming languages to provide an engaging learning experience for users of all levels.', 0, 0, 0, NULL, 'admin');
+CREATE TABLE `Users` (
+  `uid` int(11) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `name` varchar(32) DEFAULT NULL,
+  `email` varchar(50) NOT NULL,
+  `pass` int(11) NOT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `last_visit` datetime NOT NULL,
+  `status` varchar(20) NOT NULL DEFAULT 'Normal',
+  `ip` varchar(40) DEFAULT NULL,
+  `session` varchar(30) DEFAULT NULL,
+  `platform` varchar(50) DEFAULT NULL,
+  `team_id` text DEFAULT NULL,
+  `score` int(11) NOT NULL DEFAULT 0,
+  `penalty` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `Notices`
+-- Indexes for table `Users`
 --
-ALTER TABLE `Notices`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `Users`
+  ADD PRIMARY KEY (`uid`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `Notices`
+-- AUTO_INCREMENT for table `Users`
 --
-ALTER TABLE `Notices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `Users`
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
