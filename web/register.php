@@ -1,3 +1,7 @@
+<?php
+require_once "config.php"; ?>
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -21,91 +25,7 @@
     <title>Register | Codesohoj</title>
   </head>
   <body class="text-gray-800 antialiased">
-    <nav
-      class="sticky top-0 bg-blue-600 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3"
-    >
-      <div
-        class="container px-4 mx-auto flex flex-wrap items-center justify-between"
-      >
-        <div
-          class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start"
-        >
-          <img
-            src="./assets/img/main_logo_white.svg"
-            alt="Codesohoj"
-            style="height: 50px"
-          /><button
-            class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
-            type="button"
-            onclick="toggleNavbar('example-collapse-navbar')"
-          >
-            <i class="text-white fas fa-bars"></i>
-          </button>
-        </div>
-        <div
-          class="lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none hidden"
-          id="example-collapse-navbar"
-        >
-          <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
-            <li class="p-2" data-te-nav-item-ref>
-              <a
-                class="text-white disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                href="#"
-                data-te-nav-link-ref
-                >Dashboard</a
-              >
-            </li>
-            <li class="p-2" data-te-nav-item-ref>
-              <a
-                class="p-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                href="#"
-                data-te-nav-link-ref
-                >Problems</a
-              >
-            </li>
-            <li class="p-2" data-te-nav-item-ref>
-              <a
-                class="p-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                href="#"
-                data-te-nav-link-ref
-                >Contests</a
-              >
-            </li>
-
-            <li class="p-2" data-te-nav-item-ref>
-              <a
-                class="p-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                href="#"
-                data-te-nav-link-ref
-                >Learn</a
-              >
-            </li>
-
-            <li class="p-2" data-te-nav-item-ref>
-              <a
-                class="p-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                href="#"
-                data-te-nav-link-ref
-                >Blogs</a
-              >
-            </li>
-
-            <li class="flex items-center">
-              <button
-                class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
-                type="button"
-                style="transition: all 0.15s ease 0s"
-              >
-                <a href="/signup.php">
-                  <i class="fas fa-regular fa-right-to-bracket"></i> Sign UP
-                </a>
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <main>
+      <main>
       <section class="absolute w-full h-full">
         <div
           class="absolute top-0 w-full h-full bg-gray-900"
@@ -124,7 +44,7 @@
                 <div class="rounded-t mb-0 px-6 py-6">
                   <div class="text-center mb-3">
                     <h6 class="text-gray-600 text-sm font-bold">
-                      Create a account in with
+                      Register with
                     </h6>
                   </div>
                   <div class="btn-wrapper text-center">
@@ -154,22 +74,68 @@
                 </div>
                 <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
                   <div class="text-gray-500 text-center mb-3 font-bold">
-                    <small>Or register in with given data</small>
+                    <small>Or Create an account with credentials</small>
                   </div>
-                  <form action="<?php echo SITE_URL; ?>/process.php" method="post">
+                  <?php if (
+                    isset($_SESSION["msg"]) &&
+                    $_SESSION["msg"] != ""
+                  ) { ?>
+                    <div class="my-10 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+  <strong class="font-bold">Error!</strong>
+  <span class="block sm:inline"><?php
+  echo $_SESSION["msg"];
+  unset($_SESSION["msg"]);
+  ?></span>
+  <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+    <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+  </span>
+</div>
+                        
+                        <?php } ?>
+                  <form action = "<?php echo SITE_URL; ?>/process.php" method="post">
+
+                  <div class="relative w-full mb-3">
+                      <label
+                        class="block uppercase text-gray-700 text-xs font-bold mb-2"
+                        for="grid-name"
+                        >Name</label
+                      ><input
+                        type="name"
+                        name = "name"
+                        class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        placeholder="name"
+                        style="transition: all 0.15s ease 0s"
+                      />
+                    </div>
+
+                    <div class="relative w-full mb-3">
+                      <label
+                        class="block uppercase text-gray-700 text-xs font-bold mb-2"
+                        for="grid-email"
+                        >Email</label
+                      ><input
+                        type="email"
+                        name = "email"
+                        class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        placeholder="email"
+                        style="transition: all 0.15s ease 0s"
+                      />
+                    </div>
+
                     <div class="relative w-full mb-3">
                       <label
                         class="block uppercase text-gray-700 text-xs font-bold mb-2"
                         for="grid-password"
                         >Username</label
                       ><input
-                        type="useername"
+                        type="username"
                         name = "username"
                         class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                         placeholder="Username"
                         style="transition: all 0.15s ease 0s"
                       />
                     </div>
+
                     <div class="relative w-full mb-3">
                       <label
                         class="block uppercase text-gray-700 text-xs font-bold mb-2"
@@ -183,43 +149,55 @@
                         style="transition: all 0.15s ease 0s"
                       />
                     </div>
-                    <div>
-                      <label class="inline-flex items-center cursor-pointer"
-                        ><input
-                          id="customCheckLogin"
-                          type="checkbox"
-                          class="form-checkbox border-0 rounded text-gray-800 ml-1 w-5 h-5"
-                          style="transition: all 0.15s ease 0s"
-                        /><span class="ml-2 text-sm font-semibold text-gray-700"
-                          >Remember me</span
-                        ></label
-                      >
+
+                    <div class="relative w-full mb-3">
+                      <label
+                        class="block uppercase text-gray-700 text-xs font-bold mb-2"
+                        for="grid-current-password"
+                        >Retype Password</label
+                      ><input
+                        type="repassword"
+                        name = "repassword"
+                        class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        placeholder="Repassword"
+                        style="transition: all 0.15s ease 0s"
+                      />
                     </div>
+
+                    <div class="relative w-full mb-3">
+                      <label
+                        class="block uppercase text-gray-700 text-xs font-bold mb-2"
+                        for="grid-number"
+                        >Mobile Number</label
+                      ><input
+                        type="number"
+                        name = "phone"
+                        class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        placeholder="number"
+                        style="transition: all 0.15s ease 0s"
+                      />
+                    </div>
+                    
                     <div class="text-center mt-6">
                       <button
                         class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
-                        type="button"
+                        type="submit"  name="register"
                         style="transition: all 0.15s ease 0s"
                       >
-                        Sign In
+                        Register
                       </button>
                     </div>
                   </form>
-                </div>
-              </div>
-              <div class="flex flex-wrap mt-6">
-                <div class="w-1/2">
-                  <a href="#pablo" class="text-gray-300"
-                    ><small>Forgot password?</small></a
-                  >
-                </div>
-                <div class="w-1/2 text-right">
-                  <a href='<?php echo SITE_URL; ?>/register' class="text-gray-300"
-                    ><small>Create new account</small></a
-                  >
-                </div>
-              </div>p
+                  
+                <div class="text-gray-700 my-8 text-center mb-3 font-bold">
+                   <a class=" text-center" href="<?php echo SITE_URL; ?>/login.php">or Sign In here</a>
+                  </div>
+          
+                </div> 
+               
             </div>
+              </div>
+             
           </div>
         </div>
       </section>
