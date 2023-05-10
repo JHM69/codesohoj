@@ -1,5 +1,6 @@
 <?php
 require_once "config.php";
+require_once "navigation.php";
 include_once "functions.php";
 
 $_SESSION["url"] = $_SERVER["REQUEST_URI"]; // used by process.php to send to last visited page
