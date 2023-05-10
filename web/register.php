@@ -1,5 +1,7 @@
 <?php
-require_once "config.php"; ?>
+require_once "config.php";
+require_once "navigation.php";
+?>
 
 
 <!DOCTYPE html>
@@ -24,22 +26,22 @@ require_once "config.php"; ?>
     />
     <title>Register | Codesohoj</title>
   </head>
-  <body class="text-gray-800 antialiased">
+  <body class="text-gray-800 antialiased bg-gray-900">
       <main>
-      <section class="absolute w-full h-full">
+      <section class="absolute w-full h-full bg-gray-900">
         <div
-          class="absolute top-0 w-full h-full bg-gray-900"
+          class="absolute top-0 w-full h-full "
           style="
             background-image: url(./assets/img/register_bg.svg);
             background-size: 100%;
             background-repeat: no-repeat;
           "
         ></div>
-        <div class="container mx-auto px-4 h-full">
+        <div class=" mt-10 pt-10 px-4">
           <div class="flex content-center items-center justify-center h-full">
             <div class="w-full lg:w-4/12 px-4">
               <div
-                class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300 border-0"
+                class=" flex flex-col min-w-0 break-words w-full mb-6 mt-12 shadow-lg rounded-lg bg-gray-300 border-0"
               >
                 <div class="rounded-t mb-0 px-6 py-6">
                   <div class="text-center mb-3">
@@ -47,7 +49,7 @@ require_once "config.php"; ?>
                       Register with
                     </h6>
                   </div>
-                  <div class="btn-wrapper text-center">
+                  <div class="btn-wrapper text-center pt-10">
                     <button
                       class="bg-white active:bg-gray-100 text-gray-800 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs"
                       type="button"

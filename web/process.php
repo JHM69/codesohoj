@@ -34,6 +34,7 @@ if (isset($_POST["login"])) {
   } else {
     $_POST["password"] = customhash($_POST["password"]);
     $query = "select * from Users where username  = '$_POST[username]' and pass = '$_POST[password]'";
+
     $res = DB::findOneFromQuery($query);
 
     if ($res && ($res["status"] == "Normal" || $res["status"] == "Admin")) {
