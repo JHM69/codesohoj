@@ -7,10 +7,17 @@ Codesohoj is a online judge and a learning platform for all the coders which is 
 - Contests
 - DSA Simulations
 
+#Linux:
 sudo /etc/init.d/apache2 stop 
 sudo /etc/init.d/mysql stop 
 sudo /etc/init.d/proftpd stop
 sudo /opt/lampp/lampp start
+php -S localhost:8000 -t web/
+
+
+#Windows:
+After setting up Xmapp, run :
+
 php -S localhost:8000 -t web/
 
 
