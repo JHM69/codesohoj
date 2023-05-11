@@ -110,9 +110,6 @@ include_once "functions.php";
                                 echo "</tr>";
                             }
                             ?>
-
-
-
                         </tbody>
                     </table>
                 </div>
