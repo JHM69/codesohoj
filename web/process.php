@@ -157,7 +157,7 @@ if (isset($_POST["login"])) {
 
 
   $query =
-    "insert into problems (" .
+    "INSERT INTO problems (" .
     "name , code , score , type , pgroup , contest , timelimit , status , displayio , maxfilesize , statement , input , output , sampleinput , sampleoutput" .
     ") values ('" .
     $_POST["name"] .
@@ -191,10 +191,17 @@ if (isset($_POST["login"])) {
     addslashes(file_get_contents($_FILES["sampleoutput"]["tmp_name"])) .
     "')";
 
-
   DB::query($query);
 
-  $problemId = DB::getLastIntId();
+  $problemId = DB
+    ::findOneFromQuery(
+      "SELECT pid FROM problems WHERE code = '" . $_POST["code"] . "'"
+    );
+
+  echo "Problem ID: " . $problemId["pid"] . " Code : " . $_POST["code"] . "<br>";
+
+  $problemIdInt = intval($problemId["pid"]);
+
 
 
   $categories = implode(', ', $_POST['category']);
@@ -203,15 +210,19 @@ if (isset($_POST["login"])) {
   // Insert category IDs into category_problem table
   $categoryIds = $_POST['category'];
   foreach ($categoryIds as $categoryId) {
-    echo '<br>Category ID: ' . $categoryId . "    PROBLEM ID: " . $problemId . " " . '<br>';
+    $categoryIdInt = intval($categoryId);
+    writeError(
+      '<br>Category ID: ' . $categoryIdInt . "    PROBLEM ID: " . $problemIdInt . " " . '<br>'
+    );
+    // echo '<br>Category ID: ' . $categoryIdInt . "    PROBLEM ID: " . $problemId . " " . '<br>';
     $query =
-      "INSERT INTO category_problem (category_id, problem_id) VALUES ('" .
-      $categoryId . "', '" .
-      $problemId .
-      "')";
+      "INSERT INTO category_problem (category_id, problem_id) VALUES (" .
+      $categoryIdInt . ", " .
+      $problemIdInt .
+      ")";
     DB::query($query);
   }
 
-  $_SESSION["msg"] = "Problem Added.";
-  redirectTo(SITE_URL . "/add_problem.php");
+  //$_SESSION["msg"] = "Problem Added.";
+  //redirectTo(SITE_URL . "/add_problem.php");
 }
