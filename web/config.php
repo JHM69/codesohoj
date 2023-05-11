@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Returns value of environment varialbe, if set.
  * Otherwise returns the default value.
@@ -76,7 +77,9 @@ define("ERROR_LOG", dirname(__FILE__) . "/errors.txt");
 
 // Sanitizing POST variables
 foreach ($_POST as $key => $value) {
-  $_POST[$key] = addslashes($value);
+  if (is_string($value)) {
+    $_POST[$key] = addslashes($value);
+  }
 }
 
 // Sanitizing GET variables
