@@ -52,9 +52,7 @@ if (isset($_POST["login"])) {
 
       redirectTo(SITE_URL . "/");
     } elseif ($res) {
-      $_SESSION[
-        "msg"
-      ] = "You can not log in as your current status is : $res[status]";
+      $_SESSION["msg"] = "You can not log in as your current status is : $res[status]";
       redirectTo(SITE_URL . "/login.php");
     } else {
       writeError("Incorrect Username/Password");
@@ -71,6 +69,21 @@ if (isset($_POST["login"])) {
   );
   session_destroy();
   redirectTo(SITE_URL . "/");
+} elseif (isset($_GET["problems"])) {
+  writeError(
+    'Action::\n' . "Get Problems"
+  );
+  $query = "select * from problems where status = 'Active' order by id desc limit 50";
+  $res = DB::findAllFromQuery($query);
+  $data = array();
+  foreach ($res as $row) {
+    $data[] = array(
+
+      "name" => $row["name"],
+      "type" => $row["type"],
+      "pgroup" => $row["pgroup"],
+    );
+  }
 } elseif (isset($_POST["register"])) {
   if (
     isset($_POST["name"]) &&
@@ -140,6 +153,9 @@ if (isset($_POST["login"])) {
     }
   }
 } elseif (isset($_POST["add_problem"])) {
+
+
+
   $query =
     "insert into problems (" .
     "name , code , score , type , pgroup , contest , timelimit , status , displayio , maxfilesize , statement , input , output , sampleinput , sampleoutput" .
@@ -174,8 +190,28 @@ if (isset($_POST["login"])) {
     "', '" .
     addslashes(file_get_contents($_FILES["sampleoutput"]["tmp_name"])) .
     "')";
+
+
   DB::query($query);
+
+  $problemId = DB::getLastIntId();
+
+
+  $categories = implode(', ', $_POST['category']);
+  echo "Selected categories: " . $categories;
+
+  // Insert category IDs into category_problem table
+  $categoryIds = $_POST['category'];
+  foreach ($categoryIds as $categoryId) {
+    echo '<br>Category ID: ' . $categoryId . "    PROBLEM ID: " . $problemId . " " . '<br>';
+    $query =
+      "INSERT INTO category_problem (category_id, problem_id) VALUES ('" .
+      $categoryId . "', '" .
+      $problemId .
+      "')";
+    DB::query($query);
+  }
+
   $_SESSION["msg"] = "Problem Added.";
   redirectTo(SITE_URL . "/add_problem.php");
 }
-?>
