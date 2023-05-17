@@ -211,13 +211,19 @@ if (isset($_POST["login"])) {
     writeError(
       '<br>Category ID: ' . $categoryIdInt . "    PROBLEM ID: " . $problemIdInt . " " . '<br>'
     );
+
     // echo '<br>Category ID: ' . $categoryIdInt . "    PROBLEM ID: " . $problemId . " " . '<br>';
     $query =
       "INSERT INTO category_problem (category_id, problem_id) VALUES (" .
       $categoryIdInt . ", " .
       $problemIdInt .
       ")";
+
     DB::query($query);
+
+    // Increment count in category table
+    $updateQuery = "UPDATE category SET count = count + 1 WHERE id = " . $categoryIdInt;
+    DB::query($updateQuery);
   }
 
   //$_SESSION["msg"] = "Problem Added.";
