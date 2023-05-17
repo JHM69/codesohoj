@@ -1,0 +1,6 @@
+Options -MultiViews
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^submit\.php/([a-zA-Z0-9]+)$ submit.php?problem_id=$1 [QSA,L]
