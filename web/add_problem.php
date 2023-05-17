@@ -53,10 +53,24 @@ if (
           <label for="name" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Name</label>
           <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="text" name="name" id="name" required>
         </div>
+        <label for="editor-container" class=" block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Statement</label>
 
-        <div id="editor-container">
+        <div class="mb-5" id="editor-container">
         </div>
-        <input type="hidden" name="hiddenInput" id="hiddenInput">
+        <input type="hidden" name="statement" id="statement">
+
+        <label for="editor-container-input" class=" block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Input</label>
+
+        <div id="editor-container-input">
+        </div>
+        <input type="hidden" name="input_statement" id="input_statement">
+
+        <label for="editor-container-output" class=" block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Output</label>
+
+        <div id="editor-container-output">
+        </div>
+        <input type="hidden" name="output_statement" id="output_statement">
+
 
 
         <div class="mt-5">
@@ -198,11 +212,70 @@ if (
         theme: 'snow' // or 'bubble'
       });
 
+      var quill_input = new Quill('#editor-container-input', {
+        modules: {
+          toolbar: [
+            [{
+              header: [1, 2, false]
+            }],
+            [
+              'bold',
+              'italic',
+              'underline',
+              'strike',
+              'blockquote',
+              'formula',
+            ],
+            [{
+              list: 'ordered'
+            }, {
+              list: 'bullet'
+            }],
+            ['link', 'video', 'code-block'],
+            ['image'],
+          ]
+        },
+        placeholder: 'Input...',
+        theme: 'snow' // or 'bubble'
+      });
+
+
+      var quill_output = new Quill('#editor-container-output', {
+        modules: {
+          toolbar: [
+            [{
+              header: [1, 2, false]
+            }],
+            [
+              'bold',
+              'italic',
+              'underline',
+              'strike',
+              'blockquote',
+              'formula',
+            ],
+            [{
+              list: 'ordered'
+            }, {
+              list: 'bullet'
+            }],
+            ['link', 'video', 'code-block'],
+            ['image'],
+          ]
+        },
+        placeholder: 'Output...',
+        theme: 'snow' // or 'bubble'
+      });
+
       var form = document.querySelector("form");
-      var hiddenInput = document.querySelector('#hiddenInput');
+      var statement = document.querySelector('#statement');
+      var input_statement = document.querySelector('#input_statement');
+      var output_statement = document.querySelector('#output_statement');
 
       form.addEventListener('submit', function(e) {
-        hiddenInput.value = quill.root.innerHTML;
+        statement.value = quill.root.innerHTML;
+        input_statement.value = quill_input.root.innerHTML;
+        output_statement.value = quill_output.root.innerHTML;
       });
 
 

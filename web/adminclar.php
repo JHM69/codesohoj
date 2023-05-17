@@ -43,9 +43,9 @@ if (isset($_SESSION['loggedin']) && $_SESSION['team']['status'] == 'Admin') {
         }
         if($key!=0) echo "<hr/>";
         echo "<b><a href='" . SITE_URL . "/teams/$team[teamname]'>$team[teamname]</a> (<a href='" . SITE_URL . "/$prob[code]'>$prob[name]</a>):<br/>
-                Q. ".htmlspecialchars($row[query])."</b><br/>";
+                Q. ".htmlspecialchars($row['query'])."</b><br/>";
         if ($row['reply'] != "") {
-            echo "A. ". htmlspecialchars($row[reply]) . "<br/><br/>";
+            echo "A. ". htmlspecialchars($row['reply']) . "<br/><br/>";
         }
         echo "<form role='form' method='post' action='" . SITE_URL . "/process.php'>";
        echo "<input type='hidden' name='tid' value='$row[tid]' /><input type='hidden' name='pid' value='$row[pid]' /><input type='hidden' name='time' value='$row[time]' />
@@ -60,4 +60,3 @@ if (isset($_SESSION['loggedin']) && $_SESSION['team']['status'] == 'Admin') {
     $_SESSION['msg'] = "Access Denied: You need to be administrator to access that page.";
     redirectTo(SITE_URL . "/");
 }
-?>

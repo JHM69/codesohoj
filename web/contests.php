@@ -26,7 +26,6 @@ if (
 
             <div class="pl-12 rounded w-full flex justify ">
 
-                <a href='<?php echo SITE_URL; ?>/add_contest.php'><button class="m-10 bg-indigo-500  text-white rounded block p-2 m-20 text-lg font-bold">Add Contest</button></a>
             </div>
             <section class="absolute w-full h-full">
                 <div class="absolute top-0 w-full h-full bg-gray-100">
@@ -58,11 +57,9 @@ if (
                                                 </svg></a>
                                         </div>
                                     </th>
+
                                     <th scope="col" class="px-6 py-3">
                                         <span class="sr-only">Action</span>
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        <span class="sr-only">Delete</span>
                                     </th>
                                 </tr>
                             </thead>
@@ -79,19 +76,27 @@ if (
                                 $result = DB::findAllFromQuery($sql);
 
                                 foreach ($result as $row) {
-                                    echo "<tr>";
-                                    echo "<td class='px-6 py-4'>" .
-                                        $row["name"] .
-                                        "</td>";
-                                    echo "<td class='px-6 py-4'>" .
-                                        date("d-m-Y H:i:s", $row['starttime']) .
-                                        "</td>";
+                                    $current_time = time(); // Current timestamp
 
-                                    echo "<td class='px-6 py-4'>" .
-                                        date("d-m-Y H:i:s", $row['endtime']) .
-                                        "</td>";
-                                    echo "<td class='px-6 py-4'><a href='add_contest.php?code=/" . $row['code'] . "'>Edit</a></td>";
-                                    echo "<td class='px-6 py-4'><a href='delete/" . $row['code'] . "'>Delete</a></td>";
+                                    $start_time = strtotime($row['starttime']); // Start time from the row
+                                    $end_time = strtotime($row['endtime']); // End time from the row
+
+                                    if ($current_time >= $start_time && $current_time <= $end_time) {
+                                        $status = "Running";
+                                        $link = "running_contest.php?code=" . $row['code'];
+                                    } elseif ($current_time < $start_time && $current_time < $end_time) {
+                                        $status = "Participate";
+                                        $link = "participate.php?code=" . $row['code'];
+                                    } elseif ($current_time > $start_time && $current_time > $end_time) {
+                                        $status = "View History";
+                                        $link = "contest_history.php?code=" . $row['code'];
+                                    }
+
+                                    echo "<tr>";
+                                    echo "<td class='px-6 py-4'>" . $row["name"] . "</td>";
+                                    echo "<td class='px-6 py-4'>" . date("d-m-Y H:i:s", $row['starttime']) . "</td>";
+                                    echo "<td class='px-6 py-4'>" . date("d-m-Y H:i:s", $row['endtime']) . "</td>";
+                                    echo "<td class='px-6 py-4'><a href='" . SITE_URL . "/" . $link . "'>" . $status . "</a></td>";
                                     echo "</tr>";
                                 }
                                 ?>
@@ -109,7 +114,12 @@ if (
             </section>
         </main>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
-
+        <script>
+            function toggleNavbar(collapseID) {
+                document.getElementById(collapseID).classList.toggle("hidden");
+                document.getElementById(collapseID).classList.toggle("block");
+            }
+        </script>
     </body>
 
 <?php } ?>
