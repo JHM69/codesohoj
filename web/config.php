@@ -30,7 +30,7 @@ define("SQL_DB", "codesohoj_main");
 define("SQL_HOST", "127.0.0.1");
 define("SQL_PORT", "3306");
 displayErrors(true);
-date_default_timezone_set("Asia/Dhaka");
+// date_default_timezone_set("Asia/Dhaka");
 
 /*
  *

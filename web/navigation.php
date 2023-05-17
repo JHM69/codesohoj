@@ -15,7 +15,11 @@
           <a class="p-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400" href="<?php echo SITE_URL; ?>/problems.php">Problems</a>
         </li>
         <li class="p-2" data-te-nav-item-ref>
-          <a class="p-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400" href="/contests">Contests</a>
+          <a class="p-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400" href="<?php echo SITE_URL; ?>/contests.php">Contests</a>
+        </li>
+
+        <li class="p-2" data-te-nav-item-ref>
+          <a class="p-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400" href="<?php echo SITE_URL; ?>/ranking.php">Ranking</a>
         </li>
 
         <li class="p-2" data-te-nav-item-ref>
@@ -76,24 +80,24 @@
                         </a>
                       </li>
                       <li>
-                        <a href='/adminteam' class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+                        <a href='<?php echo SITE_URL; ?>/adminteam.php' class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                           <span class="flex-1 ml-3 whitespace-nowrap">Team Settings</span>
                         </a>
                       </li>
 
                       <li>
-                        <a href='/adminclar' class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+                        <a href='<?php echo SITE_URL; ?>/adminclar.php' class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                           <span class="flex-1 ml-3 whitespace-nowrap">Clarifications</span>
                         </a>
                       </li>
                       <li>
-                        <a href='/adminbroadcast' class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+                        <a href='<?php echo SITE_URL; ?>/adminbroadcast.php' class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                           <span class="flex-1 ml-3 whitespace-nowrap">Notifications</span>
                         </a>
                       </li>
 
                       <li>
-                        <a href='/adminlog' class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+                        <a href='<?php echo SITE_URL; ?>/adminlog.php' class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                           <span class="flex-1 ml-3 whitespace-nowrap">Logs</span>
                         </a>
                       </li>
