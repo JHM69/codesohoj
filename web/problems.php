@@ -83,13 +83,14 @@ include_once "functions.php";
                         <tbody>
 
                             <?php
-                            //                             $sql = "SELECT problems.*, GROUP_CONCAT(category.name SEPARATOR ', ') AS categories
-                            // FROM problems
-                            // INNER JOIN problem_category ON problems.pid = problem_category.problem_id
-                            // INNER JOIN category ON problem_category.category_id = category.id
-                            // GROUP BY problems.pid";
+                            $sql = "SELECT *, GROUP_CONCAT(c.name) AS categories
+                            FROM problems p
+                            INNER JOIN category_problem cp ON p.pid = cp.problem_id
+                            INNER JOIN category c ON cp.category_id = c.id
+                            GROUP BY p.pid
+                            ";
 
-                            $sql = "Select * from problems";
+                            // $sql = "Select * from problems";
                             $result = DB::findAllFromQuery($sql);
 
                             foreach ($result as $row) {
@@ -106,7 +107,7 @@ include_once "functions.php";
                                 echo "<td class='px-6 py-4'>" .
                                     $row["solved"] .
                                     "</td>";
-                                echo "<td class='px-6 py-4'><a href='code/" . $row['code'] . "'>Solve</a></td>";
+                                echo "<td class='px-6 py-4'><a href='submit.php?problem_id=" . $row['code'] . "'>Solve</a></td>";
                                 echo "</tr>";
                             }
                             ?>

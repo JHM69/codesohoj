@@ -1,132 +1,171 @@
-[2023-05-11 13:46:10]
+[2023-05-17 19:58:55]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 19:58:55]
+Query error:
+select * from clar where pid = 22 and access = 'Public'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.clar' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:00:51]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:00:51]
+Query error:
+select * from clar where pid = 22 and access = 'Public'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.clar' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:01:08]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:01:08]
+Query error:
+select * from clar where pid = 22 and access = 'Public'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.clar' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:03:33]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:03:33]
+Query error:
+select * from clar where pid = 22 and access = 'Public'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.clar' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:05:28]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:05:28]
+Query error:
+select * from clar where pid = 22 and access = 'Public'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.clar' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:08:12]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:09:15]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:09:23]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:09:56]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:09:56]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:10:19]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:10:20]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:10:20]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:10:29]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:10:29]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:10:29]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:11:05]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:11:33]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:14:57]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:15:49]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:16:13]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:16:27]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:19:14]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:32:35]
 Processing request...
-======================================================================
-[2023-05-11 13:46:10]
-Query error:
-SELECT id FROM problems WHERE code = 'newprob'
-Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id' in 'field list'
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-11 13:46:10]
-<br>Category ID: 4    PROBLEM ID: 0 <br>
-======================================================================
-[2023-05-11 13:46:10]
-Query error:
-INSERT INTO category_problem (category_id, problem_id) VALUES (4, 0)
-Error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`codesohoj_main`.`category_problem`, CONSTRAINT `category_problem_ibfk_2` FOREIGN KEY (`problem_id`) REFERENCES `problems` (`pid`))
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-11 13:46:10]
-<br>Category ID: 6    PROBLEM ID: 0 <br>
-======================================================================
-[2023-05-11 13:46:10]
-Query error:
-INSERT INTO category_problem (category_id, problem_id) VALUES (6, 0)
-Error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`codesohoj_main`.`category_problem`, CONSTRAINT `category_problem_ibfk_2` FOREIGN KEY (`problem_id`) REFERENCES `problems` (`pid`))
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-11 13:46:55]
-Processing request...
-======================================================================
-[2023-05-11 13:46:55]
-Query error:
-SELECT id FROM problems WHERE code = 'newprob'
-Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id' in 'field list'
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-11 13:46:55]
-<br>Category ID: 4    PROBLEM ID: 0 <br>
-======================================================================
-[2023-05-11 13:46:55]
-Query error:
-INSERT INTO category_problem (category_id, problem_id) VALUES (4, 0)
-Error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`codesohoj_main`.`category_problem`, CONSTRAINT `category_problem_ibfk_2` FOREIGN KEY (`problem_id`) REFERENCES `problems` (`pid`))
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-11 13:46:55]
-<br>Category ID: 6    PROBLEM ID: 0 <br>
-======================================================================
-[2023-05-11 13:46:55]
-Query error:
-INSERT INTO category_problem (category_id, problem_id) VALUES (6, 0)
-Error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`codesohoj_main`.`category_problem`, CONSTRAINT `category_problem_ibfk_2` FOREIGN KEY (`problem_id`) REFERENCES `problems` (`pid`))
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-11 13:47:43]
-Processing request...
-======================================================================
-[2023-05-11 13:47:43]
-Query error:
-SELECT id FROM problems WHERE code = 'newprob'
-Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id' in 'field list'
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-11 13:47:43]
-<br>Category ID: 4    PROBLEM ID: 0 <br>
-======================================================================
-[2023-05-11 13:47:43]
-Query error:
-INSERT INTO category_problem (category_id, problem_id) VALUES (4, 0)
-Error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`codesohoj_main`.`category_problem`, CONSTRAINT `category_problem_ibfk_2` FOREIGN KEY (`problem_id`) REFERENCES `problems` (`pid`))
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-11 13:47:43]
-<br>Category ID: 6    PROBLEM ID: 0 <br>
-======================================================================
-[2023-05-11 13:47:43]
-Query error:
-INSERT INTO category_problem (category_id, problem_id) VALUES (6, 0)
-Error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`codesohoj_main`.`category_problem`, CONSTRAINT `category_problem_ibfk_2` FOREIGN KEY (`problem_id`) REFERENCES `problems` (`pid`))
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-11 13:48:24]
-Processing request...
-======================================================================
-[2023-05-11 13:48:24]
-<br>Category ID: 4    PROBLEM ID: 1 <br>
-======================================================================
-[2023-05-11 13:48:24]
-Query error:
-INSERT INTO category_problem (category_id, problem_id) VALUES (4, 1)
-Error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`codesohoj_main`.`category_problem`, CONSTRAINT `category_problem_ibfk_2` FOREIGN KEY (`problem_id`) REFERENCES `problems` (`pid`))
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-11 13:48:24]
-<br>Category ID: 6    PROBLEM ID: 1 <br>
-======================================================================
-[2023-05-11 13:48:24]
-Query error:
-INSERT INTO category_problem (category_id, problem_id) VALUES (6, 1)
-Error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`codesohoj_main`.`category_problem`, CONSTRAINT `category_problem_ibfk_2` FOREIGN KEY (`problem_id`) REFERENCES `problems` (`pid`))
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-11 13:49:10]
-Processing request...
-======================================================================
-[2023-05-11 13:49:10]
-<br>Category ID: 4    PROBLEM ID: 22 <br>
-======================================================================
-[2023-05-11 13:49:10]
-Query error:
-INSERT INTO category_problem (category_id, problem_id) VALUES (4, 22)
-Error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`codesohoj_main`.`category_problem`, CONSTRAINT `category_problem_ibfk_2` FOREIGN KEY (`problem_id`) REFERENCES `problems` (`pid`))
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-11 13:49:10]
-<br>Category ID: 6    PROBLEM ID: 22 <br>
-======================================================================
-[2023-05-11 13:49:10]
-Query error:
-INSERT INTO category_problem (category_id, problem_id) VALUES (6, 22)
-Error: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`codesohoj_main`.`category_problem`, CONSTRAINT `category_problem_ibfk_2` FOREIGN KEY (`problem_id`) REFERENCES `problems` (`pid`))
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-11 14:03:28]
-Processing request...
-======================================================================
-[2023-05-11 14:03:28]
-<br>Category ID: 4    PROBLEM ID: 22 <br>
-======================================================================
-[2023-05-11 14:03:28]
-<br>Category ID: 6    PROBLEM ID: 22 <br>
 ======================================================================
