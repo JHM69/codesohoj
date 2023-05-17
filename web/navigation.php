@@ -60,7 +60,7 @@
                     ) { ?>
 
                       <li>
-                        <a href='/adminjudge' class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+                        <a href='<?php echo SITE_URL; ?>/adminjudge.php' class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                           <span class="flex-1 ml-3 whitespace-nowrap">Judge Settings</span>
                         </a>
                       </li>
@@ -71,7 +71,7 @@
                       </li>
 
                       <li>
-                        <a href='/admincontest' class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+                        <a href='<?php echo SITE_URL; ?>/admin_contests.php' class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                           <span class="flex-1 ml-3 whitespace-nowrap">Contest Settings</span>
                         </a>
                       </li>
@@ -81,11 +81,6 @@
                         </a>
                       </li>
 
-                      <li>
-                        <a href='/admingroup' class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                          <span class="flex-1 ml-3 whitespace-nowrap">Group Settings</span>
-                        </a>
-                      </li>
                       <li>
                         <a href='/adminclar' class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                           <span class="flex-1 ml-3 whitespace-nowrap">Clarifications</span>
