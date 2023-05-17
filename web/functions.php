@@ -225,11 +225,12 @@ class DB
     return true;
   }
 
-  //get last inserted id as integer
-  public static function getLastIntId()
+  //get last inserted id
+  public static function getLastId()
   {
-    return intval(self::$connection->lastInsertId());
+    return self::$connection->lastInsertId();
   }
+
 
   private static function handleError($e = null, $data = "")
   {
@@ -248,13 +249,6 @@ class DB
       if (is_array($values)) {
         $stmt = self::$connection->prepare($query);
         $stmt->execute($values);
-
-        // Check if the query is an INSERT statement
-        if (preg_match('/\bINSERT\b/i', $query)) {
-          // Return the last inserted ID
-          return self::$connection->lastInsertId();
-        }
-
         // Return the result set of a SELECT statement
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
       } else {

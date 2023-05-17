@@ -1,80 +1,171 @@
-[2023-03-30 14:35:03]
-Processing request...
-======================================================================
-[2023-03-30 14:35:03]
+[2023-05-17 19:58:55]
 Query error:
-insert into problems (name , code , score , type , pgroup , contest , timelimit , status , displayio , maxfilesize , statement , input , output , sampleinput , sampleoutput) values ('Watermelon', 'Watermelon1', '100', 'Easy', 'C1', 'practice', '1', 'Active', '1', '50000', 'One hot summer day Pete and his friend Billy decided to buy a watermelon. They chose the biggest and the ripest one, in their opinion. After that the watermelon was weighed, and the scales showed w kilos. They rushed home, dying of thirst, and decided to divide the berry, however they faced a hard problem.
-<br>
-Pete and Billy are great fans of even numbers, that\'s why they want to divide the watermelon in such a way that each of the two parts weighs even number of kilos, at the same time it is not obligatory that the parts are equal. The boys are extremely tired and want to start their meal as soon as possible, that\'s why you should help them and find out, if they can divide the watermelon in the way they want. For sure, each of them should get a part of positive weight.
-<br>
-<b>Input</b>
-The first (and the only) input line contains integer number w (1 ≤ w ≤ 100) — the weight of the watermelon bought by the boys.
-<br>
-<b>Output</b>
-Print YES, if the boys can divide the watermelon into two parts, each of them weighing even number of kilos; and NO in the opposite case.', '1,2,3,4', '1,2,3,4', '1,2,3,4', '1,2,3,4')
-Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sampleinput' in 'field list'
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
 /opt/lampp/htdocs/codesohoj/web/functions.php
 ======================================================================
-[2023-03-30 14:37:19]
+[2023-05-17 19:58:55]
+Query error:
+select * from clar where pid = 22 and access = 'Public'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.clar' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:00:51]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:00:51]
+Query error:
+select * from clar where pid = 22 and access = 'Public'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.clar' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:01:08]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:01:08]
+Query error:
+select * from clar where pid = 22 and access = 'Public'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.clar' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:03:33]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:03:33]
+Query error:
+select * from clar where pid = 22 and access = 'Public'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.clar' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:05:28]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:05:28]
+Query error:
+select * from clar where pid = 22 and access = 'Public'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.clar' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:08:12]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:09:15]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:09:23]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:09:56]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:09:56]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:10:19]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:10:20]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:10:20]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:10:29]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:10:29]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:10:29]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:11:05]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:11:33]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:14:57]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:15:49]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:16:13]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:16:27]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:19:14]
+Query error:
+select starttime from contest where code = 'C1'
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-17 20:32:35]
 Processing request...
-======================================================================
-[2023-03-30 14:38:54]
-Processing request...
-======================================================================
-[2023-03-30 14:38:54]
-Action::\nUser Farhan Masud Shohag logged out.
-======================================================================
-[2023-03-30 14:42:54]
-Processing request...
-======================================================================
-[2023-03-30 14:45:37]
-Processing request...
-======================================================================
-[2023-03-30 14:45:37]
-Action::\nUser Jahangir Hossain logged out.
-======================================================================
-[2023-03-30 14:45:43]
-Processing request...
-======================================================================
-[2023-03-30 16:26:32]
-Processing request...
-======================================================================
-[2023-03-30 16:26:32]
-Action::\nUser Farhan Masud Shohag logged out.
-======================================================================
-[2023-03-30 16:26:41]
-Processing request...
-======================================================================
-[2023-03-30 16:26:45]
-Processing request...
-======================================================================
-[2023-03-30 16:26:45]
-Action::\nUser Farhan Masud Shohag logged out.
-======================================================================
-[2023-03-30 16:26:54]
-Processing request...
-======================================================================
-[2023-05-08 11:16:41]
-Processing request...
-======================================================================
-[2023-05-08 22:06:36]
-Processing request...
-======================================================================
-[2023-05-08 22:06:36]
-DB Connection::\njhm69 + #jhm691127
-======================================================================
-[2023-05-08 22:06:52]
-Processing request...
-======================================================================
-[2023-05-10 16:28:21]
-Processing request...
-======================================================================
-[2023-05-11 00:02:12]
-Processing request...
-======================================================================
-[2023-05-11 00:17:54]
-Processing request...
-======================================================================
-[2023-05-11 00:17:54]
-Action::\nUser Jahangir Hossain logged out.
 ======================================================================
