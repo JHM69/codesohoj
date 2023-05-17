@@ -32,27 +32,27 @@ $problem_id = $_GET['problem_id'];
                 <!-- php code here  -->
 
                 <?php
-                echo $problem_id;
+
                 $sql = "SELECT * FROM problems WHERE code = '$problem_id'";
                 $result = DB::findOneFromQuery($sql);
                 if ($result == NULL) {
                     echo errorMessageHTML("<b>Problem not found!</b>");
                 } else {
                     if (isAdmin()) {
-                        echo "<a class='btn btn-default pull-right' style='margin-top: 10px;' href='" . SITE_URL . "/adminproblem/$_GET[code]'><i class='glyphicon glyphicon-edit'></i> Edit</a>";
+                        echo "<a class='btn btn-default pull-right' style='margin-top: 10px;' href='" . SITE_URL . "/adminproblem/$problem_id'><i class='glyphicon glyphicon-edit'></i> Edit</a>";
                     }
-                    // if($result['contest'] == 'contest'){
-                    //     echo "<a class='btn btn-primary' style='margin-top: 10px;' href='" . SITE_URL . "/contests/$result[pgroup]'><i class='glyphicon glyphicon-edit'></i> Problems</a>";
-                    // }
+                    if ($result['contest'] == 'contest') {
+                        echo "<a class='btn btn-primary' style='margin-top: 10px;' href='" . SITE_URL . "/contests/$result[pgroup]'><i class='glyphicon glyphicon-edit'></i> Problems</a>";
+                    }
                     if ($result['contest'] == 'contest' && !isAdmin()) {
-                        // $query = "select starttime from contest where code = '$result[pgroup]'";
-                        // $check = DB::findOneFromQuery($query);
-                        // if ($check['starttime'] > time()) {
-                        //     echo errorMessageHTML("<b>Contest not yet started!</b>");
-                        //     $flag = 1;
-                        // } else {
-                        //     $flag = 0;
-                        // }
+                        $query = "select starttime from contest where code = '$result[pgroup]'";
+                        $check = DB::findOneFromQuery($query);
+                        if ($check['starttime'] > time()) {
+                            echo errorMessageHTML("<b>Contest not yet started!</b>");
+                            $flag = 1;
+                        } else {
+                            $flag = 0;
+                        }
                     } else {
                         $flag = 0;
                     }
@@ -67,7 +67,7 @@ $problem_id = $_GET['problem_id'];
                                 "<a class='btn btn-default' href='" . SITE_URL . "/contests/$result[pgroup]'><span class='glyphicon glyphicon-chevron-left'></span> Problems</a>" .
                                 "</span>";
                         }
-                        echo "<span class='btn-group float-right'>" . ((isset($_SESSION['loggedin'])) ? ("<a class='btn btn-default' href='" . SITE_URL . "/status/$_GET[code]," . $_SESSION['team']['name'] . "'>My Submissions</a>") : ("")) . "<a class='btn btn-default' href='" . SITE_URL . "/status/$_GET[code]'>All Submissions</a></span></div>
+                        echo "<span class='btn-group float-right'>" . ((isset($_SESSION['loggedin'])) ? ("<a class='btn btn-default' href='" . SITE_URL . "/status/$problem_id" . $_SESSION['Users']['username'] . "'>My Submissions</a>") : ("")) . "<a class='btn btn-default' href='" . SITE_URL . "/status/$problem_id'> All Submissions</a></span></div>
                         <br/><br/>" . $statement . "<br/><br/>";
                         if ($result["sampleinput"] && $result["sampleoutput"]) {
                             echo "<div class='grid grid-cols-2 gap-4'>
@@ -75,7 +75,7 @@ $problem_id = $_GET['problem_id'];
                                     <div class='overflow-x-auto'><h4 class='text-2xl'>Sample Output</h4><div class='limit'><pre class='brush: text'>$result[sampleoutput]</pre></div></div>
                                 </div>";
                         }
-                        echo "<strong>Languages: </strong>$result[languages]<br/><br/>
+                        echo " 
                         <div class='grid grid-cols-2'>
                             <div class='col-span-1'>
                                 <div class='panel panel-default'>
@@ -83,7 +83,7 @@ $problem_id = $_GET['problem_id'];
                                         <strong>Time Limit: </strong>$result[timelimit] Second(s)<br/>
                                         <strong>Score: </strong>$result[score] Point(s)<br/>
                                         <strong>Input File Limit: </strong>$result[maxfilesize] Bytes<br/><br/>
-                                        " . (($result['status'] == 'Active' || (isset($_SESSION['loggedin']) && $_SESSION['team']['status'] == "Admin")) ? ("<a class='btn btn-block btn-success' href='" . SITE_URL . "/submit/$_GET[code]'>Submit <span class='glyphicon glyphicon-cloud-upload'></span></a>") : ('')) . "
+                                        " . (($result['status'] == 'Active' || (isset($_SESSION['loggedin']) && $_SESSION['User']['status'] == "Admin")) ? ("<a class='btn btn-block btn-success' href='" . SITE_URL . "/submit/$problem_id'>Submit <span class='glyphicon glyphicon-cloud-upload'></span></a>") : ('')) . "
                                     </div>
                                 </div>
                             </div>

@@ -153,9 +153,6 @@ if (isset($_POST["login"])) {
     }
   }
 } elseif (isset($_POST["add_problem"])) {
-
-
-
   $query =
     "INSERT INTO problems (" .
     "name , code , score , type , pgroup , contest , timelimit , status , displayio , maxfilesize , statement , input , output , sampleinput , sampleoutput" .
