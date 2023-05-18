@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 17, 2023 at 07:37 PM
+-- Generation Time: May 18, 2023 at 07:32 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -81,20 +81,22 @@ INSERT INTO `Blogs` (`id`, `time`, `added`, `title`, `description`, `likes`, `vi
 CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `info` text DEFAULT NULL
+  `info` text DEFAULT NULL,
+  `count` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`id`, `name`, `info`) VALUES
-(1, 'String', NULL),
-(2, 'Greedy', NULL),
-(3, 'Graph', NULL),
-(4, 'Number Theory', NULL),
-(5, 'Stack', NULL),
-(6, 'Linked list', NULL);
+INSERT INTO `category` (`id`, `name`, `info`, `count`) VALUES
+(1, 'String', NULL, 1),
+(2, 'Greedy', NULL, 1),
+(3, 'Graph', NULL, 1),
+(4, 'Number Theory', NULL, 2),
+(5, 'Stack', NULL, 1),
+(6, 'Linked list', NULL, 2),
+(7, 'Ad-Hoc', 'Simple Adhoc', 0);
 
 -- --------------------------------------------------------
 
@@ -117,7 +119,10 @@ INSERT INTO `category_problem` (`id`, `category_id`, `problem_id`) VALUES
 (37, 6, 22),
 (38, 3, 24),
 (39, 4, 24),
-(40, 5, 24);
+(40, 5, 24),
+(41, 1, 25),
+(42, 2, 25),
+(43, 6, 25);
 
 -- --------------------------------------------------------
 
@@ -150,6 +155,13 @@ CREATE TABLE `contest` (
   `announcement` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `ranktable` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `contest`
+--
+
+INSERT INTO `contest` (`id`, `code`, `name`, `starttime`, `endtime`, `announcement`, `ranktable`) VALUES
+(1, 'C1', 'A sample Contest', 1684389600, 1684476300, '<p>ertfwe4r3r <strong>regw4e3</strong></p>', NULL);
 
 -- --------------------------------------------------------
 
@@ -203,16 +215,20 @@ CREATE TABLE `problems` (
   `solved` int(11) NOT NULL DEFAULT 0,
   `total` int(11) DEFAULT 0,
   `sampleinput` text DEFAULT NULL,
-  `sampleoutput` text DEFAULT NULL
+  `sampleoutput` text DEFAULT NULL,
+  `input_statement` text DEFAULT NULL,
+  `output_statement` text DEFAULT NULL,
+  `note` text DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `problems`
 --
 
-INSERT INTO `problems` (`pid`, `code`, `name`, `type`, `contest`, `status`, `pgroup`, `statement`, `image`, `imgext`, `input`, `output`, `timelimit`, `score`, `languages`, `options`, `displayio`, `maxfilesize`, `solved`, `total`, `sampleinput`, `sampleoutput`) VALUES
-(22, 'newprob', 'New Problem', 'Medium', 'contest', 'Active', 'C1', 'kbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXa', NULL, NULL, '1\n2\n3\n4\n5\n6\n7\n8\n\n', '1\n2\n3\n4\n5\n6\n7\n8\n\n', 1, 100, 'Brain,C,C++,C#,Java,JavaScript,Pascal,Perl,PHP,Python,Ruby,Text', NULL, 1, 50000, 0, 0, '1\n2\n3\n4\n5\n6\n7\n8\n\n', '1\n2\n3\n4\n5\n6\n7\n8\n\n'),
-(24, 'newprobe5t4e5', '43t63', 'Easy', 'practice', 'Active', 'C1', 'ret5e4t435t3trdy4562', NULL, NULL, '1\n2\n3\n4\n5\n6\n7\n8\n\n', '1\n2\n3\n4\n5\n6\n7\n8\n\n', 1, 100, 'Brain,C,C++,C#,Java,JavaScript,Pascal,Perl,PHP,Python,Ruby,Text', NULL, 1, 50000, 0, 0, '1\n2\n3\n4\n5\n6\n7\n8\n\n', '1\n2\n3\n4\n5\n6\n7\n8\n\n');
+INSERT INTO `problems` (`pid`, `code`, `name`, `type`, `contest`, `status`, `pgroup`, `statement`, `image`, `imgext`, `input`, `output`, `timelimit`, `score`, `languages`, `options`, `displayio`, `maxfilesize`, `solved`, `total`, `sampleinput`, `sampleoutput`, `input_statement`, `output_statement`, `note`) VALUES
+(22, 'newprob', 'New Problem', 'Medium', 'contest', 'Active', 'C1', 'kbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXa', NULL, NULL, '1\n2\n3\n4\n5\n6\n7\n8\n\n', '1\n2\n3\n4\n5\n6\n7\n8\n\n', 1, 100, 'Brain,C,C++,C#,Java,JavaScript,Pascal,Perl,PHP,Python,Ruby,Text', NULL, 1, 50000, 0, 0, '1\n2\n3\n4\n5\n6\n7\n8\n\n', '1\n2\n3\n4\n5\n6\n7\n8\n\n', NULL, NULL, 'This dsd note'),
+(24, 'newprobe5t4e5', '43t63', 'Easy', 'practice', 'Active', 'C1', 'ret5e4t435t3trdy4562', NULL, NULL, '1\n2\n3\n4\n5\n6\n7\n8\n\n', '1\n2\n3\n4\n5\n6\n7\n8\n\n', 1, 100, 'Brain,C,C++,C#,Java,JavaScript,Pascal,Perl,PHP,Python,Ruby,Text', NULL, 1, 50000, 0, 0, '1\n2\n3\n4\n5\n6\n7\n8\n\n', '1\n2\n3\n4\n5\n6\n7\n8\n\n', NULL, NULL, NULL),
+(25, 'Palindrome1', 'New Palindrome', 'Medium', 'practice', 'Active', 'C1', '<p><span style=\"background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);\">A </span><strong style=\"background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);\">palindrome</strong><span style=\"background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);\"> is a string that reads the same from left to right as from right to left. For example, abacaba, aaaa, abba, racecar are palindromes. You are given a string s consisting of lowercase Latin letters. The string s is a palindrome.You have to check whether it is possible to rearrange the letters in it to get another palindrome (not equal to the given string s).</span></p>', NULL, NULL, '1\n2\n3\n4\n5\n6\n7\n8\n\n', '1\n2\n3\n4\n5\n6\n7\n8\n\n', 1, 100, 'Brain,C,C++,C#,Java,JavaScript,Pascal,Perl,PHP,Python,Ruby,Text', NULL, 1, 50000, 0, 0, '3\ncodedoc\ngg\naabaa', 'YES\nNO\nNO\n', 'The first line contains a single integer t (1≤t≤1000) — the number of test cases. The only line of each test case contains a string s (2≤|s|≤50) consisting of lowercase Latin letters. This string is a palindrome.', 'For each test case, print YES if it is possible to rearrange the letters in the given string to get another palindrome. Otherwise, print NO. You may print each letter in any case (YES, yes, Yes will all be recognized as positive answer, NO, no and nO will all be recognized as negative answer).', 'Simple Note');
 
 -- --------------------------------------------------------
 
@@ -366,16 +382,18 @@ CREATE TABLE `Users` (
   `platform` varchar(50) DEFAULT NULL,
   `team_id` text DEFAULT NULL,
   `score` int(11) NOT NULL DEFAULT 0,
-  `penalty` int(11) NOT NULL DEFAULT 0
+  `penalty` int(11) NOT NULL DEFAULT 0,
+  `rating` int(11) NOT NULL DEFAULT 0,
+  `solved` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `Users`
 --
 
-INSERT INTO `Users` (`uid`, `username`, `name`, `email`, `pass`, `phone`, `last_visit`, `status`, `ip`, `session`, `platform`, `team_id`, `score`, `penalty`) VALUES
-(1, 'jhm69', 'Jahangir Hossain', 'jahangirhossainm69@gmail.com', 'bec7fffb5c5a8645f88607cf032251c1', '01635191148', '2023-03-29 18:02:09', 'Admin', NULL, NULL, NULL, NULL, 0, 0),
-(2, 'farhan_404', 'Farhan Masud Shohag', 'fsh69711@gmail.com', '73211d0d7098fdc94cf61c4ce2dc7f68', '01648209351', '2023-03-30 13:03:25', 'Normal', NULL, NULL, NULL, NULL, 0, 0);
+INSERT INTO `Users` (`uid`, `username`, `name`, `email`, `pass`, `phone`, `last_visit`, `status`, `ip`, `session`, `platform`, `team_id`, `score`, `penalty`, `rating`, `solved`) VALUES
+(1, 'jhm69', 'Jahangir Hossain', 'jahangirhossainm69@gmail.com', 'bec7fffb5c5a8645f88607cf032251c1', '01635191148', '2023-03-29 18:02:09', 'Admin', NULL, NULL, NULL, NULL, 0, 0, 0, 0),
+(2, 'farhan_404', 'Farhan Masud Shohag', 'fsh69711@gmail.com', '73211d0d7098fdc94cf61c4ce2dc7f68', '01648209351', '2023-03-30 13:03:25', 'Admin', NULL, NULL, NULL, NULL, 0, 0, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -465,25 +483,25 @@ ALTER TABLE `Blogs`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `category_problem`
 --
 ALTER TABLE `category_problem`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `contest`
 --
 ALTER TABLE `contest`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `problems`
 --
 ALTER TABLE `problems`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `runs`
