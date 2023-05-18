@@ -92,13 +92,13 @@ $problem_id = $_GET['problem_id'];
                                     <div class='panel-body text-center'>";
 
                         if (isset($_SESSION['loggedin'])) {
-                ?>
+                            ?>
                             <form action="<?php echo SITE_URL; ?>/process.php" role='form' method="post">
                                 <input type="hidden" value="<?php echo $result['pid']; ?>" name="pid" />
                                 <textarea class='form-control' style="" name="query" placeholder="Post clarification..."></textarea><br />
                                 <input name="clar" type="submit" class="btn btn-default btn-block" value="Send" />
                             </form>
-                <?php
+                        <?php
                         }
                     }
                 }
