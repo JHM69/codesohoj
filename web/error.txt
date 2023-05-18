@@ -1,228 +1,203 @@
-[2023-05-17 19:58:55]
-Query error:
-select starttime from contest where code = 'C1'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 19:58:55]
-Query error:
-select * from clar where pid = 22 and access = 'Public'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.clar' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:00:51]
-Query error:
-select starttime from contest where code = 'C1'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:00:51]
-Query error:
-select * from clar where pid = 22 and access = 'Public'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.clar' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:01:08]
-Query error:
-select starttime from contest where code = 'C1'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:01:08]
-Query error:
-select * from clar where pid = 22 and access = 'Public'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.clar' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:03:33]
-Query error:
-select starttime from contest where code = 'C1'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:03:33]
-Query error:
-select * from clar where pid = 22 and access = 'Public'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.clar' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:05:28]
-Query error:
-select starttime from contest where code = 'C1'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:05:28]
-Query error:
-select * from clar where pid = 22 and access = 'Public'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.clar' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:08:12]
-Query error:
-select starttime from contest where code = 'C1'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:09:15]
-Query error:
-select starttime from contest where code = 'C1'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:09:23]
-Query error:
-select starttime from contest where code = 'C1'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:09:56]
-Query error:
-select starttime from contest where code = 'C1'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:09:56]
-Query error:
-select starttime from contest where code = 'C1'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:10:19]
-Query error:
-select starttime from contest where code = 'C1'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:10:20]
-Query error:
-select starttime from contest where code = 'C1'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:10:20]
-Query error:
-select starttime from contest where code = 'C1'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:10:29]
-Query error:
-select starttime from contest where code = 'C1'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:10:29]
-Query error:
-select starttime from contest where code = 'C1'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:10:29]
-Query error:
-select starttime from contest where code = 'C1'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:11:05]
-Query error:
-select starttime from contest where code = 'C1'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:11:33]
-Query error:
-select starttime from contest where code = 'C1'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:14:57]
-Query error:
-select starttime from contest where code = 'C1'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:15:49]
-Query error:
-select starttime from contest where code = 'C1'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:16:13]
-Query error:
-select starttime from contest where code = 'C1'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:16:27]
-Query error:
-select starttime from contest where code = 'C1'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:19:14]
-Query error:
-select starttime from contest where code = 'C1'
-Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contest' doesn't exist
-/opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
-[2023-05-17 20:32:35]
+[2023-05-18 02:22:08]
 Processing request...
 ======================================================================
-[2023-05-18 01:31:25]
+[2023-05-18 02:22:08]
+addcontest
+======================================================================
+[2023-05-18 02:28:56]
 Processing request...
 ======================================================================
-[2023-05-18 01:33:48]
+[2023-05-18 02:28:56]
+Query error:
+update contest set code = '<br /><b>Warning</b>:  Trying to access array offset on value of type bool in <b>/opt/lampp/htdocs/codesohoj/web/add_contest.php</b> on line <b>26</b><br />' where id=
+Error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 02:28:56]
+Query error:
+update contest set name = '<br /><b>Warning</b>:  Trying to access array offset on value of type bool in <b>/opt/lampp/htdocs/codesohoj/web/add_contest.php</b> on line <b>22</b><br />' where id=
+Error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 02:28:56]
+Query error:
+update contest set starttime = '1685392126' where id=
+Error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 02:28:56]
+Query error:
+update contest set endtime = '1685046480' where id=
+Error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 02:28:56]
+Query error:
+update contest set announcement = '<p><br></p>' where id=
+Error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 02:48:48]
+Query error:
+SELECT * from contests
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.contests' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 04:03:26]
 Processing request...
 ======================================================================
-[2023-05-18 01:33:48]
-Action::\nUser Farhan Masud Shohag logged out.
-======================================================================
-[2023-05-18 01:34:31]
-Processing request...
-======================================================================
-[2023-05-18 01:35:03]
-Processing request...
-======================================================================
-[2023-05-18 01:35:53]
-Processing request...
-======================================================================
-[2023-05-18 01:35:53]
-Action::\nUser Farhan Masud Shohag logged out.
-======================================================================
-[2023-05-18 01:36:17]
-Processing request...
-======================================================================
-[2023-05-18 01:36:17]
-DB Connection::\nfarhan123 + farhan123
-======================================================================
-[2023-05-18 01:36:45]
-Processing request...
-======================================================================
-[2023-05-18 01:40:37]
-Processing request...
-======================================================================
-[2023-05-18 01:40:37]
-Action::\nUser Farhan logged out.
-======================================================================
-[2023-05-18 01:40:47]
-Processing request...
-======================================================================
-[2023-05-18 02:31:54]
-Processing request...
-======================================================================
-[2023-05-18 11:47:15]
-Processing request...
-======================================================================
-[2023-05-18 22:49:13]
-Processing request...
-======================================================================
-[2023-05-18 22:49:13]
+[2023-05-18 04:03:26]
 <br>Category ID: 1    PROBLEM ID: 25 <br>
 ======================================================================
-[2023-05-18 23:07:21]
-Processing request...
+[2023-05-18 04:03:26]
+<br>Category ID: 2    PROBLEM ID: 25 <br>
 ======================================================================
-[2023-05-18 23:08:01]
-Processing request...
+[2023-05-18 04:03:26]
+<br>Category ID: 6    PROBLEM ID: 25 <br>
 ======================================================================
+[2023-05-18 04:12:35]
+Query error:
+SELECT p.name as pname, p.type as ptype, p.solve as psolve, p.code as pcode, GROUP_CONCAT(c.name) AS categories
+                            FROM problems p
+                            INNER JOIN category_problem cp ON p.pid = cp.problem_id
+                            INNER JOIN category c ON cp.category_id = c.id
+                            GROUP BY p.pid
+                            
+Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'p.solve' in 'field list'
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 04:12:39]
+Query error:
+SELECT p.name as pname, p.type as ptype, p.solve as psolve, p.code as pcode, GROUP_CONCAT(c.name) AS categories
+                            FROM problems p
+                            INNER JOIN category_problem cp ON p.pid = cp.problem_id
+                            INNER JOIN category c ON cp.category_id = c.id
+                            GROUP BY p.pid
+                            
+Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'p.solve' in 'field list'
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 04:12:40]
+Query error:
+SELECT p.name as pname, p.type as ptype, p.solve as psolve, p.code as pcode, GROUP_CONCAT(c.name) AS categories
+                            FROM problems p
+                            INNER JOIN category_problem cp ON p.pid = cp.problem_id
+                            INNER JOIN category c ON cp.category_id = c.id
+                            GROUP BY p.pid
+                            
+Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'p.solve' in 'field list'
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 04:33:28]
+Query error:
+SELECT *, c.category
+        FROM problems AS p
+        JOIN category_problem AS cp ON p.pid = cp.problem_id
+        JOIN category AS c ON cp.category_id = c.id
+        WHERE p.code = 'newprob'
+Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'c.category' in 'field list'
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 04:33:48]
+Query error:
+SELECT p.name, c.category
+        FROM problems AS p
+        JOIN category_problem AS cp ON p.pid = cp.problem_id
+        JOIN category AS c ON cp.category_id = c.id
+        WHERE p.code = 'newprob'
+Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'c.category' in 'field list'
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 04:33:58]
+Query error:
+SELECT p.name as name, c.category
+        FROM problems AS p
+        JOIN category_problem AS cp ON p.pid = cp.problem_id
+        JOIN category AS c ON cp.category_id = c.id
+        WHERE p.code = 'newprob'
+Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'c.category' in 'field list'
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 04:33:59]
+Query error:
+SELECT p.name as name, c.category
+        FROM problems AS p
+        JOIN category_problem AS cp ON p.pid = cp.problem_id
+        JOIN category AS c ON cp.category_id = c.id
+        WHERE p.code = 'newprob'
+Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'c.category' in 'field list'
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 04:34:28]
+Query error:
+SELECT p.name as pname, c.category
+        FROM problems AS p
+        JOIN category_problem AS cp ON p.pid = cp.problem_id
+        JOIN category AS c ON cp.category_id = c.id
+        WHERE p.code = 'newprob'
+Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'c.category' in 'field list'
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 04:34:29]
+Query error:
+SELECT p.name as pname, c.category
+        FROM problems AS p
+        JOIN category_problem AS cp ON p.pid = cp.problem_id
+        JOIN category AS c ON cp.category_id = c.id
+        WHERE p.code = 'newprob'
+Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'c.category' in 'field list'
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 04:36:02]
+Query error:
+SELECT p.*, c.category
+        FROM problems AS p
+        JOIN category_problem AS cp ON p.pid = cp.problem_id
+        JOIN category AS c ON cp.category_id = c.id
+        WHERE p.code = 'newprob'
+Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'c.category' in 'field list'
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 04:37:13]
+Query error:
+SELECT p.*, c.category
+        FROM problems AS p
+        JOIN category_problem AS cp ON p.pid = cp.problem_id
+        JOIN category AS c ON cp.category_id = c.id
+        WHERE p.code = 'newprob'
+Error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'c.category' in 'field list'
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 04:55:02]
+Query error:
+SELECT * FROM users ORDER BY score DESC
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.users' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 04:55:27]
+Query error:
+SELECT * FROM users ORDER BY score DESC
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.users' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 01:26:51]
+Query error:
+SELECT p.name as pname, p.type as ptype, p.solved as psolve, p.code as pcode, GROUP_CONCAT(c.name) AS categories
+                            FROM problems p
+                            INNER JOIN category_problem cp ON p.pid = cp.problem_id
+                            INNER JOIN category c ON cp.category_id = c.id 
+                            GROUP BY p.pid
+                            LIMIT 10 OFFSET 
+Error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 01:27:03]
+Query error:
+SELECT p.name as pname, p.type as ptype, p.solved as psolve, p.code as pcode, GROUP_CONCAT(c.name) AS categories
+                            FROM problems p
+                            INNER JOIN category_problem cp ON p.pid = cp.problem_id
+                            INNER JOIN category c ON cp.category_id = c.id 
+                            GROUP BY p.pid
+                            LIMIT 10 OFFSET 
+Error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6
+/opt/lampp/htdocs/codesohoj/web/functions.php

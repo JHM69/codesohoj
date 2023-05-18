@@ -153,9 +153,6 @@ if (isset($_POST["login"])) {
     }
   }
 } elseif (isset($_POST["add_problem"])) {
-
-
-
   $query =
     "INSERT INTO problems (" .
     "name , code , score , type , pgroup , contest , timelimit , status , displayio , maxfilesize , statement , input , output , sampleinput , sampleoutput" .
@@ -214,15 +211,62 @@ if (isset($_POST["login"])) {
     writeError(
       '<br>Category ID: ' . $categoryIdInt . "    PROBLEM ID: " . $problemIdInt . " " . '<br>'
     );
+
     // echo '<br>Category ID: ' . $categoryIdInt . "    PROBLEM ID: " . $problemId . " " . '<br>';
     $query =
       "INSERT INTO category_problem (category_id, problem_id) VALUES (" .
       $categoryIdInt . ", " .
       $problemIdInt .
       ")";
+
     DB::query($query);
+
+    // Increment count in category table
+    $updateQuery = "UPDATE category SET count = count + 1 WHERE id = " . $categoryIdInt;
+    DB::query($updateQuery);
   }
 
   //$_SESSION["msg"] = "Problem Added.";
   //redirectTo(SITE_URL . "/add_problem.php");
+} elseif (isset($_POST['addcontest'])) {
+  writeError("addcontest");
+
+  $newcontest = [];
+
+  $newcontest['code'] = $_POST['code'];
+  $newcontest['name'] = $_POST['name'];
+  $date = new DateTime($_POST['starttime']);
+  $newcontest['starttime'] = $date->getTimestamp();
+  $date = new DateTime($_POST['endtime']);
+  $newcontest['endtime'] = $date->getTimestamp();
+  $newcontest['announcement'] = $_POST['announcement'];
+
+  $keys = '';
+  $values = '';
+  foreach ($newcontest as $key => $value) {
+    $keys .= ($keys ? ',' : '') . $key;
+    $values .= ($values ? "','" : '') . $value;
+  }
+
+  $query = "INSERT INTO contest ($keys) VALUES ('$values')";
+  DB::query($query);
+
+  $_SESSION['msg'] = "Contest Added.";
+
+  redirectTo(SITE_URL . "/admin_contests.php");
+} else if (isset($_POST['updatecontest'])) {
+  $id = $_POST['id'];
+  $newcontest['code'] = $_POST['code'];
+  $newcontest['name'] = $_POST['name'];
+  $date = new DateTime($_POST['starttime']);
+  $newcontest['starttime'] = $date->getTimestamp();
+  $date = new DateTime($_POST['endtime']);
+  $newcontest['endtime'] = $date->getTimestamp();
+  $newcontest['announcement'] = $_POST['announcement'];
+  foreach ($newcontest as $key => $val) {
+    $query = "update contest set $key = '$val' where id=$id";
+    DB::query($query);
+  }
+  $_SESSION['msg'] = "Contest Updated.";
+  redirectTo(SITE_URL . $_SESSION['url']);
 }

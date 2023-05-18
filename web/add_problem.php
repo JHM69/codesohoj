@@ -27,8 +27,17 @@ if (
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
 
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css" />
     <title>Codesohoj - Coding made Sohoj</title>
+
+    <style>
+      .ql-editor {
+        min-height: 200px;
+      }
+    </style>
 
 
   </head>
@@ -40,20 +49,31 @@ if (
     </div>
     <form class="max-w-3xl mx-auto mt-8" method="post" action="<?php echo SITE_URL; ?>/process.php" enctype='multipart/form-data'>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div>
+        <div class="mb-5">
           <label for="name" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Name</label>
           <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="text" name="name" id="name" required>
         </div>
+        <label for="editor-container" class=" block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Statement</label>
 
-
-        <div>
-          <label for="statement" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Problem Statement</label>
-          <div class="mt-2">
-            <textarea type="text" name="statement" id="statement" required rows="20" class="block w-full border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full h-100px rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"></textarea>
-          </div>
-          <!-- <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full h-100px" type="text" name="statement" id="statement" required> -->
+        <div class="mb-5" id="editor-container">
         </div>
-        <div>
+        <input type="hidden" name="statement" id="statement">
+
+        <label for="editor-container-input" class=" block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Input</label>
+
+        <div id="editor-container-input">
+        </div>
+        <input type="hidden" name="input_statement" id="input_statement">
+
+        <label for="editor-container-output" class=" block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Output</label>
+
+        <div id="editor-container-output">
+        </div>
+        <input type="hidden" name="output_statement" id="output_statement">
+
+
+
+        <div class="mt-5">
           <label for="code" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Short Code</label>
           <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="text" name="code" id="code" required>
         </div>
@@ -69,7 +89,10 @@ if (
           <label for="input" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Input File</label>
           <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" style="padding: 6px 12px" type="file" name="input" id="input" required>
         </div>
-
+        <div>
+          <label for="output" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Output File</label>
+          <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" style="padding: 6px 12px" type="file" name="output" id="output" required>
+        </div>
         <div class="form-group">
           <label class="block mb-2 text-sm font-medium" for="type">Type</label>
           <select class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" name="type" id="type">
@@ -78,10 +101,7 @@ if (
             <option selected value="Easy">Easy</option>
           </select>
         </div>
-        <div>
-          <label for="output" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Output File</label>
-          <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" style="padding: 6px 12px" type="file" name="output" id="output" required>
-        </div>
+
 
         <div class="form-group">
           <label class="block mb-2 text-sm font-medium" for="pgroup">Problem Group</label>
@@ -165,6 +185,100 @@ if (
     </form>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+      var quill = new Quill('#editor-container', {
+        modules: {
+          toolbar: [
+            [{
+              header: [1, 2, false]
+            }],
+            [
+              'bold',
+              'italic',
+              'underline',
+              'strike',
+              'blockquote',
+              'formula',
+            ],
+            [{
+              list: 'ordered'
+            }, {
+              list: 'bullet'
+            }],
+            ['link', 'video', 'code-block'],
+            ['image'],
+          ]
+        },
+        placeholder: 'Problem Statements...',
+        theme: 'snow' // or 'bubble'
+      });
+
+      var quill_input = new Quill('#editor-container-input', {
+        modules: {
+          toolbar: [
+            [{
+              header: [1, 2, false]
+            }],
+            [
+              'bold',
+              'italic',
+              'underline',
+              'strike',
+              'blockquote',
+              'formula',
+            ],
+            [{
+              list: 'ordered'
+            }, {
+              list: 'bullet'
+            }],
+            ['link', 'video', 'code-block'],
+            ['image'],
+          ]
+        },
+        placeholder: 'Input...',
+        theme: 'snow' // or 'bubble'
+      });
+
+
+      var quill_output = new Quill('#editor-container-output', {
+        modules: {
+          toolbar: [
+            [{
+              header: [1, 2, false]
+            }],
+            [
+              'bold',
+              'italic',
+              'underline',
+              'strike',
+              'blockquote',
+              'formula',
+            ],
+            [{
+              list: 'ordered'
+            }, {
+              list: 'bullet'
+            }],
+            ['link', 'video', 'code-block'],
+            ['image'],
+          ]
+        },
+        placeholder: 'Output...',
+        theme: 'snow' // or 'bubble'
+      });
+
+      var form = document.querySelector("form");
+      var statement = document.querySelector('#statement');
+      var input_statement = document.querySelector('#input_statement');
+      var output_statement = document.querySelector('#output_statement');
+
+      form.addEventListener('submit', function(e) {
+        statement.value = quill.root.innerHTML;
+        input_statement.value = quill_input.root.innerHTML;
+        output_statement.value = quill_output.root.innerHTML;
+      });
+
+
       $(document).ready(function() {
         // Listen for changes to the select element
         $('#categorory').on('change', function() {

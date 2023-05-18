@@ -7,8 +7,16 @@ include_once "functions.php";
 $problem_id = $_GET['problem_id'];
 
 // Query the database to fetch the problem
-$sql = "SELECT * FROM problems WHERE code = '$problem_id'";
+$sql = "SELECT p.*, GROUP_CONCAT(c.name) AS categories
+        FROM problems AS p
+        JOIN category_problem AS cp ON p.pid = cp.problem_id
+        JOIN category AS c ON cp.category_id = c.id
+        WHERE p.code = '$problem_id'";
+
 $result = DB::findOneFromQuery($sql);
+
+
+
 
 ?>
 
@@ -24,6 +32,8 @@ $result = DB::findOneFromQuery($sql);
     <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+    <title>Submit Problem | Codesohoj</title>
 
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
@@ -78,12 +88,12 @@ $result = DB::findOneFromQuery($sql);
                 <h2 class="text-xl font-bold">Problem Information</h2>
                 <p class="mt-2">
                     <strong>Time Limit:</strong> <?php echo $result['timelimit']; ?> second<br>
-                    <strong>Memory Limit:</strong> <?php echo $result['memorylimit']; ?> MB
+                    <strong>Memory Limit:</strong> <?php echo $result['maxfilesize']; ?> KB
                 </p>
             </div>
             <div class="mb-8">
                 <h2 class="text-xl font-bold">Problem Category</h2>
-                <p class="mt-2"><?php echo $result['category']; ?></p>
+                <p class="mt-2"><?php echo $result['categories']; ?></p>
             </div>
             <div>
                 <h2 class="text-xl font-bold mt-8">Number of Solves</h2>
