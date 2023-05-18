@@ -1,12 +1,18 @@
 <?php
-if (isset($_SESSION['loggedin']) && $_SESSION['team']['status'] == 'Admin') {
+
+require_once "config.php";
+require_once "navigation.php";
+include_once "functions.php";
+
+
+if (isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin') {
     $query = "select * from admin";
     $result = DB::findAllFromQuery($query);
-    $admin = Array();
+    $admin = array();
     foreach ($result as $row) {
         $admin[$row['variable']] = $row['value'];
     }
-    ?>
+?>
     <script type='text/javascript'>
         $(document).ready(function() {
             $('#endtime').focus(function() {
@@ -17,7 +23,9 @@ if (isset($_SESSION['loggedin']) && $_SESSION['team']['status'] == 'Admin') {
             });
         });
     </script>
-    <center><h1>Judge Settings</h1></center>
+    <center>
+        <h1>Judge Settings</h1>
+    </center>
     <h3>General Settings</h3>
     <form role='form' class="form-horizontal" method="post" action="<?php echo SITE_URL; ?>/process.php">
         <div class="form-group">
@@ -25,25 +33,25 @@ if (isset($_SESSION['loggedin']) && $_SESSION['team']['status'] == 'Admin') {
             <div class='col-lg-4'>
                 <select class='form-control' name='mode' id='judgemode'>
                     <option value='Active' <?php
-                    if ($admin['mode'] == "Active") {
-                        echo "selected='selected'";
-                    }
-                    ?> >Active</option>
+                                            if ($admin['mode'] == "Active") {
+                                                echo "selected='selected'";
+                                            }
+                                            ?>>Active</option>
                     <option value='Passive' <?php
-                    if ($admin['mode'] == "Passive") {
-                        echo "selected='selected'";
-                    }
-                    ?> >Passive</option>
+                                            if ($admin['mode'] == "Passive") {
+                                                echo "selected='selected'";
+                                            }
+                                            ?>>Passive</option>
                     <option value='Disabled' <?php
-                    if ($admin['mode'] == "Disabled") {
-                        echo "selected='selected'";
-                    }
-                    ?> >Disabled</option>
+                                                if ($admin['mode'] == "Disabled") {
+                                                    echo "selected='selected'";
+                                                }
+                                                ?>>Disabled</option>
                     <option value='Lockdown' <?php
-                    if ($admin['mode'] == "Lockdown") {
-                        echo "selected='selected'";
-                    }
-                    ?> >Lockdown</option>
+                                                if ($admin['mode'] == "Lockdown") {
+                                                    echo "selected='selected'";
+                                                }
+                                                ?>>Lockdown</option>
                 </select>
             </div>
         </div>
@@ -52,10 +60,10 @@ if (isset($_SESSION['loggedin']) && $_SESSION['team']['status'] == 'Admin') {
             <div class='col-lg-4'>
                 <div class="input-group">
                     <input class='form-control' type='text' id='endtime' name='endtime' data-placement='right' title='Sets the timers equal to no of minutes.' <?php
-                    if ($admin['mode'] == 'Active') {
-                        echo "value='" . ((int) (($admin['endtime'] - time()) / 60)) . "'";
-                    }
-                    ?>/>
+                                                                                                                                                                if ($admin['mode'] == 'Active') {
+                                                                                                                                                                    echo "value='" . ((int) (($admin['endtime'] - time()) / 60)) . "'";
+                                                                                                                                                                }
+                                                                                                                                                                ?> />
                     <span class="input-group-addon">minute(s)</span>
                 </div>
             </div>
@@ -64,7 +72,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['team']['status'] == 'Admin') {
             <label class='control-label col-lg-2' for='penalty'>Penalty</label>
             <div class='col-lg-4'>
                 <div class="input-group">
-                    <input class='form-control' type='text' id='penalty' name='penalty' value='<?php echo $admin['penalty']; ?>'/>
+                    <input class='form-control' type='text' id='penalty' name='penalty' value='<?php echo $admin['penalty']; ?>' />
                     <span class="input-group-addon">minute(s)</span>
                 </div>
             </div>
@@ -72,7 +80,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['team']['status'] == 'Admin') {
         <div class='form-group'>
             <label class='control-label col-lg-2'></label>
             <div class='col-lg-4'>
-                <input type='submit' class='btn btn-primary' value='update' name='judgeupdate'/> 
+                <input type='submit' class='btn btn-primary' value='update' name='judgeupdate' />
             </div>
         </div>
     </form>
@@ -88,7 +96,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['team']['status'] == 'Admin') {
         </div>
         <div class="form-group">
             <label class='control-label col-lg-2'></label>
-            <div class='col-lg-4'><input type="submit" name="judgesocket" value="Update Socket" class="btn btn-primary"/></div>
+            <div class='col-lg-4'><input type="submit" name="judgesocket" value="Update Socket" class="btn btn-primary" /></div>
         </div>
     </form>
     <h3>Notice</h3>
@@ -99,12 +107,24 @@ if (isset($_SESSION['loggedin']) && $_SESSION['team']['status'] == 'Admin') {
         </div>
         <div class="form-group">
             <label class='control-label col-lg-2'></label>
-            <div class='col-lg-4'><input type="submit" name="judgenotice" value="Update Notice" class="btn btn-primary"/></div>
+            <div class='col-lg-4'><input type="submit" name="judgenotice" value="Update Notice" class="btn btn-primary" /></div>
         </div>
     </form>
-    <?php
+<?php
 } else {
     $_SESSION['msg'] = "Access Denied: You need to be administrator to access that page.";
     redirectTo(SITE_URL . "/");
 }
 ?>
+
+<head>
+    <title>Admin Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/logo.svg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css" />
+</head>
