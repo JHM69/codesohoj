@@ -202,3 +202,39 @@ SELECT p.name as pname, p.type as ptype, p.solved as psolve, p.code as pcode, GR
 Error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6
 /opt/lampp/htdocs/codesohoj/web/functions.php
 ======================================================================
+[2023-05-18 09:38:40]
+Processing request...
+======================================================================
+[2023-05-18 10:01:53]
+Processing request...
+======================================================================
+[2023-05-18 10:26:15]
+Query error:
+select tid, username, gid, status from teams
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.teams' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 10:26:38]
+Query error:
+select tid, username, gid, status from teams
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.teams' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 10:26:40]
+Query error:
+select * from broadcast where deleted = 0
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.broadcast' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 10:26:55]
+Query error:
+select * from broadcast where deleted = 0
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.broadcast' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================
+[2023-05-18 10:26:59]
+Query error:
+select * from broadcast where deleted = 0
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.broadcast' doesn't exist
+/opt/lampp/htdocs/codesohoj/web/functions.php
+======================================================================

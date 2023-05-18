@@ -39,8 +39,8 @@ $result = DB::findOneFromQuery($sql);
 </head>
 
 <body class="bg-gray-100">
-    <div class="flex">
-        <div class="w-3/4 p-6">
+    <div class="flex flex-col md:flex-row">
+        <div class="md:w-3/4 p-6">
             <h1 class="text-2xl font-bold text-center text-gray-800"><?php echo $result['name']; ?></h1>
             <div class="bg-white rounded p-4 mt-4">
                 <p class="mt-2">
@@ -83,8 +83,8 @@ $result = DB::findOneFromQuery($sql);
                 </a>
             </div>
         </div>
-        <div class="w-1/4 bg-white p-4">
-            <div class="mt-20 mb-8">
+        <div class="md:w-1/4 bg-white p-4 mt-6 md:mt-0">
+            <div class="mb-8">
                 <h2 class="text-xl font-bold">Problem Information</h2>
                 <p class="mt-2">
                     <strong>Time Limit:</strong> <?php echo $result['timelimit']; ?> second<br>
@@ -126,6 +126,7 @@ $result = DB::findOneFromQuery($sql);
             </div>
         </div>
     </div>
+
 </body>
 
 </html>
