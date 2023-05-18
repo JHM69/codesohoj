@@ -201,4 +201,3 @@ SELECT p.name as pname, p.type as ptype, p.solved as psolve, p.code as pcode, GR
                             LIMIT 10 OFFSET 
 Error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 6
 /opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
