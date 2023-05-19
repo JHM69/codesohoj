@@ -77,7 +77,7 @@ if (
 
         <label for="editor-container-note" class="block text-gray-700 font-bold mb-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Note</label>
 
-        <div class="mb-5" id="editor-container-note">
+        <div id="editor-container-note">
         </div>
         <input type="hidden" name="note" id="note">
 
