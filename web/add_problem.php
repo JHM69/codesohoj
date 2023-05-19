@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 require_once "config.php";
 require_once "components.php";
@@ -10,7 +11,7 @@ if (
 ) { ?>
 
   <!DOCTYPE html>
-  <html>
+  <html lang="en">
 
   <head>
     <meta charset="utf-8" />
@@ -26,16 +27,18 @@ if (
     <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/logo.svg" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
+    <link href="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css" rel="stylesheet">
 
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css" />
     <title>Codesohoj - Coding made Sohoj</title>
 
     <style>
       .ql-editor {
-        min-height: 200px;
+        min-height: 150px;
       }
     </style>
 
@@ -55,22 +58,23 @@ if (
         </div>
         <label for="editor-container" class=" block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Statement</label>
 
-        <div class="mb-5" id="editor-container">
+        <div class="mt-5">
+          <div id="editor-container">
+          </div>
+          <input type="hidden" name="statement" id="statement">
         </div>
-        <input type="hidden" name="statement" id="statement">
-
-        <label for="editor-container-input" class=" block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Input</label>
-
-        <div id="editor-container-input">
+        <div class="mt-5">
+          <label for="editor-container-input" class=" block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Input</label>
+          <div id="editor-container-input">
+          </div>
+          <input type="hidden" name="input_statement" id="input_statement">
         </div>
-        <input type="hidden" name="input_statement" id="input_statement">
-
-        <label for="editor-container-output" class=" block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Output</label>
-
-        <div id="editor-container-output">
+        <div class="mt-5">
+          <label for="editor-container-output" class=" block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Output</label>
+          <div id="editor-container-output">
+          </div>
+          <input type="hidden" name="output_statement" id="output_statement">
         </div>
-        <input type="hidden" name="output_statement" id="output_statement">
-
 
 
         <div class="mt-5">
@@ -184,6 +188,7 @@ if (
       </div>
     </form>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
       var quill = new Quill('#editor-container', {
         modules: {
