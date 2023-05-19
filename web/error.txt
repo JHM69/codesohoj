@@ -237,4 +237,3 @@ Query error:
 select * from broadcast where deleted = 0
 Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.broadcast' doesn't exist
 /opt/lampp/htdocs/codesohoj/web/functions.php
-======================================================================
