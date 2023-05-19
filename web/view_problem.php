@@ -62,11 +62,11 @@ $result = DB::findOneFromQuery($sql);
             <div class="bg-white rounded p-4 mt-4">
                 <div class="mb-2">
                     <h3 class="text-lg font-bold">Sample Input</h3>
-                    <pre class="bg-gray-200 p-2"><?php echo $result['sampleinput']; ?></pre>
+                    <pre class="bg-gray-200 p-2"><?php echo $result['input']; ?></pre>
                 </div>
                 <div>
                     <h3 class="text-lg font-bold">Sample Output</h3>
-                    <pre class="bg-gray-200 p-2"><?php echo $result['sampleoutput']; ?></pre>
+                    <pre class="bg-gray-200 p-2"><?php echo $result['output']; ?></pre>
                 </div>
             </div>
             <div class="bg-white rounded p-4 mt-4">
@@ -88,7 +88,7 @@ $result = DB::findOneFromQuery($sql);
                 <h2 class="text-xl font-bold">Problem Information</h2>
                 <p class="mt-2">
                     <strong>Time Limit:</strong> <?php echo $result['timelimit']; ?> second<br>
-                    <strong>Memory Limit:</strong> <?php echo $result['maxfilesize']; ?> KB
+                    <strong>Memory Limit:</strong> <?php echo $result['maxfilesize']; ?> MB
                 </p>
             </div>
             <div class="mb-8">

@@ -155,7 +155,7 @@ if (isset($_POST["login"])) {
 } elseif (isset($_POST["add_problem"])) {
   $query =
     "INSERT INTO problems (" .
-    "name , code , score , type , pgroup , contest , timelimit , status , displayio , maxfilesize , statement , input , output , sampleinput , sampleoutput" .
+    "name , code , score , type , pgroup , contest , timelimit , status , displayio , maxfilesize , statement , input_statement , output_statement , note , input , output , sampleinput , sampleoutput , image" .
     ") values ('" .
     $_POST["name"] .
     "', '" .
@@ -179,26 +179,36 @@ if (isset($_POST["login"])) {
     "', '" .
     $_POST["statement"] .
     "', '" .
+    $_POST["input_statement"] .
+    "', '" .
+    $_POST["output_statement"] .
+    "', '" .
+    $_POST["note"] .
+    "', '" .
+    $_POST["sampleinput"] .
+    "', '" .
+    $_POST["sampleoutput"] .
+    "', '" .
     addslashes(file_get_contents($_FILES["input"]["tmp_name"])) .
     "', '" .
     addslashes(file_get_contents($_FILES["output"]["tmp_name"])) .
     "', '" .
-    addslashes(file_get_contents($_FILES["sampleinput"]["tmp_name"])) .
-    "', '" .
-    addslashes(file_get_contents($_FILES["sampleoutput"]["tmp_name"])) .
+    addslashes(file_get_contents($_FILES["image"]["tmp_name"])) .
     "')";
+    #addslashes(file_get_contents($_FILES["sampleinput"]["tmp_name"])) .
+    #"', '" .
+    #addslashes(file_get_contents($_FILES["sampleoutput"]["tmp_name"])) .
+    #"')";
 
   DB::query($query);
 
-  $problemId = DB
-    ::findOneFromQuery(
+  $problemId = DB::findOneFromQuery(
       "SELECT pid FROM problems WHERE code = '" . $_POST["code"] . "'"
     );
 
   echo "Problem ID: " . $problemId["pid"] . " Code : " . $_POST["code"] . "<br>";
 
   $problemIdInt = intval($problemId["pid"]);
-
 
 
   $categories = implode(', ', $_POST['category']);
