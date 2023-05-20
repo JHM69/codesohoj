@@ -462,3 +462,36 @@ Processing request...
 [2023-05-19 23:47:50]
 <br>Category ID: 1    PROBLEM ID: 26 <br>
 ======================================================================
+[2023-05-20 08:05:01]
+Processing request...
+======================================================================
+[2023-05-20 08:05:01]
+addcontest
+======================================================================
+[2023-05-20 08:06:01]
+Query error:
+select tid, username, gid, status from teams
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.teams' doesn't exist
+C:\xampp\htdocs\codesohoj\web\functions.php
+======================================================================
+[2023-05-20 08:06:16]
+Query error:
+select * from broadcast where deleted = 0
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.broadcast' doesn't exist
+C:\xampp\htdocs\codesohoj\web\functions.php
+======================================================================
+[2023-05-20 08:07:04]
+Processing request...
+======================================================================
+[2023-05-20 17:35:34]
+Processing request...
+======================================================================
+[2023-05-20 17:35:34]
+Action::\nUser Farhan Masud Shohag logged out.
+======================================================================
+[2023-05-20 17:36:34]
+Processing request...
+======================================================================
+[2023-05-20 18:08:32]
+Processing request...
+======================================================================
