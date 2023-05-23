@@ -2,6 +2,12 @@
 require_once "config.php";
 require_once "navigation.php";
 include_once "functions.php";
+
+include_once "functions.php";
+if (
+  isset($_SESSION["loggedin"]) &&
+  $_SESSION["Users"]["status"] == "Normal" || $_SESSION["Users"]["status"] == "Admin"
+) { ?>
 ?>
 
 <!DOCTYPE html>
@@ -45,8 +51,9 @@ include_once "functions.php";
                         <div class="flex items-center pt-4">
                             <img src="Formal.png" alt="Profile Picture" class="h-20 w-20 rounded-full" id="profile_photo" name="profile_photo">
                             <div class="ml-4">
-                                <h1 class="text-2xl font-bold " id="username" name="username">Username</h1>
-                                <p class="mt-4 text-gray-600" id="rank" name="rank">Rank: #123</p>
+                                <h1 class="text-2xl font-bold " id="username" name="username">Farhan_404</h1>
+                                <h1 class="mt-2 text-l text-gray-700" id="fullname" name="fullname">Md. Farhan Masud Shohag</h1>
+                                <p class="mt-2 text-gray-600" id="rank" name="rank">Rank: #123</p>
                             </div>
                         </div>
                     </div>
@@ -134,3 +141,4 @@ include_once "functions.php";
 </body>
 
 </html>
+<?php } ?>
