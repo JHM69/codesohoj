@@ -8,7 +8,6 @@ if (
   isset($_SESSION["loggedin"]) &&
   $_SESSION["Users"]["status"] == "Normal" || $_SESSION["Users"]["status"] == "Admin"
 ) { ?>
-?>
 
 <!DOCTYPE html>
 <html lang="en">
