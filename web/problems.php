@@ -62,12 +62,12 @@ $result = DB::findAllFromQuery($sql);
     <main>
         <section class="absolute w-full h-full">
             <div class="absolute top-0 w-full h-full bg-gray-100">
-
                 <div class='col-md-9 w-full flex m-2 justify-center' id='mainbar'>
+                    <p class="text-md text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400 mr-2">tag:</p>
                     <?php
                     $colors = ["blue", "green", "yellow", "red", "purple"]; // Define an array of colors
                     $colorIndex = 0; // Initialize color index
-
+                    
                     foreach ($categories as $row) :
                         $color = $colors[$colorIndex % count($colors)]; // Get the color based on the index
                         $colorIndex++;

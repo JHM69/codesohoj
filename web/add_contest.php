@@ -15,8 +15,8 @@ if (isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin') {
             <h1 class="text-3xl font-bold">Contest Settings</h1>
         </div>
 
-        <div class="ml-8 mr-8 lg:ml-20 lg:mr-20">
-            <form class="max-w-md mx-auto space-y-6" action="<?php echo SITE_URL; ?>/process.php" method="post">
+        <div class="ml-8 mr-8 lg:ml-20 lg:mr-20 mb-10">
+            <form class="max-w-md mx-auto space-y-6 mb-20" action="<?php echo SITE_URL; ?>/process.php" method="post">
                 <div class="mb-6">
                     <label class="block text-sm font-medium text-gray-700" for="name">Name</label>
                     <input class="rounded form-input mt-1 block w-full" type="text" id="name" name="name" value="<?php echo $res['name']; ?>" required />
@@ -39,7 +39,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin') {
                     <div id="editor-container"></div>
                 </div>
                 <div class="flex justify-center">
-                    <button type="submit" name="updatecontest" class="btn btn-primary px-4 py-2 bg-red-500 text-white font-semibold rounded">Add Contest</button>
+                    <button type="submit" name="updatecontest" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-10">Add Contest</button>
                 </div>
             </form>
         </div>
@@ -51,8 +51,8 @@ if (isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin') {
             <h1 class="text-3xl font-bold">Contest Settings</h1>
         </div>
 
-        <div class="ml-8 mr-8 lg:ml-20 lg:mr-20">
-            <form class="max-w-md mx-auto space-y-6" action="<?php echo SITE_URL; ?>/process.php" method="post">
+        <div class="ml-8 mr-8 lg:ml-20 lg:mr-20 mb-10">
+            <form class="max-w-md mx-auto space-y-6 mb-20" action="<?php echo SITE_URL; ?>/process.php" method="post">
                 <div class="mb-6">
                     <label class="block text-sm font-medium text-gray-700" for="name">Name</label>
                     <input class="rounded form-input mt-1 block w-full" type="text" id="name" name="name" required />
@@ -77,7 +77,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin') {
 
                 </div>
                 <div class="flex justify-center">
-                    <button type="submit" name="addcontest" class="btn btn-primary px-4 py-2 bg-red-500 text-white font-semibold rounded">Add Contest</button>
+                    <button type="submit" name="addcontest" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-10">Add Contest</button>
 
                 </div>
             </form>

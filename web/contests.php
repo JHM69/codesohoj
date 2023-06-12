@@ -29,9 +29,13 @@ if (
             </div>
             <section class="absolute w-full h-full">
                 <div class="absolute top-0 w-full h-full bg-gray-100">
-                    <div class='col-md-9 w-full flex m-2' id='mainbar'>
-
+                    <!--<div class='col-md-9 w-full flex m-2' id='mainbar'>
+                        
+                    </div>-->
+                    <div class="flex justify-center">
+                        <h2 class="text-2xl font-bold">Contest list</h2>
                     </div>
+                    <hr class="border-t-2 border-gray-300 mt-2 mb-4">
 
                     <div class=" sm:rounded-lg">
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -58,8 +62,11 @@ if (
                                         </div>
                                     </th>
 
-                                    <th scope="col" class="px-6 py-3">
+                                    <!--<th scope="col" class="px-6 py-3">
                                         <span class="sr-only">Action</span>
+                                    </th>-->
+                                    <th scope="col" class="px-6 py-3">
+                                        Action
                                     </th>
                                 </tr>
                             </thead>

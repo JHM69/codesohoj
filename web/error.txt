@@ -237,3 +237,264 @@ Query error:
 select * from broadcast where deleted = 0
 Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.broadcast' doesn't exist
 /opt/lampp/htdocs/codesohoj/web/functions.php
+[2023-05-19 22:11:00]
+DB Connection failed:\nSQLSTATE[HY000] [1049] Unknown database 'codesohoj_main'
+======================================================================
+[2023-05-19 22:37:50]
+Processing request...
+======================================================================
+[2023-05-19 22:37:50]
+addcontest
+======================================================================
+[2023-05-19 23:09:16]
+Processing request...
+======================================================================
+[2023-05-19 23:14:34]
+Processing request...
+======================================================================
+[2023-05-19 23:14:34]
+Query error:
+INSERT INTO problems (name , code , score , type , pgroup , contest , timelimit , status , displayio , maxfilesize , statement , input_statement , output_statement , note , input , output , sampleinput , sampleoutput) values ('Blank Space', 'A', '100', 'Easy', 'C1', 'contest', '1', 'Active', '1', '256', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci odit explicabo esse dolore laborum aliquam enim beatae excepturi libero distinctio quidem maiores voluptas, ipsa aliquid!</p>', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci odit explicabo esse dolore laborum aliquam enim beatae excepturi libero distinctio quidem maiores voluptas, ipsa aliquid!</p>', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci odit explicabo esse dolore laborum aliquam enim beatae excepturi libero distinctio quidem maiores voluptas, ipsa aliquid!</p>', '', '1
+2
+3', 'yes
+no
+no', '1
+2
+3
+4
+5', 'yes
+no
+yes
+no
+yes', '')
+Error: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1
+C:\xampp\htdocs\codesohoj\web\functions.php
+======================================================================
+[2023-05-19 23:14:34]
+<br>Category ID: 1    PROBLEM ID: 0 <br>
+======================================================================
+[2023-05-19 23:16:05]
+Processing request...
+======================================================================
+[2023-05-19 23:16:05]
+Query error:
+INSERT INTO problems (name , code , score , type , pgroup , contest , timelimit , status , displayio , maxfilesize , statement , input_statement , output_statement , note , input , output , sampleinput , sampleoutput) values ('Blank Space', 'B', '100', 'Easy', 'C2', 'contest', '1', 'Active', '1', '256', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci odit explicabo esse dolore laborum aliquam enim beatae excepturi libero distinctio quidem maiores voluptas, ipsa aliquid!</p>', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci odit explicabo esse dolore laborum aliquam enim beatae excepturi libero distinctio quidem maiores voluptas, ipsa aliquid!</p>', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci odit explicabo esse dolore laborum aliquam enim beatae excepturi libero distinctio quidem maiores voluptas, ipsa aliquid!</p>', '', '1
+2
+3', 'yes
+no
+no', '1
+2
+3
+4
+5', 'yes
+no
+yes
+no
+yes', '')
+Error: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1
+C:\xampp\htdocs\codesohoj\web\functions.php
+======================================================================
+[2023-05-19 23:16:05]
+<br>Category ID: 1    PROBLEM ID: 0 <br>
+======================================================================
+[2023-05-19 23:18:53]
+Processing request...
+======================================================================
+[2023-05-19 23:18:53]
+Query error:
+INSERT INTO problems (name , code , score , type , pgroup , contest , timelimit , status , displayio , maxfilesize , statement , input_statement , output_statement , note , input , output , sampleinput , sampleoutput) values ('Blank Space', 'B', '100', 'Easy', 'C2', 'contest', '1', 'Active', '1', '256', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci odit explicabo esse dolore laborum aliquam enim beatae excepturi libero distinctio quidem maiores voluptas, ipsa aliquid!</p>', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci odit explicabo esse dolore laborum aliquam enim beatae excepturi libero distinctio quidem maiores voluptas, ipsa aliquid!</p>', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci odit explicabo esse dolore laborum aliquam enim beatae excepturi libero distinctio quidem maiores voluptas, ipsa aliquid!</p>', '', '1
+2
+3', 'yes
+no
+no', '1
+2
+3
+4
+5', 'yes
+no
+yes
+no
+yes', '')
+Error: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1
+C:\xampp\htdocs\codesohoj\web\functions.php
+======================================================================
+[2023-05-19 23:18:53]
+<br>Category ID: 1    PROBLEM ID:  <br>
+======================================================================
+[2023-05-19 23:18:53]
+Query error:
+INSERT INTO category_problem (category_id, problem_id) VALUES (1, )
+Error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1
+C:\xampp\htdocs\codesohoj\web\functions.php
+======================================================================
+[2023-05-19 23:23:24]
+Processing request...
+======================================================================
+[2023-05-19 23:23:24]
+Query error:
+INSERT INTO problems (name , code , score , type , pgroup , contest , timelimit , status , displayio , maxfilesize , statement , input_statement , output_statement , note , input , output , sampleinput , sampleoutput) values ('Blank Space', 'B', '100', 'Easy', 'C2', 'contest', '1', 'Active', '1', '256', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci odit explicabo esse dolore laborum aliquam enim beatae excepturi libero distinctio quidem maiores voluptas, ipsa aliquid!</p>', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci odit explicabo esse dolore laborum aliquam enim beatae excepturi libero distinctio quidem maiores voluptas, ipsa aliquid!</p>', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci odit explicabo esse dolore laborum aliquam enim beatae excepturi libero distinctio quidem maiores voluptas, ipsa aliquid!</p>', '', '1
+2
+3', 'yes
+no
+no', '1
+2
+3
+4
+5', 'yes
+no
+yes
+no
+yes', '')
+Error: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1
+C:\xampp\htdocs\codesohoj\web\functions.php
+======================================================================
+[2023-05-19 23:23:24]
+<br>Category ID: 1    PROBLEM ID: 0 <br>
+======================================================================
+[2023-05-19 23:24:06]
+Processing request...
+======================================================================
+[2023-05-19 23:24:06]
+Query error:
+INSERT INTO problems (name , code , score , type , pgroup , contest , timelimit , status , displayio , maxfilesize , statement , input_statement , output_statement , note , input , output , sampleinput , sampleoutput) values ('Blank Space', 'B', '100', 'Easy', 'C2', 'contest', '1', 'Active', '1', '256', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci odit explicabo esse dolore laborum aliquam enim beatae excepturi libero distinctio quidem maiores voluptas, ipsa aliquid!</p>', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci odit explicabo esse dolore laborum aliquam enim beatae excepturi libero distinctio quidem maiores voluptas, ipsa aliquid!</p>', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci odit explicabo esse dolore laborum aliquam enim beatae excepturi libero distinctio quidem maiores voluptas, ipsa aliquid!</p>', '', '1
+2
+3', 'yes
+no
+no', '1
+2
+3
+4
+5', 'yes
+no
+yes
+no
+yes', '')
+Error: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1
+C:\xampp\htdocs\codesohoj\web\functions.php
+======================================================================
+[2023-05-19 23:24:06]
+<br>Category ID: 1    PROBLEM ID: 0 <br>
+======================================================================
+[2023-05-19 23:26:20]
+Processing request...
+======================================================================
+[2023-05-19 23:26:20]
+Query error:
+INSERT INTO problems (name , code , score , type , pgroup , contest , timelimit , status , displayio , maxfilesize , statement , input_statement , output_statement , note , input , output , sampleinput , sampleoutput) values ('Blank Space', 'B', '100', 'Easy', 'C2', 'contest', '1', 'Active', '1', '256', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci odit explicabo esse dolore laborum aliquam enim beatae excepturi libero distinctio quidem maiores voluptas, ipsa aliquid!</p>', '<p><br></p>', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci odit explicabo esse dolore laborum aliquam enim beatae excepturi libero distinctio quidem maiores voluptas, ipsa aliquid!</p>', '', '1
+2
+3', 'yes
+no
+no', '1
+2
+3
+4
+5', 'yes
+no
+yes
+no
+yes', '')
+Error: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1
+C:\xampp\htdocs\codesohoj\web\functions.php
+======================================================================
+[2023-05-19 23:26:20]
+<br>Category ID: 1    PROBLEM ID: 0 <br>
+======================================================================
+[2023-05-19 23:27:46]
+Processing request...
+======================================================================
+[2023-05-19 23:27:46]
+Query error:
+INSERT INTO problems (name , code , score , type , pgroup , contest , timelimit , status , displayio , maxfilesize , statement , input_statement , output_statement , note , input , output , sampleinput , sampleoutput) values ('Blank Space', 'B', '100', 'Easy', 'C2', 'contest', '1', 'Active', '1', '256', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci odit explicabo esse dolore laborum aliquam enim beatae excepturi libero distinctio quidem maiores voluptas, ipsa aliquid!</p>', '<p><br></p>', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci odit explicabo esse dolore laborum aliquam enim beatae excepturi libero distinctio quidem maiores voluptas, ipsa aliquid!</p>', '', '1
+2
+3', 'yes
+no
+no', '1
+2
+3
+4
+5', 'yes
+no
+yes
+no
+yes', '')
+Error: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1
+C:\xampp\htdocs\codesohoj\web\functions.php
+======================================================================
+[2023-05-19 23:27:46]
+<br>Category ID: 1    PROBLEM ID: 0 <br>
+======================================================================
+[2023-05-19 23:28:16]
+Processing request...
+======================================================================
+[2023-05-19 23:28:16]
+Query error:
+INSERT INTO problems (name , code , score , type , pgroup , contest , timelimit , status , displayio , maxfilesize , statement , input_statement , output_statement , note , input , output , sampleinput , sampleoutput) values ('Blank Space', 'B', '100', 'Easy', 'C2', 'contest', '1', 'Active', '1', '256', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci odit explicabo esse dolore laborum aliquam enim beatae excepturi libero distinctio quidem maiores voluptas, ipsa aliquid!</p>', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci odit explicabo esse dolore laborum aliquam enim beatae excepturi libero distinctio quidem maiores voluptas, ipsa aliquid!</p>', '<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci odit explicabo esse dolore laborum aliquam enim beatae excepturi libero distinctio quidem maiores voluptas, ipsa aliquid!</p>', '', '1
+2
+3', 'yes
+no
+no', '1
+2
+3
+4
+5', 'yes
+no
+yes
+no
+yes', '')
+Error: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1
+C:\xampp\htdocs\codesohoj\web\functions.php
+======================================================================
+[2023-05-19 23:28:16]
+<br>Category ID: 1    PROBLEM ID: 0 <br>
+======================================================================
+[2023-05-19 23:34:42]
+Processing request...
+======================================================================
+[2023-05-19 23:36:55]
+Processing request...
+======================================================================
+[2023-05-19 23:36:55]
+<br>Category ID: 1    PROBLEM ID: 26 <br>
+======================================================================
+[2023-05-19 23:47:50]
+Processing request...
+======================================================================
+[2023-05-19 23:47:50]
+<br>Category ID: 1    PROBLEM ID: 26 <br>
+======================================================================
+[2023-05-20 08:05:01]
+Processing request...
+======================================================================
+[2023-05-20 08:05:01]
+addcontest
+======================================================================
+[2023-05-20 08:06:01]
+Query error:
+select tid, username, gid, status from teams
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.teams' doesn't exist
+C:\xampp\htdocs\codesohoj\web\functions.php
+======================================================================
+[2023-05-20 08:06:16]
+Query error:
+select * from broadcast where deleted = 0
+Error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'codesohoj_main.broadcast' doesn't exist
+C:\xampp\htdocs\codesohoj\web\functions.php
+======================================================================
+[2023-05-20 08:07:04]
+Processing request...
+======================================================================
+[2023-05-20 17:35:34]
+Processing request...
+======================================================================
+[2023-05-20 17:35:34]
+Action::\nUser Farhan Masud Shohag logged out.
+======================================================================
+[2023-05-20 17:36:34]
+Processing request...
+======================================================================
+[2023-05-20 18:08:32]
+Processing request...
+======================================================================
+[2023-05-22 07:29:00]
+Processing request...
+======================================================================
