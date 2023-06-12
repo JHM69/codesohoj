@@ -23,11 +23,11 @@
         </li>
 
         <li class="p-2" data-te-nav-item-ref>
-          <a class="p-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400" href="#">Learn</a>
+          <a class="p-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400" href="<?php echo SITE_URL; ?>/learn.php">Learn</a>
         </li>
 
         <li class="p-2" data-te-nav-item-ref>
-          <a class="p-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400" href="#">Blogs</a>
+          <a class="p-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400" href="<?php echo SITE_URL; ?>/blog.php">Blogs</a>
         </li>
 
         <?php if (isset($_SESSION["loggedin"])) { ?>
@@ -110,7 +110,7 @@
                     <?php } else { ?>
 
                       <li>
-                        <a href='/edit' class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+                        <a href='<?php echo SITE_URL; ?>/profile.php' class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                           <span class="flex-1 ml-3 whitespace-nowrap">Account Setting</span>
                         </a>
                       </li>
