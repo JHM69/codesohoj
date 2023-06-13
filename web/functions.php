@@ -256,6 +256,8 @@ class DB
         return self::$connection->query($query);
       }
     } catch (PDOException $e) {
+      echo $e->getMessage();
+      writeError("Query error:\n" . $query);
       self::handleError($e, $query);
       return false;
     }
@@ -370,6 +372,7 @@ class DB
       }
       return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
+      echo $e->getMessage();
       self::handleError($e, $query);
       return false;
     }

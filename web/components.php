@@ -39,9 +39,9 @@ function loginbox()
                     </tr>
                 </thead>
                 <?php
-                $query = "SELECT count(*)+1 as rank, (select score from teams where tid = " . $_SESSION['team']['id'] . ") as sco FROM `teams` WHERE (score > (select score from teams where tid = " . $_SESSION['team']['id'] . ") and status = 'Normal') or (score = (select score from teams where tid = " . $_SESSION['team']['id'] . ") and penalty < (select penalty from teams where tid = " . $_SESSION['team']['id'] . ") and status='Normal') ";
+                $query = "SELECT count(*)+1 as rank, (select score from Users where tid = " . $_SESSION['team']['id'] . ") as sco FROM `Users` WHERE (score > (select score from Users where tid = " . $_SESSION['team']['id'] . ") and status = 'Normal') or (score = (select score from Users where tid = " . $_SESSION['team']['id'] . ") and penalty < (select penalty from Users where tid = " . $_SESSION['team']['id'] . ") and status='Normal') ";
                 $res = DB::findOneFromQuery($query);
-                echo "<tr><td><a href='" . SITE_URL . "/teams/" . $_SESSION['team']['name'] . "'>" . $_SESSION['team']['name'] . "</a></td><td>$res[sco]</td><td style='text-align: center'>$res[rank]</td></tr>";
+                echo "<tr><td><a href='" . SITE_URL . "/Users/" . $_SESSION['team']['name'] . "'>" . $_SESSION['team']['name'] . "</a></td><td>$res[sco]</td><td style='text-align: center'>$res[rank]</td></tr>";
                 ?>
             </table>
         </div>

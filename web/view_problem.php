@@ -62,11 +62,11 @@ $result = DB::findOneFromQuery($sql);
             <div class="bg-white rounded p-4 mt-4">
                 <div class="mb-2">
                     <h3 class="text-lg font-bold">Sample Input</h3>
-                    <pre class="bg-gray-200 p-2"><?php echo $result['input']; ?></pre>
+                    <pre class="bg-gray-200 p-2"><?php echo $result['sampleinput']; ?></pre>
                 </div>
                 <div>
                     <h3 class="text-lg font-bold">Sample Output</h3>
-                    <pre class="bg-gray-200 p-2"><?php echo $result['output']; ?></pre>
+                    <pre class="bg-gray-200 p-2"><?php echo $result['sampleoutput']; ?></pre>
                 </div>
             </div>
             <div class="bg-white rounded p-4 mt-4">
@@ -106,24 +106,35 @@ $result = DB::findOneFromQuery($sql);
                     <li class="m-2"><a href="#" class="text-blue-500">Editorial</a></li>
                 </ul>
             </div>
-            <div class="mb-8">
-                <h2 class="text-xl font-bold">Upload File</h2>
-                <input type="file" class="mt-2">
-            </div>
-            <div>
-                <h2 class="text-xl font-bold">Select Compiler Language</h2>
-                <select class="mt-2">
-                    <option value="c">C</option>
-                    <option value="cpp">C++</option>
-                    <option value="java">Java</option>
-                    <option value="python">Python</option>
-                </select>
-            </div>
-            <div class="flex justify-center mt-6">
-                <button class="bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-                    Submit
-                </button>
-            </div>
+
+            <form id='form' action='<?php echo SITE_URL; ?>/process.php' method='post' enctype='multipart/form-data'>
+                <table class='table table-striped'>
+                    <tr>
+                        <th class="px-4 py-2">Language :</th>
+                        <td>
+                            <select id='lang' name='lang' class="mt-2">
+                                <option value="C">C</option>
+                                <option value="C++">C++</option>
+                                <option value="Java">Java</option>
+                                <option value="Python">Python</option>
+                            </select>
+                        </td>
+                        <th class="px-4 py-2">File :</th>
+                        <td>
+                            <input type='file' name='code_file' class="py-2 px-4 border border-gray-300 rounded-lg">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan='4' style='padding: 0;'>
+                            <textarea id='sub' name='sub' class="form-textarea mt-1 block w-full" rows="8"><?php
+                                                                                                            ?></textarea>
+                        </td>
+                    </tr>
+                </table>
+                <input type='hidden' value="<?php echo ((isset($result['code']) && $result['code'] != "") ? ($result['code']) : ($prob['code'])); ?>" name="probcode" />
+                <input type='submit' value='Submit' class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' name='submitcode' />
+            </form>
+
         </div>
     </div>
 
