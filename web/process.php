@@ -342,7 +342,7 @@ if (isset($_POST["login"])) {
           }
           fwrite($client, $rid);
           fclose($client);
-          redirectTo(SITE_URL . "/viewsolution/" . $rid);
+          redirectTo(SITE_URL . "/viewsolution.php?code=" . $rid);
         } else {
           DB::query("Delete from runs where rid = $rid");
           $_SESSION['msg'] = "Some error occured during submission. If the problem continues contact Admin";
