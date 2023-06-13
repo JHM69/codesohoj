@@ -9,6 +9,7 @@ $problem_id = $_GET['problem_id'];
 // Query the database to fetch the problem
 $sql = "SELECT * FROM problems WHERE code = '$problem_id'";
 $result = DB::findOneFromQuery($sql);
+$user_code = "";
 
 ?>
 
@@ -96,24 +97,45 @@ $result = DB::findOneFromQuery($sql);
                     <li class="m-2"><a href="#" class="text-blue-500">Editorial</a></li>
                 </ul>
             </div>
-            <div class="mb-8">
-                <h2 class="text-xl font-bold">Upload File</h2>
-                <input type="file" class="mt-2">
-            </div>
-            <div>
-                <h2 class="text-xl font-bold">Select Compiler Language</h2>
-                <select class="mt-2">
-                    <option value="c">C</option>
-                    <option value="cpp">C++</option>
-                    <option value="java">Java</option>
-                    <option value="python">Python</option>
-                </select>
-            </div>
-            <div class="flex justify-center mt-6">
-                <button class="bg-black hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-                    Submit
-                </button>
-            </div>
+
+            <form id='form' action='<?php echo SITE_URL; ?>/process.php' method='post' enctype='multipart/form-data'>
+                <table class='table table-striped'>
+                    <tr>
+                        <th class="px-4 py-2">Language :</th>
+                        <td>
+                            <select class="form-select mt-1 block w-full" id='lang' name='lang'>
+                                <?php
+                                $lang = explode(',', $prob['languages']);
+                                foreach ($lang as $row) {
+                                    if ($row == 'Brain') {
+                                        echo "<option value='$row'" . ((isset($_GET['edit']) && $row == $runs['language']) ? "selected='selected'" : "") . ">Brainf**k</option>";
+                                    } elseif (isset($_GET['edit']) && $row == $runs['language']) {
+                                        echo "<option value='$row' selected='selected'>$row</option>";
+                                    } elseif ($row == 'C++' && !isset($_GET['edit'])) {
+                                        echo "<option value='$row' selected='selected'>$row</option>";
+                                    } else {
+                                        echo "<option value='$row'>$row</option>";
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </td>
+                        <th class="px-4 py-2">File :</th>
+                        <td>
+                            <input type='file' name='code_file' class="py-2 px-4 border border-gray-300 rounded-lg">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan='4' style='padding: 0;'>
+                            <textarea id='sub' name='sub' class="form-textarea mt-1 block w-full" rows="8"><?php
+                                                                                                            ?></textarea>
+                        </td>
+                    </tr>
+                </table>
+                <input type="hidden" value="<?php echo ((isset($_GET['code']) && $_GET['code'] != "") ? ($_GET['code']) : ($prob['code'])); ?>" name="probcode" />
+                <input type='submit' value='Submit' class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' name='submitcode' />
+            </form>
+
         </div>
     </div>
 </body>

@@ -11,7 +11,7 @@ if (
   $_SESSION["Users"]["status"] == "Admin"
 ) { ?>
 
-<!DOCTYPE html>
+  <!DOCTYPE html>
   <html>
 
   <head>
@@ -45,134 +45,139 @@ if (
   </head>
 
   <body class="text-gray-800 antialiased">
-  <div class="w-4/5 bg-white rounded-lg shadow-lg p-6 py-4">
-    <div class="text-center py-6">
-      <h1 class="text-3xl font-bold text-blue-700">Add Problem</h1>
-    </div>
-    <form class="max-w-4xl mx-auto mt-8" method="post" action="<?php echo SITE_URL; ?>/process.php" enctype='multipart/form-data'>
-      <div class="mx-auto bg-white border border-grey-300 rounded rounded-lg shadow-lg p-6 py-4">
-        <div class="mb-4">
-          <label for="name" class="block text-gray-700 font-bold mb-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Name</label>
-          <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="text" name="name" id="name" required>
-        </div>
-        
+    <div class="w-4/5 bg-white rounded-lg shadow-lg p-6 py-4">
+      <div class="text-center py-6">
+        <h1 class="text-3xl font-bold text-blue-700">Add Problem</h1>
+      </div>
+      <form class="max-w-4xl mx-auto mt-8" method="post" action="<?php echo SITE_URL; ?>/process.php" enctype='multipart/form-data'>
+        <div class="mx-auto bg-white border border-grey-300 rounded rounded-lg shadow-lg p-6 py-4">
+          <div class="mb-4">
+            <label for="name" class="block text-gray-700 font-bold mb-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Name</label>
+            <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="text" name="name" id="name" required>
+          </div>
+
           <label for="editor-container" class="block text-gray-700 font-bold mb-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Statement</label>
 
           <div class="mb-5" id="editor-container">
           </div>
           <input type="hidden" name="statement" id="statement">
-        
-
-        <label for="editor-container-input" class="block text-gray-700 font-bold mb-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Input</label>
-
-        <div id="editor-container-input">
-        </div>
-        <input type="hidden" name="input_statement" id="input_statement">
-
-        <label for="editor-container-output" class="block text-gray-700 font-bold mb-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Output</label>
-
-        <div id="editor-container-output">
-        </div>
-        <input type="hidden" name="output_statement" id="output_statement">
-
-        <label for="editor-container-note" class="block text-gray-700 font-bold mb-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Note</label>
-
-        <div id="editor-container-note">
-        </div>
-        <input type="hidden" name="note" id="note">
 
 
+          <label for="editor-container-input" class="block text-gray-700 font-bold mb-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Input</label>
 
-        <div class="mb-4 mt-5">
-          <label for="code" class="block text-gray-700 font-bold mb-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Short Code</label>
-          <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="text" name="code" id="code" required>
-        </div>
-        <div class="flex flex-wrap -mx-2">
-          <div class="w-1/2 mb-4">
-            <label for="image" class="block text-gray-700 font-bold mb-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Image File</label>
-            <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" style="padding: 6px 12px" type="file" name="image" id="image">
+          <div id="editor-container-input">
           </div>
-          <div class="w-1/2 mb-4">
-            <label for="score" class="ml-1 block text-gray-700 font-bold mb-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Score</label>
-            <input class="ml-1 border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" style="padding: 6px 10px" type="text" name="score" id="score" value="100" required>
+          <input type="hidden" name="input_statement" id="input_statement">
+
+          <label for="editor-container-output" class="block text-gray-700 font-bold mb-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Output</label>
+
+          <div id="editor-container-output">
           </div>
-        </div>
-        <div class="flex flex-wrap -mx-2">
-          <div class="w-1/2 mb-4">
-            <label for="input" class="block text-gray-700 font-bold mb-2">Input File</label>
-            <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="file" name="input" id="input" required>
+          <input type="hidden" name="output_statement" id="output_statement">
+
+          <label for="editor-container-note" class="block text-gray-700 font-bold mb-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Note</label>
+
+          <div id="editor-container-note">
           </div>
-          <div class="w-1/2 mb-4">
-            <label for="output" class="block text-gray-700 font-bold mb-2">Output File</label>
-            <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="file" name="output" id="output" required>
+          <input type="hidden" name="note" id="note">
+
+
+
+          <div class="mb-4 mt-5">
+            <label for="code" class="block text-gray-700 font-bold mb-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Short Code</label>
+            <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="text" name="code" id="code" required>
           </div>
-        </div>
-        <div class="flex flex-wrap -mx-2">
-          <div class="form-group w-1/2 mb-4">
-            <label class="mr-1 block text-gray-700 font-bold mb-2" for="type">Type</label>
-            <select class="mr-1 border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" name="type" id="type">
-              <option value="Hard">Hard</option>
-              <option value="Medium">Medium</option>
-              <option selected value="Easy">Easy</option>
+          <div class="flex flex-wrap -mx-2">
+            <div class="w-1/2 mb-4">
+              <label for="image" class="block text-gray-700 font-bold mb-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Image File</label>
+              <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" style="padding: 6px 12px" type="file" name="image" id="image">
+            </div>
+            <div class="w-1/2 mb-4">
+              <label for="score" class="ml-1 block text-gray-700 font-bold mb-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Score</label>
+              <input class="ml-1 border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" style="padding: 6px 10px" type="text" name="score" id="score" value="100" required>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap -mx-2">
+            <div class="form-group w-1/2 mb-4">
+              <label class="block text-gray-700 font-bold mb-2 mr-1" for="sampleinput">Sample Input</label>
+              <div class="mt-2 mr-1">
+                <textarea type="text" name="sampleinput" id="sampleinput" required rows="5" class="block w-full border-gray-300 p-2 rounded-md placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full h-100px text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"></textarea>
+              </div>
+            </div>
+            <div class="form-group w-1/2 mb-4">
+              <label class="block text-gray-700 font-bold mb-2 ml-1" for="sampleoutput">Sample Output</label>
+              <div class="mt-2 ml-1">
+                <textarea type="text" name="sampleoutput" id="sampleoutput" required rows="5" class="block w-full border-gray-300 p-2 rounded-md placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full h-100px text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"></textarea>
+              </div>
+
+            </div>
+          </div>
+
+
+          <div class="flex flex-wrap -mx-2">
+            <div class="w-1/2 mb-4">
+              <label for="input" class="block text-gray-700 font-bold mb-2">Input File</label>
+              <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="file" name="input" id="input" required>
+            </div>
+            <div class="w-1/2 mb-4">
+              <label for="output" class="block text-gray-700 font-bold mb-2">Output File</label>
+              <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="file" name="output" id="output" required>
+            </div>
+          </div>
+          <div class="flex flex-wrap -mx-2">
+            <div class="form-group w-1/2 mb-4">
+              <label class="mr-1 block text-gray-700 font-bold mb-2" for="type">Type</label>
+              <select class="mr-1 border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" name="type" id="type">
+                <option value="Hard">Hard</option>
+                <option value="Medium">Medium</option>
+                <option selected value="Easy">Easy</option>
+              </select>
+            </div>
+            <div class="form-group w-1/2 mb-4">
+              <label class="ml-1 block text-gray-700 font-bold mb-2" for="pgroup">Problem Group</label>
+              <input class="ml-1 border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="text" name="pgroup" id="pgroup" required>
+              <small class="ml-2 block mt-1 text-xs text-gray-500">If it is a contest question then its group is same as contest code.</small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="block text-gray-700 font-bold mb-2" for="category">Category</label>
+            <select class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" name="category[]" id="category" multiple>
+              <!-- Fetch category from category table -->
+
+              <?php
+              $sql = "SELECT * FROM category";
+              $result = DB::findAllFromQuery($sql);
+              //display the result in chip of tawilwind css
+
+              foreach ($result as $row) {
+                echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
+              }
+              ?>
+
+
+            </select>
+            <small class="ml-2 block mt-1 text-xs text-gray-500">You can select multiple category.</small>
+          </div>
+
+          <div class="form-group mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="contest">Contest type</label>
+            <select class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" name="contest" id="contest">
+              <option value="contest">Contest</option>
+              <option selected value="practice">Practice</option>
             </select>
           </div>
-          <div class="form-group w-1/2 mb-4">
-            <label class="ml-1 block text-gray-700 font-bold mb-2" for="pgroup">Problem Group</label>
-            <input class="ml-1 border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="text" name="pgroup" id="pgroup" required>
-            <small class="ml-2 block mt-1 text-xs text-gray-500">If it is a contest question then its group is same as contest code.</small>
+          <div class="flex flex-wrap -mx-2">
+            <div class="form-group mb-4 w-1/2">
+              <label class="mr-1 block text-gray-700 font-bold mb-2" for="timelimit">Time Limit (s)</label>
+              <input class="mr-1 border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="text" name="timelimit" id="timelimit" value="1" required>
+            </div>
+            <div class="form-group mb-4 w-1/2">
+              <label class="ml-1 block text-gray-700 font-bold mb-2" for="maxfilesize">Max File size (MB)</label>
+              <input class="ml-1 border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="text" name="maxfilesize" id="maxfilesize" value="256">
+            </div>
           </div>
-        </div>
-
-        <div class="form-group">
-          <label class="block text-gray-700 font-bold mb-2" for="category">Category</label>
-          <select class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" name="category[]" id="category" multiple>
-            <!-- Fetch category from category table -->
-
-            <?php
-            $sql = "SELECT * FROM category";
-            $result = DB::findAllFromQuery($sql);
-            //display the result in chip of tawilwind css
-
-            foreach ($result as $row) {
-              echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
-            }
-            ?>
-
-
-          </select>
-          <small class="ml-2 block mt-1 text-xs text-gray-500">You can select multiple category.</small>
-        </div>
-        <div class="flex flex-wrap -mx-2">
-          <div class="form-group w-1/2 mb-4">
-            <label class="block text-gray-700 font-bold mb-2 mr-1" for="sampleinput">Sample Input File</label>
-            <div class="mt-2 mr-1">
-            <textarea type="text" name="sampleinput" id="sampleinput" required rows="5" class="block w-full border-gray-300 p-2 rounded-md placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full h-100px text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"></textarea>
-          </div>
-          </div>
-          <div class="form-group w-1/2 mb-4">
-            <label class="block text-gray-700 font-bold mb-2 ml-1" for="sampleoutput">Sample Output File</label>
-            <div class="mt-2 ml-1">
-            <textarea type="text" name="sampleoutput" id="sampleoutput" required rows="5" class="block w-full border-gray-300 p-2 rounded-md placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full h-100px text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"></textarea></div>
-            
-          </div>
-        </div>
-        <div class="form-group mb-4">
-          <label class="block text-gray-700 font-bold mb-2" for="contest">Contest type</label>
-          <select class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" name="contest" id="contest">
-            <option value="contest">Contest</option>
-            <option selected value="practice">Practice</option>
-          </select>
-        </div>
-        <div class="flex flex-wrap -mx-2">
-          <div class="form-group mb-4 w-1/2">
-            <label class="mr-1 block text-gray-700 font-bold mb-2" for="timelimit">Time Limit (s)</label>
-            <input class="mr-1 border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="text" name="timelimit" id="timelimit" value="1" required>
-          </div>
-          <div class="form-group mb-4 w-1/2">
-            <label class="ml-1 block text-gray-700 font-bold mb-2" for="maxfilesize">Max File size (MB)</label>
-            <input class="ml-1 border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="text" name="maxfilesize" id="maxfilesize" value="256">
-          </div>
-        </div>
           <!-- <div class="form-group">
           <label class="block mb-2 text-sm font-medium" for="languages">Languages Allowed</label>
           <input type="hidden" name="languages" id="languages">
@@ -182,30 +187,30 @@ if (
             <option selected value="practice">Java</option>
           </select>
           </div> -->
-        <div class="flex flex-wrap -mx-2">
-          <div class="form-group mb-4 w-1/2">
-            <label class="mr-1 block text-gray-700 font-bold mb-2" for="status">Status</label>
-            <select class="mr-1 border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" name="status" id="status">
-              <option selected value="Active">Active</option>
-              <option value="Inactive">Inactive</option>
-              <option value="Deleted">Disabled</option>
-            </select>
-          </div>
-          <div class="form-group mb-4 w-1/2">
-            <label class="ml-1 block text-gray-700 font-bold mb-2" for="displayio">Display IO</label>
-            <select class="ml-1 border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" name="displayio" id="displayio">
-              <option selected value="1">Yes</option>
-              <option value="0">No</option>
-            </select>
+          <div class="flex flex-wrap -mx-2">
+            <div class="form-group mb-4 w-1/2">
+              <label class="mr-1 block text-gray-700 font-bold mb-2" for="status">Status</label>
+              <select class="mr-1 border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" name="status" id="status">
+                <option selected value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+                <option value="Deleted">Disabled</option>
+              </select>
+            </div>
+            <div class="form-group mb-4 w-1/2">
+              <label class="ml-1 block text-gray-700 font-bold mb-2" for="displayio">Display IO</label>
+              <select class="ml-1 border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" name="displayio" id="displayio">
+                <option selected value="1">Yes</option>
+                <option value="0">No</option>
+              </select>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="flex flex-col items-center justify-center py-4">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" name="add_problem" style="transition: all 0.15s ease 0s">
-          Add Problem
-        </button>
-      </div>
-    </form>
+        <div class="flex flex-col items-center justify-center py-4">
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" name="add_problem" style="transition: all 0.15s ease 0s">
+            Add Problem
+          </button>
+        </div>
+      </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>

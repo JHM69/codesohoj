@@ -69,7 +69,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin') {
         </form>
 <?php
     } else {
-        $query = "select tid, username, gid, status from teams";
+        $query = "select tid, username, gid, status from Users";
         $res = DB::findAllFromQuery($query);
         echo "<div class='text-center page-header'><h1>List of Teams</h1></div><table class='table table-hover'><thead><tr><th>ID</th><th>Name</th><th>Group ID</th><th>Status</th><th>Options</th></tr></thead>";
         foreach ($res as $row) {
