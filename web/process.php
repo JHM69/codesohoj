@@ -304,13 +304,13 @@ if (isset($_POST["login"])) {
 
 
       $submittime = time();
-      $query = "INSERT INTO runs (pid,tid,language,access,submittime) VALUES ('$res[pid]', '" . $_SESSION["Users"]["uid"] . "', '$_POST[lang]', 'private', '" . $submittime . "')";
+      $query = "INSERT INTO runs (pid,uid,language,access,submittime) VALUES ('$res[pid]', '" . $_SESSION["Users"]["uid"] . "', '$_POST[lang]', 'private', '" . $submittime . "')";
       $res2 = DB::query($query);
 
 
 
       DB::query("update problems set total=" . ($res['total'] + 1) . " where pid = $res[pid]");
-      $query = "select rid from runs where tid = " . $_SESSION["Users"]["uid"] . " and pid = $res[pid] and submittime = $submittime";
+      $query = "select rid from runs where uid = " . $_SESSION["Users"]["uid"] . " and pid = $res[pid] and submittime = $submittime";
       $result = DB::findOneFromQuery($query);
 
       if ($result) {

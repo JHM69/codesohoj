@@ -1,9 +1,9 @@
 <?php
 if (isset($_GET['code'])) {
     if (!isset($_SESSION['loggedin']) || $_SESSION['Users']['status'] == 'Normal')
-        $query = "select runs.rid as rid, pid, tid, runs.language as language, time, result, access, submittime, name, code, error, output from runs, subs_code where runs.rid = subs_code.rid and runs.rid = $_GET[code] and (access = 'public'" . ((isset($_SESSION['Users']['id'])) ? (" or tid=" . $_SESSION['Users']['id']) : ("")) . ")";
+        $query = "select runs.rid as rid, pid, uid, runs.language as language, time, result, access, submittime, name, code, error, output from runs, subs_code where runs.rid = subs_code.rid and runs.rid = $_GET[code] and (access = 'public'" . ((isset($_SESSION['Users']['id'])) ? (" or uid=" . $_SESSION['Users']['id']) : ("")) . ")";
     elseif (isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin')
-        $query = "select runs.rid as rid, pid, tid, runs.language as language, time, result, access, submittime, name, code, error, output from runs, subs_code where runs.rid = subs_code.rid and runs.rid = $_GET[code]";
+        $query = "select runs.rid as rid, pid, uid, runs.language as language, time, result, access, submittime, name, code, error, output from runs, subs_code where runs.rid = subs_code.rid and runs.rid = $_GET[code]";
     else
         $query = "select * from runs where 1 = 2";
     $res = DB::findOneFromQuery($query);
@@ -26,7 +26,7 @@ if (isset($_GET['code'])) {
             SyntaxHighlighter.all();
         </script>
         <?php
-        $query = "select code, name, displayio, problems.status as status, contest, input, output, teamname from problems, Users where pid = $res[pid] and tid = $res[tid]";
+        $query = "select code, name, displayio, problems.status as status, contest, input, output, teamname from problems, Users where pid = $res[pid] and uid = $res[uid]";
         $prob = DB::findOneFromQuery($query);
         $btn = "";
         if ($prob['status'] == 'Active' || (isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin' && $prob['contest'] == 'practice')) {
