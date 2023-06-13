@@ -33,14 +33,14 @@ if (isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin') {
         $page = 1;
     $body = "from logs";
     if (isset($_GET['code'])) {
-        $body .= " where tid like '%[Users]%=>%" . $_GET['code'] . "%'";
+        $body .= " where uid like '%[Users]%=>%" . $_GET['code'] . "%'";
     }
     $body .= " order by time desc";
     $result = DB::findAllWithCount("select *", $body, $page, 10);
     $data = $result['data'];
     echo "<table class='table table-condensed table-hover'><thead><tr><th>Time</th><th>IP</th><th>Session</th><th>Request</th></tr></thead>";
     foreach ($data as $row) {
-        echo "<tr><td>" . date("d/m/Y h:i:sa", $row['time']) . "</td><td>$row[ip]</td><td><pre>$row[tid]</pre></td><td><pre>$row[request]</pre></td></tr>";
+        echo "<tr><td>" . date("d/m/Y h:i:sa", $row['time']) . "</td><td>$row[ip]</td><td><pre>$row[uid]</pre></td><td><pre>$row[request]</pre></td></tr>";
     }
     echo "</table>";
     pagination($result['noofpages'], SITE_URL . "/adminlog" . ((isset($_GET['code'])) ? ("/$_GET[code]") : ("")), $page, 10);

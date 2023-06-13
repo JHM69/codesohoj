@@ -132,7 +132,7 @@ INSERT INTO `category_problem` (`id`, `category_id`, `problem_id`) VALUES
 
 CREATE TABLE `clar` (
   `time` int(11) NOT NULL,
-  `tid` int(11) DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL,
   `pid` int(11) DEFAULT NULL,
   `query` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `reply` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -183,7 +183,7 @@ CREATE TABLE `editorials` (
 CREATE TABLE `logs` (
   `time` int(11) NOT NULL,
   `ip` tinytext CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `tid` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `uid` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `request` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -239,7 +239,7 @@ INSERT INTO `problems` (`pid`, `code`, `name`, `type`, `contest`, `status`, `pgr
 CREATE TABLE `runs` (
   `rid` int(11) NOT NULL,
   `pid` int(11) DEFAULT NULL,
-  `tid` int(11) DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL,
   `language` tinytext CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `time` tinytext CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `result` tinytext CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -251,7 +251,7 @@ CREATE TABLE `runs` (
 -- Dumping data for table `runs`
 --
 
-INSERT INTO `runs` (`rid`, `pid`, `tid`, `language`, `time`, `result`, `access`, `submittime`) VALUES
+INSERT INTO `runs` (`rid`, `pid`, `uid`, `language`, `time`, `result`, `access`, `submittime`) VALUES
 (1, 1, 1, 'C', '', NULL, 'public', NULL),
 (2, 1, 1, 'C++', '', NULL, 'public', NULL),
 (3, 1, 1, 'C#', '', NULL, 'public', NULL),
@@ -277,7 +277,7 @@ DECLARE v_rid, v_submittime, v_incorrect, v_pen, v_score, recpid, v_dq, v_total,
 DECLARE v_sco int DEFAULT 0;
 DECLARE v_dqsco int DEFAULT 0;
 DECLARE v_penalty bigint DEFAULT 0;
-DECLARE cur1 CURSOR FOR SELECT distinct(runs.pid) as pid,problems.score as score FROM runs,problems WHERE runs.tid= OLD.tid and (runs.result='AC' OR runs.result='DQ') and runs.pid=problems.pid and problems.status!='Deleted' and runs.access!='deleted' and problems.contest = 'contest';
+DECLARE cur1 CURSOR FOR SELECT distinct(runs.pid) as pid,problems.score as score FROM runs,problems WHERE runs.uid= OLD.uid and (runs.result='AC' OR runs.result='DQ') and runs.pid=problems.pid and problems.status!='Deleted' and runs.access!='deleted' and problems.contest = 'contest';
 DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
 IF new.result <> old.result THEN
 	OPEN cur1;
@@ -286,10 +286,10 @@ IF new.result <> old.result THEN
 	    	IF done THEN
 	      		LEAVE read_loop;
 	    	END IF;
-		SELECT count(*) into v_dq FROM runs WHERE result='DQ' and access!='deleted' and tid=OLD.tid and pid=recpid;
+		SELECT count(*) into v_dq FROM runs WHERE result='DQ' and access!='deleted' and uid=OLD.uid and pid=recpid;
 		IF v_dq = 0 THEN
-			SELECT rid,submittime into v_rid, v_submittime FROM runs WHERE result='AC' and tid=OLD.tid and pid=recpid and access!='deleted' ORDER BY rid ASC LIMIT 0,1;
-			SELECT count(*) into v_incorrect FROM runs, problems WHERE result!='AC' and result is not NULL and access!='deleted' and rid<v_rid and tid=OLD.tid and runs.pid=recpid and problems.score > 0 and problems.pid = runs.pid;
+			SELECT rid,submittime into v_rid, v_submittime FROM runs WHERE result='AC' and uid=OLD.uid and pid=recpid and access!='deleted' ORDER BY rid ASC LIMIT 0,1;
+			SELECT count(*) into v_incorrect FROM runs, problems WHERE result!='AC' and result is not NULL and access!='deleted' and rid<v_rid and uid=OLD.uid and runs.pid=recpid and problems.score > 0 and problems.pid = runs.pid;
 			SELECT value into v_pen from admin where variable = 'penalty';
 			SELECT (v_penalty + v_incorrect*v_pen*60) into v_penalty;
 			SELECT (v_sco + v_score) into v_sco;
@@ -297,10 +297,10 @@ IF new.result <> old.result THEN
 			SELECT (v_dqsco + v_score) into v_dqsco;
 		END IF;
 	end loop;
-	select max(submittime) into v_submittime from (select min(submittime) as submittime from runs, problems WHERE runs.tid= OLD.tid and runs.result='AC' and runs.pid=problems.pid and problems.status!='Deleted' and runs.access!='deleted' and problems.contest = 'contest'  group by runs.pid)t;
+	select max(submittime) into v_submittime from (select min(submittime) as submittime from runs, problems WHERE runs.uid= OLD.uid and runs.result='AC' and runs.pid=problems.pid and problems.status!='Deleted' and runs.access!='deleted' and problems.contest = 'contest'  group by runs.pid)t;
 	SELECT (v_penalty + v_submittime) into v_penalty;
 	update admin set value=v_dqsco where variable='test';
-	UPDATE Users SET score = (v_sco-v_dqsco), penalty=v_penalty where tid=OLD.tid;
+	UPDATE Users SET score = (v_sco-v_dqsco), penalty=v_penalty where uid=OLD.uid;
 	CLOSE cur1;
 END IF;
 IF strcmp(old.access, 'deleted') <> 0 and strcmp(new.access, 'deleted') = 0 THEN
