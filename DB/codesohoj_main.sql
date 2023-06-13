@@ -40,11 +40,11 @@ INSERT INTO `admin` (`variable`, `value`) VALUES
 ('lastjudge', '0'),
 ('mode', 'Disabled'),
 ('penalty', '20'),
-('notice', 'Aurora Online Judge\r\nWelcome to Aurora Online Judge'),
+('notice', 'Codesohoj Online Judge\r\nWelcome to Codesohoj Online Judge'),
 ('endtime', '0'),
 ('starttime', '0'),
 ('port', '8723'),
-('ip', 'judge');
+('ip', 'localhost');
 
 -- --------------------------------------------------------
 
@@ -300,7 +300,7 @@ IF new.result <> old.result THEN
 	select max(submittime) into v_submittime from (select min(submittime) as submittime from runs, problems WHERE runs.tid= OLD.tid and runs.result='AC' and runs.pid=problems.pid and problems.status!='Deleted' and runs.access!='deleted' and problems.contest = 'contest'  group by runs.pid)t;
 	SELECT (v_penalty + v_submittime) into v_penalty;
 	update admin set value=v_dqsco where variable='test';
-	UPDATE teams SET score = (v_sco-v_dqsco), penalty=v_penalty where tid=OLD.tid;
+	UPDATE Users SET score = (v_sco-v_dqsco), penalty=v_penalty where tid=OLD.tid;
 	CLOSE cur1;
 END IF;
 IF strcmp(old.access, 'deleted') <> 0 and strcmp(new.access, 'deleted') = 0 THEN
