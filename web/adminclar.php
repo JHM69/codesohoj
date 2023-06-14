@@ -35,7 +35,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin') {
         $save = $row['reply'];
         $row['query'] = preg_replace("/\n/", "<br>", $row['query']);
         $row['reply'] = preg_replace("/\n/", "<br>", $row['reply']);
-        $query = "select username from Users where tid='$row[tid]'";
+        $query = "select username from Users where uid='$row[uid]'";
         $username = DB::findOneFromQuery($query);
         if ($row['pid'] != '0') {
             $query = "select name, code from problems where pid='$row[pid]'";
@@ -52,7 +52,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin') {
             echo "A. " . htmlspecialchars($row['reply']) . "<br/><br/>";
         }
         echo "<form role='form' method='post' action='" . SITE_URL . "/process.php'>";
-        echo "<input type='hidden' name='tid' value='$row[tid]' /><input type='hidden' name='pid' value='$row[pid]' /><input type='hidden' name='time' value='$row[time]' />
+        echo "<input type='hidden' name='uid' value='$row[uid]' /><input type='hidden' name='pid' value='$row[pid]' /><input type='hidden' name='time' value='$row[time]' />
 <textarea class='form-control' name='reply' placeholder='Enter response...'>$save</textarea><br/>
 <div class='form-inline'><select class='form-control'  name='access'><option value='public' " . (($row['access'] == "public") ? ("selected='selected' ") : ("")) . ">Public</option><option value='deleted' " . (($row['access'] == "deleted") ? ("selected='selected' ") : ("")) . ">Deleted</option></select>  <input type='submit' class='btn btn-success' name='clarreply' value='Reply / Change Reply'/></div>
 

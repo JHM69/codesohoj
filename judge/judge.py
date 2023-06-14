@@ -153,7 +153,6 @@ def create(codefilename, language):
 
 # Program Execution
 def execute(exename, language, timelimit):
-    # Check if docker secrets are used and if so make them readable to only
     # root user.
     if os.path.exists("/run/secrets"):
         os.system("chmod -R 500 /run/secrets")
@@ -165,7 +164,7 @@ def execute(exename, language, timelimit):
     # Limiting max process that can be spawned by a user to 100 to protect against
     # fork bombs. Also, switching the user to 'judge' to run the submitted program.
     # After the allocated time limit, all process spawned by 'judge' user is killed.
-    cmd = 'ulimit -p 100; su judge -c "' + langarr[language]["execute"] + '; exit;"'
+    cmd = "sudo " + langarr[language]["execute"] + "; exit;"
     cmd = cmd.replace("[exename]", exename)
     cmd = cmd.replace("[inputfile]", inputfile)
 
@@ -194,7 +193,7 @@ def execute(exename, language, timelimit):
     timediff = endtime - starttime
 
     # kill all process spawned by user 'judge'
-    os.system("pkill -u judge")
+    # os.system("pkill -u judge")
 
     # Make directly readable / executable again to root user.
     os.system("chmod 750 .")
@@ -241,7 +240,7 @@ def runjudge(runid):
 
         if "-cache" not in sys.argv:
             cursor.execute(
-                "SELECT runs.rid as rid,runs.pid as pid,tid,runs.language,subs_code.name as name,subs_code.code as code,error,input,problems.output as output,timelimit FROM runs,problems, subs_code WHERE problems.pid=runs.pid and runs.access!='deleted' and runs.rid = subs_code.rid and runs.rid = '"
+                "SELECT runs.rid as rid,runs.pid as pid,uid,runs.language,subs_code.name as name,subs_code.code as code,error,input,problems.output as output,timelimit FROM runs,problems, subs_code WHERE problems.pid=runs.pid and runs.access!='deleted' and runs.rid = subs_code.rid and runs.rid = '"
                 + str(runid)
                 + "' and runs.language in "
                 + str(tuple(languages))
@@ -249,7 +248,7 @@ def runjudge(runid):
             )
         else:
             cursor.execute(
-                "SELECT runs1.rid as rid,runs1.pid as pid,tid,runs1.language,subs_code.name as name,subs_code.code as code,error,timelimit FROM runs AS runs1,problems, subs_code WHERE problems.pid=runs1.pid and runs1.rid = subs_code.rid and runs1.access!='deleted' and runs1.rid = '"
+                "SELECT runs1.rid as rid,runs1.pid as pid,uid,runs1.language,subs_code.name as name,subs_code.code as code,error,timelimit FROM runs AS runs1,problems, subs_code WHERE problems.pid=runs1.pid and runs1.rid = subs_code.rid and runs1.access!='deleted' and runs1.rid = '"
                 + str(runid)
                 + "' and runs1.language in "
                 + str(tuple(languages))
@@ -258,7 +257,7 @@ def runjudge(runid):
 
         # Select an Unjudged Submission
         run = cursor.fetchone()
-        print("Strting Running Program ..." )
+        print("Strting Running Program ...")
         cursor.execute("UPDATE runs SET result='...' WHERE rid='%d'" % (run["rid"]))
         print("Selected Run ID %d for Evaluation." % (run["rid"]))
 

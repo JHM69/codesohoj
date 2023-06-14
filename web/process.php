@@ -304,13 +304,13 @@ if (isset($_POST["login"])) {
 
 
       $submittime = time();
-      $query = "INSERT INTO runs (pid,tid,language,access,submittime) VALUES ('$res[pid]', '" . $_SESSION["Users"]["uid"] . "', '$_POST[lang]', 'private', '" . $submittime . "')";
+      $query = "INSERT INTO runs (pid,uid,language,access,submittime) VALUES ('$res[pid]', '" . $_SESSION["Users"]["uid"] . "', '$_POST[lang]', 'private', '" . $submittime . "')";
       $res2 = DB::query($query);
 
 
 
       DB::query("update problems set total=" . ($res['total'] + 1) . " where pid = $res[pid]");
-      $query = "select rid from runs where tid = " . $_SESSION["Users"]["uid"] . " and pid = $res[pid] and submittime = $submittime";
+      $query = "select rid from runs where uid = " . $_SESSION["Users"]["uid"] . " and pid = $res[pid] and submittime = $submittime";
       $result = DB::findOneFromQuery($query);
 
       if ($result) {
@@ -342,7 +342,7 @@ if (isset($_POST["login"])) {
           }
           fwrite($client, $rid);
           fclose($client);
-          redirectTo(SITE_URL . "/viewsolution/" . $rid);
+          redirectTo(SITE_URL . "/viewsolution.php?code=" . $rid);
         } else {
           DB::query("Delete from runs where rid = $rid");
           $_SESSION['msg'] = "Some error occured during submission. If the problem continues contact Admin";
