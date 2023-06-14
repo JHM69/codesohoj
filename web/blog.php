@@ -27,42 +27,42 @@ if (
                 <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
                     <h2 class="text-xl font-bold mb-2">Getting Started with Competitive Programming</h2>
                     <p>Learn how to get started with competitive programming and improve your problem-solving skills.</p>
-                    <a href="view_blog.php?blog=getting_started_cp" target="_blank" class="text-blue-500">Read More</a>
+                    <a href="<?php echo SITE_URL; ?>/view_blog.php?blog=getting_started_cp" class="text-blue-500">Read More</a>
                 </div>
 
                 <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
                     <h2 class="text-xl font-bold mb-2">Mastering Dynamic Programming</h2>
                     <p>Explore the concept of dynamic programming and how it can be used to solve complex problems efficiently.</p>
-                    <a href="view_blog.php?blog=getting_started_cp" target="_blank" class="text-blue-500">Read More</a>
+                    <a href="<?php echo SITE_URL; ?>/view_blog.php?blog=getting_started_cp" class="text-blue-500">Read More</a>
                 </div>
 
                 <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
                     <h2 class="text-xl font-bold mb-2">The Art of Problem Solving</h2>
                     <p>Discover the art of problem solving and learn strategies to tackle challenging programming problems.</p>
-                    <a href="view_blog.php?blog=getting_started_cp" target="_blank" class="text-blue-500">Read More</a>
+                    <a href="<?php echo SITE_URL; ?>/view_blog.php?blog=getting_started_cp" class="text-blue-500">Read More</a>
                 </div>
 
                 <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
                     <h2 class="text-xl font-bold mb-2">Introduction to Web Development</h2>
                     <p>Get started with web development and learn the basics of HTML, CSS, and JavaScript.</p>
-                    <a href="view_blog.php?blog=getting_started_cp" target="_blank" class="text-blue-500">Read More</a>
+                    <a href="<?php echo SITE_URL; ?>/view_blog.php?blog=getting_started_cp" class="text-blue-500">Read More</a>
                 </div>
 
                 <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
                     <h2 class="text-xl font-bold mb-2">Understanding Big O Notation</h2>
                     <p>Learn about Big O notation and how it measures the efficiency of algorithms.</p>
-                    <a href="view_blog.php?blog=getting_started_cp" target="_blank" class="text-blue-500">Read More</a>
+                    <a href="<?php echo SITE_URL; ?>/view_blog.php?blog=getting_started_cp" class="text-blue-500">Read More</a>
                 </div>
 
                 <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
                     <h2 class="text-xl font-bold mb-2">Database Management with SQL</h2>
                     <p>Discover the world of databases and learn how to manage data using SQL.</p>
-                    <a href="view_blog.php?blog=getting_started_cp" target="_blank" class="text-blue-500">Read More</a>
+                    <a href="<?php echo SITE_URL; ?>/view_blog.php?blog=getting_started_cp" class="text-blue-500">Read More</a>
                 </div>
             </div>
             <div class="bg-gray-100 py-4 mt-4">
                 <div class="container mx-auto flex justify-center">
-                    <a href="add_blog.php" target="_blank" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <a href="<?php echo SITE_URL; ?>/add_blog.php" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Add Blog
                     </a>
                 </div>

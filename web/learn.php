@@ -37,7 +37,7 @@ if (
                     <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
                         <h2 class="text-xl font-bold mb-2">Introduction to Programming</h2>
                         <p>Learn the basics of programming concepts, syntax, and problem-solving techniques.</p>
-                        <a href="topic_details.php?topic=intro_to_programming" target="_blank" class="text-blue-500">View Details</a>
+                        <a href="<?php echo SITE_URL; ?>/topic_details.php?topic=intro_to_programming" class="text-blue-500">View Details</a>
                     </div>
                 </div>
 
@@ -45,7 +45,7 @@ if (
                     <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
                         <h2 class="text-xl font-bold mb-2">Data Structures and Algorithms</h2>
                         <p>Explore various data structures and algorithms commonly used in programming competitions.</p>
-                        <a href="topic_details.php?topic=data_structures_algorithms" target="_blank" class="text-blue-500">View Details</a>
+                        <a href="<?php echo SITE_URL; ?>/topic_details.php?topic=data_structures_algorithms" class="text-blue-500">View Details</a>
                     </div>
                 </div>
 
@@ -53,7 +53,7 @@ if (
                     <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
                         <h2 class="text-xl font-bold mb-2">Practice Problems</h2>
                         <p>Sharpen your coding skills with a collection of practice problems of varying difficulty levels.</p>
-                        <a href="problems.php" class="text-blue-500">View Practice Problems</a>
+                        <a href="<?php echo SITE_URL; ?>/problems.php" class="text-blue-500">View Practice Problems</a>
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@ if (
                     <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
                         <h2 class="text-xl font-bold mb-2">Advanced Algorithms</h2>
                         <p>Take your algorithmic skills to the next level with advanced topics and techniques.</p>
-                        <a href="topic_details.php?topic=advanced_algorithms" target="_blank" class="text-blue-500">View Details</a>
+                        <a href="<?php echo SITE_URL; ?>/topic_details.php?topic=advanced_algorithms" class="text-blue-500">View Details</a>
                     </div>
                 </div>
 
@@ -69,7 +69,7 @@ if (
                     <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
                         <h2 class="text-xl font-bold mb-2">Web Development Basics</h2>
                         <p>Learn the fundamentals of web development, including HTML, CSS, and JavaScript.</p>
-                        <a href="topic_details.php?topic=web_dev_basics" target="_blank" class="text-blue-500">View Details</a>
+                        <a href="<?php echo SITE_URL; ?>/topic_details.php?topic=web_dev_basics" class="text-blue-500">View Details</a>
                     </div>
                 </div>
 
@@ -77,14 +77,14 @@ if (
                     <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
                         <h2 class="text-xl font-bold mb-2">Database Design and SQL</h2>
                         <p>Master the art of designing and managing databases using SQL.</p>
-                        <a href="topic_details.php?topic=database_design_sql" target="_blank" class="text-blue-500">View Details</a>
+                        <a href="<?php echo SITE_URL; ?>/topic_details.php?topic=database_design_sql" class="text-blue-500">View Details</a>
                     </div>
                 </div>
             </div>
 
             <div class="bg-gray-100 py-4">
                 <div class="container mx-auto flex justify-center">
-                    <a href="add_topic.php" target="_blank" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <a href="<?php echo SITE_URL; ?>/add_topic.php" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Add Topic
                     </a>
                 </div>

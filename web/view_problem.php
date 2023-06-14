@@ -33,8 +33,6 @@ $result = DB::findOneFromQuery($sql);
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
-    <title>Submit Problem | Codesohoj</title>
-
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
@@ -75,6 +73,7 @@ $result = DB::findOneFromQuery($sql);
                     <?php echo $result['note']; ?>
                 </p>
             </div>
+
             <div class="flex justify-center mt-6">
                 <!-- write php block -->
 
@@ -248,15 +247,9 @@ $result = DB::findOneFromQuery($sql);
                         });
                     </script>
                 <?php
-                    echo "<center><h1>Solution</h1></center>Run ID : <input id='rid' type='text' /> <input style='margin-top: -10px;' id='submit' value='Search' type='button' class='btn btn-primary' />";
+                    #echo "<center><h1>Solution</h1></center>Run ID : <input id='rid' type='text' /> <input style='margin-top: -10px;' id='submit' value='Search' type='button' class='btn btn-primary' />";
                 }
-
-
-
                 ?>
-
-
-
             </div>
         </div>
         <div class="md:w-1/4 bg-white p-4 mt-6 md:mt-0">
@@ -282,35 +275,31 @@ $result = DB::findOneFromQuery($sql);
                     <li class="m-2"><a href="#" class="text-blue-500">Editorial</a></li>
                 </ul>
             </div>
+            <form id="form" action="<?php echo SITE_URL; ?>/process.php" method="post" enctype="multipart/form-data" class="flex flex-col items-center">
+                <div class="bg-white p-4 rounded-lg w-full">
+                    <div class="mb-4">
+                        <label for="lang" class="block text-sm font-medium text-gray-700 mb-1">Language:</label>
+                        <select id="lang" name="lang" class="py-2 px-4 rounded-lg w-full border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
+                            <option value="C">C</option>
+                            <option value="C++">C++</option>
+                            <option value="Java">Java</option>
+                            <option value="Python">Python</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="code_file" class="block text-sm font-medium text-gray-700 mb-1">File:</label>
+                        <input type="file" name="code_file" class="px-4 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 w-full">
+                    </div>
+                </div>
 
-            <form id='form' action='<?php echo SITE_URL; ?>/process.php' method='post' enctype='multipart/form-data'>
-                <table class='table table-striped'>
-                    <tr>
-                        <th class="px-4 py-2">Language :</th>
-                        <td>
-                            <select id='lang' name='lang' class="mt-2">
-                                <option value="C">C</option>
-                                <option value="C++">C++</option>
-                                <option value="Java">Java</option>
-                                <option value="Python">Python</option>
-                            </select>
-                        </td>
-                        <th class="px-4 py-2">File :</th>
-                        <td>
-                            <input type='file' name='code_file' class="py-2 px-4 border border-gray-300 rounded-lg">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan='4' style='padding: 0;'>
-                            <textarea id='sub' name='sub' class="form-textarea mt-1 block w-full" rows="8"><?php
-                                                                                                            ?></textarea>
-                        </td>
-                    </tr>
-                </table>
-                <input type='hidden' value="<?php echo ((isset($result['code']) && $result['code'] != "") ? ($result['code']) : ($prob['code'])); ?>" name="probcode" />
-                <input type='submit' value='Submit' class='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' name='submitcode' />
+                <input type="hidden" value="<?php echo ((isset($result['code']) && $result['code'] != "") ? ($result['code']) : ($prob['code'])); ?>" name="probcode" />
+                <input type="submit" value="Submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" name="submitcode" />
+
+                <p class="font-bold mt-2">or</p>
+
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" type="submit" name="solvecode" style="transition: all 0.15s ease 0s">Solve Now
+                </button>
             </form>
-
         </div>
     </div>
 
