@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 18, 2023 at 07:32 PM
+-- Generation Time: Jun 15, 2023 at 11:17 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -38,13 +38,13 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`variable`, `value`) VALUES
 ('lastjudge', '0'),
-('mode', 'Disabled'),
-('penalty', '20'),
+('mode', 'Enable'),
 ('notice', 'Codesohoj Online Judge\r\nWelcome to Codesohoj Online Judge'),
 ('endtime', '0'),
 ('starttime', '0'),
 ('port', '8723'),
-('ip', 'localhost');
+('ip', 'localhost'),
+('penalty', '20');
 
 -- --------------------------------------------------------
 
@@ -90,13 +90,13 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `name`, `info`, `count`) VALUES
-(1, 'String', NULL, 1),
+(1, 'String', NULL, 2),
 (2, 'Greedy', NULL, 1),
-(3, 'Graph', NULL, 1),
-(4, 'Number Theory', NULL, 2),
-(5, 'Stack', NULL, 1),
-(6, 'Linked list', NULL, 2),
-(7, 'Ad-Hoc', 'Simple Adhoc', 0);
+(3, 'Graph', NULL, 2),
+(4, 'Number Theory', NULL, 6),
+(5, 'Stack', NULL, 2),
+(6, 'Linked list', NULL, 3),
+(7, 'Ad-Hoc', 'Simple Adhoc', 1);
 
 -- --------------------------------------------------------
 
@@ -122,7 +122,16 @@ INSERT INTO `category_problem` (`id`, `category_id`, `problem_id`) VALUES
 (40, 5, 24),
 (41, 1, 25),
 (42, 2, 25),
-(43, 6, 25);
+(43, 6, 25),
+(44, 3, 26),
+(45, 1, 27),
+(46, 4, 27),
+(47, 4, 28),
+(48, 7, 28),
+(49, 4, 29),
+(50, 5, 29),
+(51, 6, 29),
+(52, 4, 30);
 
 -- --------------------------------------------------------
 
@@ -132,7 +141,7 @@ INSERT INTO `category_problem` (`id`, `category_id`, `problem_id`) VALUES
 
 CREATE TABLE `clar` (
   `time` int(11) NOT NULL,
-  `uid` int(11) DEFAULT NULL,
+  `tid` int(11) DEFAULT NULL,
   `pid` int(11) DEFAULT NULL,
   `query` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `reply` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -161,7 +170,8 @@ CREATE TABLE `contest` (
 --
 
 INSERT INTO `contest` (`id`, `code`, `name`, `starttime`, `endtime`, `announcement`, `ranktable`) VALUES
-(1, 'C1', 'A sample Contest', 1684389600, 1684476300, '<p>ertfwe4r3r <strong>regw4e3</strong></p>', NULL);
+(4, 'C1', 'New Contest', 1686823200, 1688119200, '<p>xdfgsrdftetdrtgr</p>', NULL),
+(5, 'C2', 'New Contest 2', 1687082400, 1688119200, '<p>efreawrq32</p>', NULL);
 
 -- --------------------------------------------------------
 
@@ -183,7 +193,7 @@ CREATE TABLE `editorials` (
 CREATE TABLE `logs` (
   `time` int(11) NOT NULL,
   `ip` tinytext CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `uid` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tid` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `request` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -226,9 +236,9 @@ CREATE TABLE `problems` (
 --
 
 INSERT INTO `problems` (`pid`, `code`, `name`, `type`, `contest`, `status`, `pgroup`, `statement`, `image`, `imgext`, `input`, `output`, `timelimit`, `score`, `languages`, `options`, `displayio`, `maxfilesize`, `solved`, `total`, `sampleinput`, `sampleoutput`, `input_statement`, `output_statement`, `note`) VALUES
-(22, 'newprob', 'New Problem', 'Medium', 'contest', 'Active', 'C1', 'kbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXakbhwdJLIOK OHDIRPOIDW[0Q-] khdufhidpuQO[O-LHFJIODAIWAXa', NULL, NULL, '1\n2\n3\n4\n5\n6\n7\n8\n\n', '1\n2\n3\n4\n5\n6\n7\n8\n\n', 1, 100, 'Brain,C,C++,C#,Java,JavaScript,Pascal,Perl,PHP,Python,Ruby,Text', NULL, 1, 50000, 0, 0, '1\n2\n3\n4\n5\n6\n7\n8\n\n', '1\n2\n3\n4\n5\n6\n7\n8\n\n', NULL, NULL, 'This dsd note'),
-(24, 'newprobe5t4e5', '43t63', 'Easy', 'practice', 'Active', 'C1', 'ret5e4t435t3trdy4562', NULL, NULL, '1\n2\n3\n4\n5\n6\n7\n8\n\n', '1\n2\n3\n4\n5\n6\n7\n8\n\n', 1, 100, 'Brain,C,C++,C#,Java,JavaScript,Pascal,Perl,PHP,Python,Ruby,Text', NULL, 1, 50000, 0, 0, '1\n2\n3\n4\n5\n6\n7\n8\n\n', '1\n2\n3\n4\n5\n6\n7\n8\n\n', NULL, NULL, NULL),
-(25, 'Palindrome1', 'New Palindrome', 'Medium', 'practice', 'Active', 'C1', '<p><span style=\"background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);\">A </span><strong style=\"background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);\">palindrome</strong><span style=\"background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);\"> is a string that reads the same from left to right as from right to left. For example, abacaba, aaaa, abba, racecar are palindromes. You are given a string s consisting of lowercase Latin letters. The string s is a palindrome.You have to check whether it is possible to rearrange the letters in it to get another palindrome (not equal to the given string s).</span></p>', NULL, NULL, '1\n2\n3\n4\n5\n6\n7\n8\n\n', '1\n2\n3\n4\n5\n6\n7\n8\n\n', 1, 100, 'Brain,C,C++,C#,Java,JavaScript,Pascal,Perl,PHP,Python,Ruby,Text', NULL, 1, 50000, 0, 0, '3\ncodedoc\ngg\naabaa', 'YES\nNO\nNO\n', 'The first line contains a single integer t (1≤t≤1000) — the number of test cases. The only line of each test case contains a string s (2≤|s|≤50) consisting of lowercase Latin letters. This string is a palindrome.', 'For each test case, print YES if it is possible to rearrange the letters in the given string to get another palindrome. Otherwise, print NO. You may print each letter in any case (YES, yes, Yes will all be recognized as positive answer, NO, no and nO will all be recognized as negative answer).', 'Simple Note');
+(29, 'twice_again', 'Anather Twice', 'Easy', 'contest', 'Active', 'C2', '<p>This is another twice problem which make 2x of a number</p>', '', NULL, '8\n1\n2\n3\n4\n5\n6\n7\n8\n', '2\n4\n6\n8\n10\n12\n14\n16\n', 1, 100, 'Brain,C,C++,C#,Java,JavaScript,Pascal,Perl,PHP,Python,Ruby,Text', NULL, 1, 256, 1, 6, '3\r\n4\r\n6\r\n12', '8\r\n12\r\n24', '<p>test case and inputs are int</p>', '<p>output is int</p>', ''),
+(30, 'as_it_was', 'As it was', 'Easy', 'contest', 'Active', 'C2', '<p>if you input x then it will output x</p>', '', NULL, '8', '8', 1, 100, 'Brain,C,C++,C#,Java,JavaScript,Pascal,Perl,PHP,Python,Ruby,Text', NULL, 1, 256, 0, 8, '45', '45', '<p>x</p>', '<p>x</p>', 'nothing'),
+(28, 'twice', 'Twice', 'Easy', 'contest', 'Active', 'C2', '<p>Make a twice of a number </p>', '', NULL, '8\n1\n2\n3\n4\n5\n6\n7\n8\n', '2\n4\n6\n8\n10\n12\n14\n16\n', 1, 100, 'Brain,C,C++,C#,Java,JavaScript,Pascal,Perl,PHP,Python,Ruby,Text', NULL, 1, 256, 1, 52, '2\r\n2\r\n4', '4\r\n8', '<p>test case input: int</p><p>int</p>', '<p>int</p>', '');
 
 -- --------------------------------------------------------
 
@@ -244,28 +254,8 @@ CREATE TABLE `runs` (
   `time` tinytext CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `result` tinytext CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `access` tinytext CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `submittime` int(11) DEFAULT NULL
+  `submittime` int(18) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `runs`
---
-
-INSERT INTO `runs` (`rid`, `pid`, `uid`, `language`, `time`, `result`, `access`, `submittime`) VALUES
-(1, 1, 1, 'C', '', NULL, 'public', NULL),
-(2, 1, 1, 'C++', '', NULL, 'public', NULL),
-(3, 1, 1, 'C#', '', NULL, 'public', NULL),
-(4, 1, 1, 'Java', '', NULL, 'public', NULL),
-(5, 1, 1, 'JavaScript', '', NULL, 'public', NULL),
-(6, 1, 1, 'Pascal', '', NULL, 'public', NULL),
-(7, 1, 1, 'Perl', '', NULL, 'public', NULL),
-(8, 1, 1, 'PHP', '', NULL, 'public', NULL),
-(9, 1, 1, 'Python', '', NULL, 'public', NULL),
-(10, 1, 1, 'Ruby', '', NULL, 'public', NULL),
-(11, 1, 1, 'Python3', '', NULL, 'public', NULL),
-(12, 1, 1, 'AWK', '', NULL, 'public', NULL),
-(13, 1, 1, 'Bash', '', NULL, 'public', NULL),
-(14, 1, 1, 'Brain', '', NULL, 'public', NULL);
 
 --
 -- Triggers `runs`
@@ -300,7 +290,7 @@ IF new.result <> old.result THEN
 	select max(submittime) into v_submittime from (select min(submittime) as submittime from runs, problems WHERE runs.uid= OLD.uid and runs.result='AC' and runs.pid=problems.pid and problems.status!='Deleted' and runs.access!='deleted' and problems.contest = 'contest'  group by runs.pid)t;
 	SELECT (v_penalty + v_submittime) into v_penalty;
 	update admin set value=v_dqsco where variable='test';
-	UPDATE Users SET score = (v_sco-v_dqsco), penalty=v_penalty where uid=OLD.uid;
+	UPDATE Users SET score = (v_sco-v_dqsco), penalty=v_penalty, solved=(solved+1)  where uid=OLD.uid;
 	CLOSE cur1;
 END IF;
 IF strcmp(old.access, 'deleted') <> 0 and strcmp(new.access, 'deleted') = 0 THEN
@@ -341,26 +331,6 @@ CREATE TABLE `subs_code` (
   `error` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `output` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Dumping data for table `subs_code`
---
-
-INSERT INTO `subs_code` (`rid`, `name`, `code`, `error`, `output`) VALUES
-(1, 'code', '#include<stdio.h>\r\nint main(){\r\n	int i;\r\n	while(scanf(\"%d\", &i) != EOF)\r\n		printf(\"%d\\n\", i*i);\r\n	return 0;\r\n	}\r\n', '', ''),
-(2, 'code', '#include<iostream>\r\nusing namespace std;\r\nint main(){\r\n	int i;\r\n	while(cin>>i)\r\n		cout<<(i*i)<<endl;\r\n	return 0;\r\n	}\r\n', '', ''),
-(3, 'code', 'using System;\r\nclass Program {\r\n  static void Main(string[] args){\r\n    int i; string s;\r\n    while ((s = Console.ReadLine()) != null){\r\n      i = Int16.Parse(s);\r\n      Console.WriteLine(i * i);\r\n      }\r\n    }\r\n  }', '', ''),
-(4, 'Main', 'import java.io.*;\npublic class Main {\n	public static void main(String args[])throws IOException{\n		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));\n		int n;\n		String str;\n		while((str=in.readLine())!=null){\n			n = Integer.parseInt(str);\n			n = n*n;\n			System.out.println(n);\n			} // while\n		}\n	}', '', ''),
-(5, 'code', 'importPackage(java.io);\r\nimportPackage(java.lang);\r\nvar reader = new BufferedReader( new InputStreamReader(System[\'in\']) );\r\nwhile (true){\r\n    var line = reader.readLine();\r\n    if (line==null) break;\r\n    else {\r\n        i = parseInt(line);\r\n        System.out.println((i*i)+\'\');\r\n        }\r\n    }', '', ''),
-(6, 'code', 'program code;\nvar\n	i: integer;\nbegin\n	while not eof do begin\n		readln(i);\n		writeln(i*i);\n	end\nend. { code }', '', ''),
-(7, 'code', 'while($n = <STDIN>){\r\n	print ($n*$n);\r\n	print \"\\n\";\r\n	}', '', ''),
-(8, 'code', '<?php\r\n$stdin = fopen(\"php://stdin\",\"r\");\r\nwhile($i = trim(fgets($stdin))){\r\n	echo ($i*$i).\"\\n\";\r\n	}\r\nfclose($stdin);\r\n?>', '', ''),
-(9, 'code', 'try:\n	while 1:\n		i = int(raw_input())\n		print i*i\nexcept:\n	pass\n', '', ''),
-(10, 'code', 'while n = gets\n	n = n.chomp.to_i\n	puts (n*n).to_s\nend', '', ''),
-(11, 'Main', 'try:\n    while 1:\n        i = int(input())\n        print(i*i)\nexcept:\n    pass', '', ''),
-(12, 'Main', 'BEGIN{\r\n}\r\n{\r\n	n = $1;\r\n	printf(\"%d\\n\", n*n);\r\n}\r\nEND{\r\n}\r\n', '', ''),
-(13, 'Main', '#!/bin/bash\r\nwhile read line;\r\ndo\r\n	echo \"$line*$line\" | bc\r\ndone\r\n', '', ''),
-(14, 'Main', '>>\r\n, +\r\n[\r\n    -\r\n    <+>\r\n    ----------\r\n    [\r\n        <-<[-]+>>\r\n        ++++++++++\r\n        >++++++++[<------>-]<\r\n        [\r\n            <<->>\r\n            [>+>+>+<<<-]>>>-\r\n            [<[<+<+>>-]<<[>>+<<-]>>>-]<< \r\n            >[-]>[-]++++++++++<<\r\n            [>>\r\n              [->+<<<-[>]>>>\r\n                [<\r\n                  [-<+>]\r\n                  >>\r\n                ]\r\n                <<\r\n              ]\r\n              <[>>[->>>+<<<]>>-<<<<[-]]>\r\n              >[-<+>]>>+<<<<<\r\n            ]\r\n            >>>>>\r\n            [>>[-]++++++[-<<++++++++>>]<<.[-]]\r\n            >\r\n            [>[-]++++++[-<++++++++>]<.[-]]\r\n            <<<<<<[-]\r\n        ]\r\n        <<[->++++++++[<++++++>-]<..[-]]\r\n    ]\r\n    <[+++++++++.[-]]>[-]>\r\n    , +\r\n]', '', '');
 
 -- --------------------------------------------------------
 
@@ -489,31 +459,31 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `category_problem`
 --
 ALTER TABLE `category_problem`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `contest`
 --
 ALTER TABLE `contest`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `problems`
 --
 ALTER TABLE `problems`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `runs`
 --
 ALTER TABLE `runs`
-  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `subs_code`
 --
 ALTER TABLE `subs_code`
-  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `Users`

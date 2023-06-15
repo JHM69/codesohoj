@@ -99,7 +99,6 @@ langarr = {
         "system": "find /usr/bin/ -name python3",
         "execute": "python3 env/[exename].py[inputfile]",
     },
-    "Text": {"extension": "txt"},
 }
 
 # Define useful variables

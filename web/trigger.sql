@@ -1,4 +1,7 @@
-begin
+DROP TRIGGER IF EXISTS `scoreupdate`;
+DELIMITER //
+CREATE TRIGGER `scoreupdate` AFTER UPDATE ON `runs`
+ FOR EACH ROW begin
 DECLARE done INT DEFAULT FALSE;
 DECLARE v_rid, v_submittime, v_incorrect, v_pen, v_score, recpid, v_dq, v_total, v_solved int(11);
 DECLARE v_sco int DEFAULT 0;
@@ -15,7 +18,7 @@ IF new.result <> old.result THEN
 	    	END IF;
 		SELECT count(*) into v_dq FROM runs WHERE result='DQ' and access!='deleted' and uid=OLD.uid and pid=recpid;
 		IF v_dq = 0 THEN
-			SELECT rid,submittime into v_rid, v_submittime FROM runs WHERE result='AC' and uid=OLD.uid and pid=recpid and access!='deleted' ORDER BY rid ASC LIMIT 0,1;
+			SELECT rid,submittime into v_rid, v_submittime FROM runs WHERE result='AC' and uid=OLD.uid and pid=recpid and access!='deleted' ORDER BY rid ASC LIMIT 1;
 			SELECT count(*) into v_incorrect FROM runs, problems WHERE result!='AC' and result is not NULL and access!='deleted' and rid<v_rid and uid=OLD.uid and runs.pid=recpid and problems.score > 0 and problems.pid = runs.pid;
 			SELECT value into v_pen from admin where variable = 'penalty';
 			SELECT (v_penalty + v_incorrect*v_pen*60) into v_penalty;
@@ -27,7 +30,7 @@ IF new.result <> old.result THEN
 	select max(submittime) into v_submittime from (select min(submittime) as submittime from runs, problems WHERE runs.uid= OLD.uid and runs.result='AC' and runs.pid=problems.pid and problems.status!='Deleted' and runs.access!='deleted' and problems.contest = 'contest'  group by runs.pid)t;
 	SELECT (v_penalty + v_submittime) into v_penalty;
 	update admin set value=v_dqsco where variable='test';
-	UPDATE Users SET score = (v_sco-v_dqsco), penalty=v_penalty where uid=OLD.uid;
+	UPDATE Users SET score = (v_sco-v_dqsco), penalty=v_penalty, solved=OLD.solved+1 where uid=OLD.uid;
 	CLOSE cur1;
 END IF;
 IF strcmp(old.access, 'deleted') <> 0 and strcmp(new.access, 'deleted') = 0 THEN
@@ -52,3 +55,5 @@ ELSE
 	END IF;
 END IF;
 end
+//
+DELIMITER ;
