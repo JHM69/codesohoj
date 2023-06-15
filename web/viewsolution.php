@@ -51,7 +51,7 @@ if (isset($_GET['code'])) {
                     <tr>
                         <th class='px-4 py-2'>Run ID</th>
                         <th class='px-4 py-2'>Problem</th>
-                        <th class='px-4 py-2'>Team Name</th>
+                        <th class='px-4 py-2'>User Name</th>
                         <th class='px-4 py-2'>Result</th>
                         <th class='px-4 py-2'>Run time</th>
                         <th class='px-4 py-2'>Language</th>
@@ -62,7 +62,7 @@ if (isset($_GET['code'])) {
                     <tr>
                         <td class='px-4 py-2'>$res[rid]</td>
                         <td class='px-4 py-2'><a href='" . SITE_URL . "/problems/$prob[code]'>$prob[name]</a></td>
-                        <td class='px-4 py-2'><a href='" . SITE_URL . "/Users/$prob[teamname]'>$prob[teamname]</a></td>
+                        <td class='px-4 py-2'><a href='" . SITE_URL . "/Users/$prob[username]'>$prob[username]</a></td>
                         <td class='px-4 py-2'><span class='label label-" . $resAttr[$res['result']] . "'>$res[result]</span></td>
                         <td class='px-4 py-2'>$res[time]</td>
                         <td class='px-4 py-2'>$res[language]</td>

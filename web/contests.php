@@ -85,27 +85,29 @@ if (
                                 foreach ($result as $row) {
                                     $current_time = time(); // Current timestamp
 
-                                    $start_time = strtotime($row['starttime']); // Start time from the row
-                                    $end_time = strtotime($row['endtime']); // End time from the row
+                                    $start_time = $row['starttime']; // Start time from the row
+                                    $end_time = $row['endtime']; // End time from the row
 
                                     if ($current_time >= $start_time && $current_time <= $end_time) {
                                         $status = "Running";
-                                        $link = "running_contest.php?code=" . $row['code'];
-                                    } elseif ($current_time < $start_time && $current_time < $end_time) {
+                                        $link = "view_contest.php?code=" . $row['code'];
+                                    } elseif ($current_time < $start_time) {
                                         $status = "Participate";
-                                        $link = "participate.php?code=" . $row['code'];
-                                    } elseif ($current_time > $start_time && $current_time > $end_time) {
+                                        $link = "view_contest.php?code=" . $row['code'];
+                                    } elseif ($current_time > $end_time) {
                                         $status = "View History";
                                         $link = "contest_history.php?code=" . $row['code'];
                                     }
 
                                     echo "<tr>";
                                     echo "<td class='px-6 py-4'>" . $row["name"] . "</td>";
-                                    echo "<td class='px-6 py-4'>" . date("d-m-Y H:i:s", $row['starttime']) . "</td>";
-                                    echo "<td class='px-6 py-4'>" . date("d-m-Y H:i:s", $row['endtime']) . "</td>";
+                                    echo "<td class='px-6 py-4'>" . date("d-m-Y H:i:s", $start_time) . "</td>";
+                                    echo "<td class='px-6 py-4'>" . date("d-m-Y H:i:s", $end_time) . "</td>";
                                     echo "<td class='px-6 py-4'><a href='" . SITE_URL . "/" . $link . "'>" . $status . "</a></td>";
                                     echo "</tr>";
                                 }
+
+
                                 ?>
 
 

@@ -64,7 +64,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin') {
 
             <div class='form-group'>
                 <label class='control-label col-lg-2'></label>
-                <div class='col-md-8'><input type='submit' name='updateteam' value='Update Team' class='btn btn-primary btn-large' /></div>
+                <div class='col-md-8'><input type='submit' name='updateteam' value='Update User' class='btn btn-primary btn-large' /></div>
             </div>
         </form>
 <?php

@@ -86,5 +86,28 @@ foreach ($_POST as $key => $value) {
 foreach ($_GET as $key => $value) {
   $_GET[$key] = addslashes($value);
 }
+function getrankings($code)
+{
+  $result =  Leaderboard::getStaticRankTableInJSON($code);
+  return json_decode($result['ranktable'], true);
+}
 
+function getCurrentContest()
+{
+  $result = DB::findOneFromQuery("SELECT value from admin where variable = 'currentContest'");
+  $contestCode = $result['value'];
+  return $contestCode;
+}
+
+function getCurrentContestRanking()
+{
+  $contestCode = getCurrentContest();
+  $printTable = liveContestRanking($contestCode, 10);
+  echo $printTable;
+}
+
+function errorMessageHTML($msg)
+{
+  return '<br /><div class="alert alert-danger" role="alert">' . $msg . '</div>';
+}
 require_once "functions.php";

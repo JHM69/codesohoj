@@ -90,7 +90,7 @@ if (
                                     echo "<td class='px-6 py-4'>" .
                                         date("d-m-Y H:i:s", $row['endtime']) .
                                         "</td>";
-                                    echo "<td class='px-6 py-4'><a href='add_contest.php?code=/" . $row['code'] . "'>Edit</a></td>";
+                                    echo "<td class='px-6 py-4'><a href='add_contest.php?code=" . $row['code'] . "'>Edit</a></td>";
                                     echo "<td class='px-6 py-4'><a href='delete/" . $row['code'] . "'>Delete</a></td>";
                                     echo "</tr>";
                                 }
