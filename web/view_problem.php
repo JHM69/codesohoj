@@ -100,10 +100,9 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
     </style>
 </head>
 
-<body class="bg-gray-100">
-
+<body class="bg-gray-200">
     <div id="parentDiv" class="flex flex-col md:flex-row">
-        <div id="childDiv2" class="w-7/12 p-6 ">
+        <div id="childDiv1" class="w-7/12 pt-6 px-2">
             <div class="bg-white rounded p-4 mt-4">
                 <h1 class="text-2xl font-bold text-center text-gray-800"><?php echo $result['name']; ?></h1>
                 <div class="flex flex-col text-sm items-center">
@@ -151,8 +150,7 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
 
 
         </div>
-        <div id="childDiv1" class="w-5/12 bg-white p-4 mt-6 md:mt-0 ">
-
+        <div id="childDiv2" class="w-5/12 pt-10">
             <form id="form" action="<?php echo SITE_URL; ?>/process.php" method="post" enctype="multipart/form-data" class="flex flex-col items-center">
                 <div class="bg-white p-4 rounded-lg w-full">
                     <div class="mb-4">
@@ -170,7 +168,7 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
                             <div class="line-numbers">
                                 <span></span>
                             </div>
-                            <textarea id="sub" name="sub" rows="20" class="w-full rounded border-none" placeholder="Write your code here..."><?php echo $codeStructure; ?></textarea>
+                            <textarea id="sub" name="sub" rows="25" class="w-full rounded border-none" placeholder="Write your code here..."><?php echo $codeStructure; ?></textarea>
                         </div></textarea>
 
                     </div>
@@ -178,19 +176,17 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
                         <label for="code_file" class="block text-sm font-medium text-gray-700 mb-1">File:</label>
                         <input type="file" name="code_file" class="px-4 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 w-full">
                     </div>
+
+
+                    <input type="hidden" value="<?php echo ((isset($result['code']) && $result['code'] != "") ? ($result['code']) : ($prob['code'])); ?>" name="probcode" />
+
+                    <div class="flex flex-col items-center justify-center">
+                        <input type="submit" value="Submit" class="w-1/2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 mt-4 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-50" name="submitcode" />
+                        <p class="mt-2 text-sm"> OR </p>
+                        <button class="bg-gray-800 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded mt-4" type="button" name="solvecodeineditor" style="transition: all 0.15s ease 0s" onclick="toggleEditor()">Submit with File</button>
+                    </div>
                 </div>
-
-                <input type="hidden" value="<?php echo ((isset($result['code']) && $result['code'] != "") ? ($result['code']) : ($prob['code'])); ?>" name="probcode" />
-
-
-                <input type="submit" value="Submit" class="w-3/5 mx-8 bg-indigo-600 hover:bg-indigo-800 text-white font-semibold py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-50" name="submitcode" />
-                <p class="mt-2 text-sm"> OR </p>
-                <button class="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" type="button" name="solvecodeineditor" style="transition: all 0.15s ease 0s" onclick="toggleEditor()">Solve with File</button>
-
             </form>
-
-
-
         </div>
     </div>
     <div class="bg-white rounded p-4 m-4">
@@ -257,8 +253,8 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
         }
 ?></div>
 
-
     <script>
+        
         function toggleEditor() {
             var solveEditor = document.getElementById("solve-editor");
             var solveFile = document.getElementById("solve-file");
@@ -267,7 +263,7 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
             if (solveEditor.style.display === "none") {
                 solveEditor.style.display = "block";
                 solveFile.style.display = "none";
-                solveCodeButton.innerText = "Solve with File";
+                solveCodeButton.innerText = "Submit with File";
             } else {
                 solveEditor.style.display = "none";
                 solveFile.style.display = "block";

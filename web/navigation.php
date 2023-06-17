@@ -1,4 +1,4 @@
-<nav class="sticky top-0 bg-blue-500 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3">
+<nav class="sticky top-0 bg-blue-500 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-1">
   <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
     <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
       <a href='<?php echo SITE_URL; ?>'>
