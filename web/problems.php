@@ -2,7 +2,16 @@
 require_once "config.php";
 require_once "navigation.php";
 include_once "functions.php";
-$category_id = $_GET["category"];
+#$category_id = $_GET["category"];
+// Check if the "category" key is present in the $_GET array
+if (isset($_GET["category"])) {
+    $category_id = $_GET["category"];
+} else {
+    $category_id = null;
+}
+
+
+
 
 // Pagination variables
 $page = isset($_GET['page']) ? $_GET['page'] : 1; // Current page number
@@ -61,13 +70,18 @@ $result = DB::findAllFromQuery($sql);
 
     <main>
         <section class="absolute w-full h-full">
+
             <div class="absolute top-0 w-full h-full bg-gray-100">
+                <div class="flex justify-center">
+                    <h2 class="text-2xl font-bold text-black">Problem list</h2>
+                </div>
+                <hr class="border-t-2 border-gray-300 mt-2 mb-4">
                 <div class='col-md-9 w-full flex m-2 justify-center' id='mainbar'>
                     <p class="text-md text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400 mr-2">tag:</p>
                     <?php
                     $colors = ["blue", "green", "yellow", "red", "purple"]; // Define an array of colors
                     $colorIndex = 0; // Initialize color index
-                    
+
                     foreach ($categories as $row) :
                         $color = $colors[$colorIndex % count($colors)]; // Get the color based on the index
                         $colorIndex++;
