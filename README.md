@@ -33,3 +33,6 @@ git push -u origin main
 git remote add origin https://github.com/fms-byte/codesohoj.git
 git branch -M main
 git push -u origin main
+
+# Run backend server
+sudo python3 judge.py -judge -cache
