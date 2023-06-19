@@ -26,11 +26,11 @@ if (
 
       <div class="pl-12 rounded w-full flex justify-center items-center">
 
-        <a href='<?php echo SITE_URL; ?>/add_problem.php'><button class="m-10 bg-green-500 text-white rounded block p-2 m-20 text-lg font-bold" style="margin: 10px auto; margin-bottom: 10px;" >Add Problems</button></a>
+        <a href='<?php echo SITE_URL; ?>/add_problem.php'><button class="m-10 bg-blue-500 text-white rounded block p-2 m-20 text-lg font-bold" style="margin: 10px auto; margin-bottom: 10px;">Add Problems</button></a>
       </div>
       <section class="absolute w-full h-full">
         <div class="absolute top-0 w-full h-full bg-gray-100">
-          <div class='col-md-9 w-full flex m-2' id='mainbar'>
+          <div class='col-md-9 w-full flex m-2 items-center justify-center' id='mainbar'>
             <?php
             $sql = "SELECT * FROM category";
             $result = DB::findAllFromQuery($sql);
