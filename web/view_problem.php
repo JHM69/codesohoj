@@ -59,7 +59,7 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
     <link href="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/themes/prism.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
 
-    <style>
+    <!-- <style>
         .editor {
             display: inline-flex;
             gap: 10px;
@@ -97,12 +97,12 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
             resize: none;
             width: 100%;
         }
-    </style>
+    </style> -->
 </head>
 
 <body class="bg-gray-200">
-    <div id="parentDiv" class="flex flex-col md:flex-row">
-        <div id="childDiv1" class="w-7/12 pt-6 px-2">
+    <div id="parentDiv" class="flex flex-col md:flex-row h-full">
+        <div id="childDiv1" class="w-7/12 pt-6 px-2 h-full overflow-auto">
             <div class="bg-white rounded p-4 mt-4">
                 <h1 class="text-2xl font-bold text-center text-gray-800"><?php echo $result['name']; ?></h1>
                 <div class="flex flex-col text-sm items-center">
@@ -154,7 +154,9 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
             <form id="form" action="<?php echo SITE_URL; ?>/process.php" method="post" enctype="multipart/form-data" class="flex flex-col items-center">
                 <div class="bg-white p-4 rounded-lg w-full">
                     <div class="mb-4">
-                        <label for="lang" class="block text-sm font-medium text-gray-700 mb-1">Language:</label>
+                        <!-- <label for="lang" class="block text-sm font-medium text-gray-700 mb-1">Language:</label> -->
+                        Language:
+                        &nbsp; &nbsp;
                         <select id="lang" name="lang" class="py-2 px-4 rounded-lg w-full border border-gray-300 focus:ring-blue-500 focus:border-blue-500" onchange="changeLanguage()">
                             <option value="C" <?php if ($selectedLanguage === 'C') echo 'selected'; ?>>C</option>
                             <option value="C++" <?php if ($selectedLanguage === 'C++') echo 'selected'; ?>>C++</option>
@@ -164,12 +166,12 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
                         </select>
                     </div>
                     <div id="solve-editor">
-                        <div class="editor">
-                            <div class="line-numbers">
+                        <div class="editor" id="editor" style="height: 400px; font-size: 17px;">
+                            <!-- <div class="line-numbers">
                                 <span></span>
                             </div>
-                            <textarea id="sub" name="sub" rows="25" class="w-full rounded border-none" placeholder="Write your code here..."><?php echo $codeStructure; ?></textarea>
-                        </div></textarea>
+                            <textarea id="sub" name="sub" rows="17" class="w-full rounded border-none" placeholder="Write your code here..."><?php echo $codeStructure; ?></textarea> -->
+                        </div>
 
                     </div>
                     <div id="solve-file" style="display: none;">
@@ -189,6 +191,7 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
             </form>
         </div>
     </div>
+
     <div class="bg-white rounded p-4 m-4">
         <?php
         if (isset($_GET['code'])) {
@@ -251,10 +254,70 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
                 echo '<br/><br/><br/><div style="padding: 10px;"><h1>Solution not Found :(</h1>The solution you are looking for doesn\'t exist or you are not authorized to view.</div><br/><br/><br/>';
             }
         }
-?></div>
+?>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="js/lib/ace.js"></script>
+    <script src="js/lib/theme-monokai.js"></script>
+    <script>
+        let editor;
+        window.onload = function() {
+            editor = ace.edit("editor");
+            editor.setTheme("ace/theme/monokai");
+            editor.session.setMode("ace/mode/c_cpp");
+        }
+        // function changeLanguage() {
+        //     let language = $("#lang").val();
+            
+        //     if(language == 'c' || language == 'cpp') {
+        //         editor.session.setMode("ace/mode/c_cpp");
+        //     }
+        //     else if(language == 'java') {
+        //         editor.session.setMode("ace/mode/java");
+        //     }
+        //     else if(language == 'python') {
+        //         editor.session.setMode("ace/mode/python");
+        //     }
+        //     else if(language == 'javascript') {
+        //         editor.session.setMode("ace/mode/javascript");
+        //     }
+        // }
+        
+
+        function changeLanguage() {
+            var langSelect = document.getElementById('lang');
+            var selectedLanguage = langSelect.options[langSelect.selectedIndex].value;
+            var codeStructure = getBasicCodeStructure(selectedLanguage);
+
+            var textarea = document.getElementById('sub');
+            textarea.value = codeStructure;
+        }
+
+        function getBasicCodeStructure(language) {
+            if (language === "C") {
+                editor.session.setMode("ace/mode/c_cpp");
+                return "#include<stdio.h>\nint main(){\n\nreturn 0;\n}";
+            } else if (language === "C++") {
+                editor.session.setMode("ace/mode/c_cpp");
+                return "#include<iostream>\nusing namespace std;\nint main(){\n\nreturn 0;\n}";
+            } else if (language === "Java") {
+                editor.session.setMode("ace/mode/java");
+                return "import java.util.*;\npublic class Main{\npublic static void main(String args[]){\n\n}\n}";
+            } else if (language === "Python") {
+                editor.session.setMode("ace/mode/python");
+                return "print('Hello World')";
+            } else if (language === "JavaScript") {
+                editor.session.setMode("ace/mode/javascript");
+                return "console.log('Hello World');";
+            }
+            else{
+                return "";
+            }
+        }
+    </script>
 
     <script>
-        
         function toggleEditor() {
             var solveEditor = document.getElementById("solve-editor");
             var solveFile = document.getElementById("solve-file");
@@ -270,30 +333,6 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
                 solveCodeButton.innerText = "Solve in Editor";
             }
         }
-
-
-        function changeLanguage() {
-            var langSelect = document.getElementById('lang');
-            var selectedLanguage = langSelect.options[langSelect.selectedIndex].value;
-            var codeStructure = getBasicCodeStructure(selectedLanguage);
-
-            var textarea = document.getElementById('sub');
-            textarea.value = codeStructure;
-        }
-
-        function getBasicCodeStructure(language) {
-            if (language === "C") {
-                return "#include<stdio.h>\nint main(){\n\nreturn 0;\n}";
-            } else if (language === "C++") {
-                return "#include<iostream>\nusing namespace std;\nint main(){\n\nreturn 0;\n}";
-            } else if (language === "Java") {
-                return "import java.util.*;\npublic class Main{\npublic static void main(String args[]){\n\n}\n}";
-            } else if (language === "Python") {
-                return "print('Hello World')";
-            } else {
-                return ""; // Default code structure
-            }
-        }
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
@@ -305,28 +344,28 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
         textarea.addEventListener('input', event => {
             const value = event.target.value;
             const cursorPosition = event.target.selectionStart;
-            const openBrackets = ["(", "{"];
-            const closeBrackets = [")", "}"];
-            const backslash = "\\";
+            // const openBrackets = ["(", "{"];
+            // const closeBrackets = [")", "}"];
+            // const backslash = "\\";
 
-            if (openBrackets.includes(value[cursorPosition - 1])) {
-                const nextChar = value[cursorPosition];
+            // if (openBrackets.includes(value[cursorPosition - 1])) {
+            //     const nextChar = value[cursorPosition];
 
-                if (nextChar !== closeBrackets[openBrackets.indexOf(value[cursorPosition - 1])]) {
-                    event.target.value = value.slice(0, cursorPosition) + closeBrackets[openBrackets.indexOf(value[cursorPosition - 1])] + value.slice(cursorPosition);
-                }
+            //     if (nextChar !== closeBrackets[openBrackets.indexOf(value[cursorPosition - 1])]) {
+            //         event.target.value = value.slice(0, cursorPosition) + closeBrackets[openBrackets.indexOf(value[cursorPosition - 1])] + value.slice(cursorPosition);
+            //     }
 
-                event.target.selectionStart = cursorPosition + 1;
-                event.target.selectionEnd = cursorPosition + 1;
-            } else if (value[cursorPosition - 1] === backslash) {
-                const nextChar = value[cursorPosition];
+            //     event.target.selectionStart = cursorPosition + 1;
+            //     event.target.selectionEnd = cursorPosition + 1;
+            // } else if (value[cursorPosition - 1] === backslash) {
+            //     const nextChar = value[cursorPosition];
 
-                if (closeBrackets.includes(nextChar)) {
-                    event.target.value = value.slice(0, cursorPosition - 1) + value.slice(cursorPosition);
-                    event.target.selectionStart = cursorPosition - 1;
-                    event.target.selectionEnd = cursorPosition - 1;
-                }
-            }
+            //     if (closeBrackets.includes(nextChar)) {
+            //         event.target.value = value.slice(0, cursorPosition - 1) + value.slice(cursorPosition);
+            //         event.target.selectionStart = cursorPosition - 1;
+            //         event.target.selectionEnd = cursorPosition - 1;
+            //     }
+            // }
 
             const numberOfLines = value.split('\n').length;
 
