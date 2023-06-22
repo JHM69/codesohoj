@@ -254,7 +254,10 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
 ?>
     </div>
 
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
     <script src="js/lib/ace.js"></script>
     <script src="js/lib/theme-monokai.js"></script>
     <script>
@@ -369,7 +372,6 @@ public class Main {
 
         }
     </script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script>
         const textarea = document.querySelector('textarea');

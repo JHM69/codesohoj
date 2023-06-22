@@ -1,18 +1,12 @@
-#include<bits/stdc++.h>
+#include<iostream>
 using namespace std;
-int main()
-{
-    int n, k, i, sum;
-    while(~scanf("%d%d",&n, &k))
-    {
-        sum = k;
-        for(i = 0; i <= n; i ++)
-        {
-            sum += i * 5;
-            if(sum > 240)
-                break;
-        }
-        printf("%d\n", i - 1);
+int main(){
+    int t;
+    cin >> t;
+    for (int i = 1; i <= t; i++) {
+        int x;
+        cin>>x;
+        cout << 2*x<< endl;
     }
     return 0;
 }

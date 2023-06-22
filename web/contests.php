@@ -9,7 +9,7 @@ if (
     <html>
 
     <head>
-        <title>Admin Panel | Contest </title>
+        <title>Contest </title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
         <link rel="shortcut icon" href="./assets/img/favicon.ico" />

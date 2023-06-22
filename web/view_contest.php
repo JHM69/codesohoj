@@ -2,6 +2,7 @@
 require_once "config.php";
 require_once "navigation.php";
 include_once "functions.php";
+require_once "LiveContestRanking.php";
 
 function timeformating($a)
 {
@@ -62,18 +63,8 @@ if ((isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin')) {
                     </div>
                 </div>
                 <?php
-                if (isset($contest['starttime']) || (isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin')) {
-                    if (isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin') {
-                        if ($contest['starttime'] > time())
-                            echo "<a class='btn btn-default float-right my-4 mr-4' href='" . SITE_URL . "/preparecontest/$_GET[code]'><i class='glyphicon glyphicon-edit'></i> Prepare Contest</a>";
-                        $query = "select * from problems where pgroup = '$_GET[code]' order by code";
-                        echo "<a class='btn btn-default float-right my-4 mr-4' href='" . SITE_URL . "/admincontest/$_GET[code]'><i class='glyphicon glyphicon-edit'></i> Edit</a>";
-                    } else {
-                        $query = "select * from problems where pgroup = '$_GET[code]' and status != 'Deleted' order by code";
-                    }
-                } else {
-                    $query = "";
-                }
+                $query = "select * from problems where pgroup = '$_GET[code]' and status != 'Deleted' order by code";
+
                 $prob = DB::findAllFromQuery($query);
                 ?>
                 <div class="container mx-auto px-4">
@@ -91,10 +82,10 @@ if ((isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin')) {
                                 foreach ($prob as $row) {
                             ?>
                                     <tr>
-                                        <td class="border px-4 py-2"><a href="<?php echo SITE_URL . "/view_problem.php?problem_id=$row[code]"; ?>"><?php echo $row['name']; ?></a></td>
-                                        <td class="border px-4 py-2"><a href="<?php echo SITE_URL . "/view_problem.php?problem_id=$row[code]"; ?>"><?php echo $row['score']; ?></a></td>
-                                        <td class="border px-4 py-2"><a href="<?php echo SITE_URL . "/submit/$row[code]"; ?>"><?php echo $row['code']; ?></a></td>
-                                        <td class="border px-4 py-2"><a href="<?php echo SITE_URL . "/status/$row[code]"; ?>"><?php echo $row['solved'] . "/" . $row['total']; ?></a></td>
+                                        <td class="border px-4 py-2 items-center " style="text-align:center"><a href="<?php echo SITE_URL . "/view_problem.php?problem_id=$row[code]"; ?>"><?php echo $row['name']; ?></a></td>
+                                        <td class="border px-4 py-2 items-center " style="text-align:center"><a href="<?php echo SITE_URL . "/view_problem.php?problem_id=$row[code]"; ?>"><?php echo $row['score']; ?></a></td>
+                                        <td class="border px-4 py-2 items-center " style="text-align:center"><a href="<?php echo SITE_URL . "/submit/$row[code]"; ?>"><?php echo $row['code']; ?></a></td>
+                                        <td class="border px-4 py-2 items-center " style="text-align:center"><a href="<?php echo SITE_URL . "/status/$row[code]"; ?>"><?php echo $row['solved'] . "/" . $row['total']; ?></a></td>
                                     </tr>
                             <?php }
                             } ?>
@@ -117,34 +108,47 @@ if ((isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin')) {
                         $pidToProbCode[$prob['pid']] = $prob['code'];
                     }
                 ?>
-                    <div class="text-center page-header"><?php if (isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == "Admin") { ?><?php } ?><h1>Rankings - <?php echo $contest['name'] ?></h1>
+                    <div class="text-center page-header"><?php if (isset($_SESSION['loggedin'])) { ?><?php } ?><h1>Rankings - <?php echo $contest['name'] ?></h1>
                     </div>
     <?php
-                    if ($contest['ranktable'] != "") {
-                        $rank = getrankings($contest['code']);
-                    } else {
-                        $rank = null;
+
+                    $query = "SELECT ranktable FROM contest WHERE code = '$_GET[code]'";
+
+                    $result = DB::findOneFromQuery($query);
+
+                    if (!$result) {
+                        echo "No results found for code: " . $code;
+                        exit;
                     }
-                    $i = 1;
-                    $probCells = "";
-                    foreach ($pidToProbCode as $pid => $code) {
-                        $probCells .= "<th><a target='_blank' href='" . SITE_URL . "/problems/$code" . "'>" . $code . "</a></th>";
-                    }
-                    echo "<table class='table table-hover table-bordered'><thead><tr><th>Rank</th><th>Username</th><th>Score</th>$probCells<th>Final Time</th></tr></thead>";
-                    if ($rank) {
-                        foreach ($rank as $val) {
-                            $finaltime = $val['time'] + $val['penalty'] * $admin['value'] * 60;
-                            $val['time'] = timeformating($val['time']);
-                            $finaltime = timeformating($finaltime);
-                            $probCells = "";
-                            foreach ($pidToProbCode as $pid => $code) {
-                                $probCells .= "<td style='text-align:center'>" . (array_key_exists($pid, $val['solved']) ? "<span class='glyphicon glyphicon-ok' style='color: green'></span> (<span style='color:" . ($val['solved'][$pid] > 0 ? "red" : "green") . "'>" . $val['solved'][$pid] . "</span>)" : "-") . "</td>";
-                            }
-                            echo "<tr><td>$i</td><td><a href='" . SITE_URL . "/teams/$val[username]'>$val[username]</a></td><td>$val[score] (<span style='color:" . ($val['penalty'] > 0 ? "red" : "green") . "'>$val[penalty]</span>)</td>" . $probCells . "<td>$finaltime</td></tr>";
-                            $i++;
+
+                    $rankTable = json_decode($result['ranktable'], true);
+                    $limit = 10; // Define limit, replace 10 with your desired limit
+
+                    $table = '<div class="bg-gray-100 rounded mx-100 flex w-full px-10 justify-center">';
+                    $table .= '<table class="w-full table table-bordered table-hover">';
+                    $table .= '<thead><tr>';
+                    $table .= '<th class="text-center">Rank</th><th class="text-center">Username</th><th class="text-center">Score</th><th class="text-center">Solved</th><th class="text-center">Time</th>';
+                    $table .= '</tr></thead><tbody>';
+
+                    $rank = 1;
+                    if ($rankTable) {
+                        foreach ($rankTable as $row) {
+                            $solvedCount = count($row['solved_contest']);
+                            $time = $row['time'];
+                            $table .= '<tr>';
+                            $table .= '<td class="text-center">' . $rank . '</td><td class="text-center"><a href="' . SITE_URL . '/users/' . $row['username'] . '">' . $row['username'] . '</a></td><td class="text-center">' . $row['score'] . '</td><td class="text-center">' . $solvedCount . '</td><td class="text-center">' . $time . '</td>';
+                            $table .= '</tr>';
+                            if ($rank >= $limit)
+                                break;
+                            $rank++;
                         }
+                    } else {
+                        $table .= "<tr><td class='text-center' colspan='5'>No Data Available.</td></tr>";
                     }
-                    echo "</table>";
+                    $table .= '</tbody></table>';
+                    $table .= '</div>';
+
+                    echo $table;
                 } else {
                     echo "<div class='text-center page-header'><h1>Select a Contest</h1></div>
         <div class='row'>";
