@@ -16,7 +16,7 @@ $sql = "SELECT p.*, GROUP_CONCAT(c.name) AS categories
 $result = DB::findOneFromQuery($sql);
 
 // Get the selected language from the form submission or set a default language
-$selectedLanguage = isset($_POST['lang']) ? $_POST['lang'] : 'C';
+$selectedLanguage = isset($_POST['lang']) ? $_POST['lang'] : 'C++';
 
 // Get the basic code structure based on the selected language
 function getBasicCodeStructure($language)
@@ -165,13 +165,10 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
                             <option value="JavaScript" <?php if ($selectedLanguage === 'JavaScript') echo 'selected'; ?>>JavaScript</option>
                         </select>
                     </div>
-                    <div id="solve-editor">
-                        <div class="editor" id="editor" style="height: 400px; font-size: 17px;">
-                            <!-- <div class="line-numbers">
-                                <span></span>
-                            </div>
-                            <textarea id="sub" name="sub" rows="17" class="w-full rounded border-none" placeholder="Write your code here..."><?php echo $codeStructure; ?></textarea> -->
-                        </div>
+                    <div id="solve-editor" class="rounded">
+                        <div class="editor" id="editor" style="height: 500px; font-size: 17px; border-radius: 4px;"></div>
+
+                        <textarea hidden id="sub" name="sub" rows="17" class="w-full rounded border-none"></textarea>
 
                     </div>
                     <div id="solve-file" style="display: none;">
@@ -183,7 +180,7 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
                     <input type="hidden" value="<?php echo ((isset($result['code']) && $result['code'] != "") ? ($result['code']) : ($prob['code'])); ?>" name="probcode" />
 
                     <div class="flex flex-col items-center justify-center">
-                        <input type="submit" value="Submit" class="w-1/2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 mt-4 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-50" name="submitcode" />
+                        <input type="submit" value="Submit" class="w-1/2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 mt-4 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-opacity-50" onclick="setValue()" name="submitcode" />
                         <p class="mt-2 text-sm"> OR </p>
                         <button class="bg-gray-800 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded mt-4" type="button" name="solvecodeineditor" style="transition: all 0.15s ease 0s" onclick="toggleEditor()">Submit with File</button>
                     </div>
@@ -257,7 +254,10 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
 ?>
     </div>
 
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
     <script src="js/lib/ace.js"></script>
     <script src="js/lib/theme-monokai.js"></script>
     <script>
@@ -266,54 +266,90 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
             editor = ace.edit("editor");
             editor.setTheme("ace/theme/monokai");
             editor.session.setMode("ace/mode/c_cpp");
+            editor.session.setValue(`#include<iostream>
+using namespace std;
+int main(){
+    int t;
+    cin >> t;
+    for (int i = 1; i <= t; i++) {
+        cout << "codesohoj" << endl;
+    }
+    return 0;
+}`);
         }
-        // function changeLanguage() {
-        //     let language = $("#lang").val();
-            
-        //     if(language == 'c' || language == 'cpp') {
-        //         editor.session.setMode("ace/mode/c_cpp");
-        //     }
-        //     else if(language == 'java') {
-        //         editor.session.setMode("ace/mode/java");
-        //     }
-        //     else if(language == 'python') {
-        //         editor.session.setMode("ace/mode/python");
-        //     }
-        //     else if(language == 'javascript') {
-        //         editor.session.setMode("ace/mode/javascript");
-        //     }
-        // }
-        
+
+        function setValue() {
+            var code = editor.getValue();
+            console.log(code);
+            document.getElementById('sub').value = code;
+
+            console.log(document.getElementById('sub').value);
+        }
+
+
 
         function changeLanguage() {
             var langSelect = document.getElementById('lang');
             var selectedLanguage = langSelect.options[langSelect.selectedIndex].value;
             var codeStructure = getBasicCodeStructure(selectedLanguage);
-
-            var textarea = document.getElementById('sub');
-            textarea.value = codeStructure;
+            editor.session.setValue(codeStructure);
         }
 
         function getBasicCodeStructure(language) {
             if (language === "C") {
                 editor.session.setMode("ace/mode/c_cpp");
-                return "#include<stdio.h>\nint main(){\n\nreturn 0;\n}";
+                return `#include<stdio.h>
+int main(){
+    int t;
+    scanf("%d", &t);
+    for (int i = 1; i <= t; i++) {
+        printf("codesohoj\\n");
+    }
+    return 0;
+}`;
             } else if (language === "C++") {
                 editor.session.setMode("ace/mode/c_cpp");
-                return "#include<iostream>\nusing namespace std;\nint main(){\n\nreturn 0;\n}";
+                return `#include<iostream>
+using namespace std;
+int main(){
+    int t;
+    cin >> t;
+    for (int i = 1; i <= t; i++) {
+        cout << "codesohoj" << endl;
+    }
+    return 0;
+}`;
             } else if (language === "Java") {
                 editor.session.setMode("ace/mode/java");
-                return "import java.util.*;\npublic class Main{\npublic static void main(String args[]){\n\n}\n}";
+                return `import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        for (int i = 1; i <= t; i++) {
+            System.out.println("codesohoj");
+        }
+    }
+}`;
             } else if (language === "Python") {
                 editor.session.setMode("ace/mode/python");
-                return "print('Hello World')";
+                return `
+                t =input()
+                for i in range(t):
+    print("codesohoj")`;
             } else if (language === "JavaScript") {
                 editor.session.setMode("ace/mode/javascript");
-                return "console.log('Hello World');";
-            }
-            else{
+                return `
+                let t;
+                t = parseInt(prompt());
+                for (let i = 1; i <= t; i++) {
+    console.log("codesohoj");
+}`;
+            } else {
                 return "";
             }
+
+
         }
     </script>
 
@@ -332,9 +368,10 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
                 solveFile.style.display = "block";
                 solveCodeButton.innerText = "Solve in Editor";
             }
+
+
         }
     </script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script>
         const textarea = document.querySelector('textarea');

@@ -1,14 +1,12 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
-int main() {
+int main(){
     int t;
     cin >> t;
-    while (t--) {
+    for (int i = 1; i <= t; i++) {
         int x;
-        cin >> x;
-        int result = 2 * x;
-        cout << result << endl;
+        cin>>x;
+        cout << 2*x<< endl;
     }
     return 0;
 }
-

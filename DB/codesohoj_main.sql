@@ -141,7 +141,7 @@ INSERT INTO `category_problem` (`id`, `category_id`, `problem_id`) VALUES
 
 CREATE TABLE `clar` (
   `time` int(11) NOT NULL,
-  `tid` int(11) DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL,
   `pid` int(11) DEFAULT NULL,
   `query` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `reply` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -193,7 +193,7 @@ CREATE TABLE `editorials` (
 CREATE TABLE `logs` (
   `time` int(11) NOT NULL,
   `ip` tinytext CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `tid` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `uid` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `request` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 

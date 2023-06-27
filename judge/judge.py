@@ -1,3 +1,4 @@
+import json
 import lockfile
 import pymysql as sql
 import platform, re, os, shutil, signal, sys, _thread as thread, time, urllib, socketserver as SocketServer, subprocess, codecs
@@ -221,6 +222,14 @@ print("Supported Languages : " + str(languages) + "\n")
 sys.stdout.flush()
 
 
+def scoreKey(user):
+    return (
+        -user["score"],
+        -len(user["solved_contest"]),
+        user["time"] + user["penalty"] * 20 * 60,
+    )
+
+
 def runjudge(runid):
     try:
         # Connect to Database
@@ -239,7 +248,7 @@ def runjudge(runid):
 
         if "-cache" not in sys.argv:
             cursor.execute(
-                "SELECT runs.rid as rid,runs.pid as pid,uid,runs.language,subs_code.name as name,subs_code.code as code,error,input,problems.output as output,timelimit FROM runs,problems, subs_code WHERE problems.pid=runs.pid and runs.access!='deleted' and runs.rid = subs_code.rid and runs.rid = '"
+                "SELECT runs.rid as rid,runs.pid as pid,uid,runs.language,subs_code.name as name,subs_code.code as code,error,input,problems.output as output,timelimit, problems.pgroup as pgroup FROM runs,problems, subs_code WHERE problems.pid=runs.pid and runs.access!='deleted' and runs.rid = subs_code.rid and runs.rid = '"
                 + str(runid)
                 + "' and runs.language in "
                 + str(tuple(languages))
@@ -247,7 +256,7 @@ def runjudge(runid):
             )
         else:
             cursor.execute(
-                "SELECT runs1.rid as rid,runs1.pid as pid,uid,runs1.language,subs_code.name as name,subs_code.code as code,error,timelimit FROM runs AS runs1,problems, subs_code WHERE problems.pid=runs1.pid and runs1.rid = subs_code.rid and runs1.access!='deleted' and runs1.rid = '"
+                "SELECT runs1.rid as rid,runs1.pid as pid,uid,runs1.language,subs_code.name as name,subs_code.code as code,error,timelimit, problems.pgroup as pgroup FROM runs AS runs1,problems, subs_code WHERE problems.pid=runs1.pid and runs1.rid = subs_code.rid and runs1.access!='deleted' and runs1.rid = '"
                 + str(runid)
                 + "' and runs1.language in "
                 + str(tuple(languages))
@@ -334,14 +343,13 @@ def runjudge(runid):
             "Java",
             "Python",
             "Python3",
-            "Ruby",
             "PHP",
             "C#",
             "JavaScript",
         ):
             if run["language"] in ("Java", "C#", "JavaScript"):
                 run["timelimit"] *= 2
-            elif run["language"] in ("Python", "Ruby", "PHP", "Python3"):
+            elif run["language"] in ("Python", "PHP", "Python3"):
                 run["timelimit"] *= 3
 
         # Run the program through a new thread, and kill it after some time
@@ -424,6 +432,71 @@ def runjudge(runid):
             'UPDATE subs_code SET error="%s",output="%s" WHERE rid=%d'
             % (re.escape(error), re.escape(output), int(run["rid"]))
         )
+
+        # update contest rank
+        print("Updating contest rank ...")
+        query = "select * from contest where code = '%s'" % run["pgroup"]
+        cursor.execute(query)
+        contest = cursor.fetchone()
+        print("fetching contest ... " + run["pgroup"])
+        if contest == None:
+            print("No contest %s found!" % run["pgroup"])
+        print(contest)
+        query = (
+            """
+        select runs.uid as uid, username, problems.score, submittime as time,
+        (select count(rid) from runs r where uid = runs.uid and pid = runs.pid and result != 'AC'
+        and result is not NULL and submittime < runs.submittime) as penalty, runs.pid as pid
+        from runs, Users, problems, contest
+        where runs.uid = Users.uid and problems.pid = runs.pid and
+        runs.pid in (select pid from problems where pgroup ='%s') and result = 'AC' group by runs.uid, runs.pid
+        """
+            % run["pgroup"]
+        )
+
+        cursor.execute(query)
+        rows = cursor.fetchall()
+
+        print("fetching runs ...")
+        print(rows)
+        ranks = {}
+        for row in rows:
+            if row["uid"] in ranks:
+                ranks[row["uid"]]["time"] += row["time"] - contest["starttime"]
+                ranks[row["uid"]]["score"] += row["score"]
+                ranks[row["uid"]]["penalty"] += row["penalty"]
+                ranks[row["uid"]]["solved_contest"][row["pid"]] = row["penalty"]
+            else:
+                ranks[row["uid"]] = {}
+                ranks[row["uid"]]["username"] = row["username"]
+                ranks[row["uid"]]["time"] = row["time"] - contest["starttime"]
+                ranks[row["uid"]]["score"] = row["score"]
+                ranks[row["uid"]]["penalty"] = row["penalty"]
+                ranks[row["uid"]]["solved_contest"] = {row["pid"]: row["penalty"]}
+
+        ret = []
+        print("fetching ranks ...")
+        print(ranks)
+        for uid, dic in ranks.items():
+            dic["uid"] = uid
+            ret.append(dic)
+
+        print("ret ...")
+        print(ret)
+
+        ret.sort(key=scoreKey)
+
+        dataString = json.dumps(ret)
+        print("dataString ...")
+        print(dataString)
+        query = "UPDATE contest SET ranktable = '%s' WHERE code = '%s'" % (
+            dataString.replace("'", "\\'"),
+            contest["code"].replace("'", "\\'"),
+        )
+        cursor.execute(query)
+
+        #
+
         print("Result (%s,%.3f) updated on Server.\n" % (result, timetaken))
         sys.stdout.flush()
         # Commit changes

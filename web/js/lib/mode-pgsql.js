@@ -1317,7 +1317,7 @@ var PgsqlHighlightRules = function () {
         "sequence|sequences|serializable|server|session|session_user|set|setof|share|show|similar|" +
         "simple|smallint|smgr|snapshot|some|stable|standalone|start|statement|statistics|stdin|" +
         "stdout|storage|strict|strip|substring|symmetric|sysid|system|table|tables|tablespace|temp|" +
-        "template|temporary|text|then|tid|time|timestamp|timestamptz|timetz|tinterval|to|trailing|" +
+        "template|temporary|text|then|uid|time|timestamp|timestamptz|timetz|tinterval|to|trailing|" +
         "transaction|treat|trigger|trim|true|truncate|trusted|tsquery|tsrange|tstzrange|tsvector|" +
         "txid_snapshot|type|types|unbounded|uncommitted|unencrypted|union|unique|unknown|unlisten|" +
         "unlogged|until|update|user|using|uuid|vacuum|valid|validate|validator|value|values|varbit|" +
