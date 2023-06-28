@@ -360,4 +360,60 @@ if (isset($_POST["login"])) {
     $_SESSION['msg'] = "You should be logged in to make a submission.";
     redirectTo(SITE_URL . $_SESSION['url']);
   }
+} elseif (isset($_POST['add_topic'])) {
+  // $query =
+  //   "INSERT INTO learn (" .
+  //   "addedby, title , short , description ,statement, category , user_id" .
+  //   ") values ('" .
+  //   $_SESSION["Users"]["name"] .
+  //   "', '" .
+  //   $_POST["title"] .
+  //   "', '" .
+  //   $_POST["short"] .
+  //   "', '" .
+  //   $_POST["statement"] .
+  //   "', '" .
+  //   addslashes(file_get_contents($_FILES["statement_file"]["tmp_name"])) .
+  //   "', '" .
+  //   $_POST["category"] .
+  //   "', '" .
+  //   $_SESSION["Users"]["uid"] .
+  //   "')";
+
+    // "', '" .
+    // addslashes(file_get_contents($_FILES["input"]["tmp_name"])) .
+    // "', '" .
+    // addslashes(file_get_contents($_FILES["output"]["tmp_name"])) .
+    // "', '" .
+    // $_POST["sampleinput"] .
+    // "', '" .
+    // $_POST["sampleoutput"] .
+    // "', '" .    
+    // addslashes(file_get_contents($_FILES["sampleinput"]["tmp_name"])) .
+    // "', '" .
+    // addslashes(file_get_contents($_FILES["sampleoutput"]["tmp_name"])) .
+    // "')";
+
+  // Retrieve the form data
+  $title = $_POST['title'];
+  $short = $_POST['short'];
+  $description = $_POST['statement'];
+  $categoryIds = $_POST['category'];
+  $userId = $_SESSION['Users']['uid'];
+
+  // Handle the file upload (if applicable)
+  $statementFile = null;
+  if ($_FILES['statement_file']['error'] === UPLOAD_ERR_OK) {
+      $statementFile = file_get_contents($_FILES['statement_file']['tmp_name']);
+  }
+
+  // Insert the topic into the database
+  $query = "INSERT INTO learn (addedby, title, short, description, statement, category, user_id) VALUES ('" . $_SESSION["Users"]["name"] . "', '$title', '$short', '$description', '$statementFile', '" . implode(',', $categoryIds) . "', '$userId')";
+  
+  // Execute the query
+  DB::query($query);
+
+  // Redirect or display a success message
+  // ...
+  redirectTo(SITE_URL . "/learn.php");
 }

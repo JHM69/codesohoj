@@ -75,6 +75,25 @@ INSERT INTO `Blogs` (`id`, `time`, `added`, `title`, `description`, `likes`, `vi
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `learn`
+--
+
+CREATE TABLE `learn` (
+  `id` int(11) NOT NULL,
+  `time` datetime NOT NULL DEFAULT current_timestamp(),
+  `addedby` varchar(50) NOT NULL DEFAULT 'admin',
+  `title` varchar(100) NOT NULL,
+  `short` text DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `statement` text DEFAULT NULL,
+  `category` int(11) DEFAULT 0,
+  `user_id` varchar(20) NOT NULL DEFAULT 'Admin'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `category`
 --
 
