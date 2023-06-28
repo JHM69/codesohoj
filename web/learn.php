@@ -25,62 +25,49 @@ if (
             <h1 class="text-3xl font-bold mb-4">Learn</h1>
             <p class="text-lg text-gray-700 mb-6">
                 Learn the fundamentals of computer science with our engaging and practical courses in
-                <span class="font-bold">C, C++, Python, Java,</span> and <span class="font-bold">SQL.</span>
+                <span class="font-bold">C, C++, Python, Java, SQL</span> and <span class="font-bold">so on.</span>
                 Our interactive courses emphasize real-world problem-solving, allowing you to practice your skills and gain confidence.
                 Start learning with <span class="font-bold">CodeSohoj</span> today and unlock your potential as a developer!
             </p>
 
 
             <!-- Learning resources -->
-            <div class="flex flex-wrap -mx-4 mt-8">
-                <div class="w-full sm:w-1/2 lg:w-1/3 px-4 mb-4">
-                    <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
-                        <h2 class="text-xl font-bold mb-2">Introduction to Programming</h2>
-                        <p>Learn the basics of programming concepts, syntax, and problem-solving techniques.</p>
-                        <a href="<?php echo SITE_URL; ?>/topic_details.php?topic=intro_to_programming" class="text-blue-500">View Details</a>
-                    </div>
-                </div>
+            <?php
+            $query = "SELECT * FROM learn";
+            $result = DB::findAllFromQuery($query);
+            $topicCount = count($result);
+            ?>
 
-                <div class="w-full sm:w-1/2 lg:w-1/3 px-4 mb-4">
-                    <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
-                        <h2 class="text-xl font-bold mb-2">Data Structures and Algorithms</h2>
-                        <p>Explore various data structures and algorithms commonly used in programming competitions.</p>
-                        <a href="<?php echo SITE_URL; ?>/topic_details.php?topic=data_structures_algorithms" class="text-blue-500">View Details</a>
-                    </div>
-                </div>
+            <div class="flex flex-wrap justify-center -mx-4 mt-8">
+                <?php
+                foreach ($result as $row) {
+                    echo '<div class="w-full sm:w-1/2 lg:w-1/3 px-4 mb-4">';
+                    echo '<div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">';
+                    echo '<h2 class="text-xl font-bold mb-2">' . $row['title'] . '</h2>';
 
-                <div class="w-full sm:w-1/2 lg:w-1/3 px-4 mb-4">
-                    <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
-                        <h2 class="text-xl font-bold mb-2">Practice Problems</h2>
-                        <p>Sharpen your coding skills with a collection of practice problems of varying difficulty levels.</p>
-                        <a href="<?php echo SITE_URL; ?>/problems.php" class="text-blue-500">View Practice Problems</a>
-                    </div>
-                </div>
+                    // Limit the words in the short description
+                    $shortDescription = $row['short'];
+                    $words = explode(' ', $shortDescription);
+                    $limitedDescription = implode(' ', array_slice($words, 0, 15)); // Limit to 15 words
 
-                <div class="w-full sm:w-1/2 lg:w-1/3 px-4 mb-4">
-                    <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
-                        <h2 class="text-xl font-bold mb-2">Advanced Algorithms</h2>
-                        <p>Take your algorithmic skills to the next level with advanced topics and techniques.</p>
-                        <a href="<?php echo SITE_URL; ?>/topic_details.php?topic=advanced_algorithms" class="text-blue-500">View Details</a>
-                    </div>
-                </div>
-
-                <div class="w-full sm:w-1/2 lg:w-1/3 px-4 mb-4">
-                    <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
-                        <h2 class="text-xl font-bold mb-2">Web Development Basics</h2>
-                        <p>Learn the fundamentals of web development, including HTML, CSS, and JavaScript.</p>
-                        <a href="<?php echo SITE_URL; ?>/topic_details.php?topic=web_dev_basics" class="text-blue-500">View Details</a>
-                    </div>
-                </div>
-
-                <div class="w-full sm:w-1/2 lg:w-1/3 px-4 mb-4">
-                    <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
-                        <h2 class="text-xl font-bold mb-2">Database Design and SQL</h2>
-                        <p>Master the art of designing and managing databases using SQL.</p>
-                        <a href="<?php echo SITE_URL; ?>/topic_details.php?topic=database_design_sql" class="text-blue-500">View Details</a>
-                    </div>
-                </div>
+                    echo '<p>' . $limitedDescription . '...</p>';
+                    echo '<a href="' . SITE_URL . '/topic_details.php?topic_id=' . $row['id'] . '" class="text-blue-500">View Details</a>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+                ?>
             </div>
+
+            <style>
+                /* Center align the topics if there is 1, 4, 7, ... topics */
+                <?php if ($topicCount % 3 == 1 || $topicCount % 3 == 2) : ?>.justify-center {
+                    justify-content: center;
+                }
+
+                <?php endif; ?>
+            </style>
+
+
 
             <div class="bg-gray-100 py-4">
                 <div class="container mx-auto flex justify-center">

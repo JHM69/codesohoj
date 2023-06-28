@@ -56,8 +56,8 @@ if (
                         <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="text" name="title" id="title" required>
                     </div>
                     <div class="mb-4">
-                        <label for="short_description" class="block text-gray-700 font-bold mb-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Short Description</label>
-                        <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="text" name="short_description" id="short_description" required>
+                        <label for="short" class="block text-gray-700 font-bold mb-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Short Description</label>
+                        <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="text" name="short" id="short" required>
                     </div>
 
                     <label for="editor-container" class="block text-gray-700 font-bold mb-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Topic's Statement</label>
@@ -98,6 +98,7 @@ if (
                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" name="add_topic" style="transition: all 0.15s ease 0s">Add Topic
                     </button>
                 </div>
+            </div>
             </form>
         </div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -127,89 +128,7 @@ if (
                 },
                 placeholder: 'Topic Statements...',
                 theme: 'snow' // or 'bubble'
-            });
-
-            var quill_input = new Quill('#editor-container-input', {
-                modules: {
-                    toolbar: [
-                        [{
-                            header: [1, 2, false]
-                        }],
-                        [
-                            'bold',
-                            'italic',
-                            'underline',
-                            'strike',
-                            'blockquote',
-                            'formula',
-                        ],
-                        [{
-                            list: 'ordered'
-                        }, {
-                            list: 'bullet'
-                        }],
-                        ['link', 'video', 'code-block'],
-                        ['image'],
-                    ]
-                },
-                placeholder: 'Input...',
-                theme: 'snow' // or 'bubble'
-            });
-
-
-            var quill_output = new Quill('#editor-container-output', {
-                modules: {
-                    toolbar: [
-                        [{
-                            header: [1, 2, false]
-                        }],
-                        [
-                            'bold',
-                            'italic',
-                            'underline',
-                            'strike',
-                            'blockquote',
-                            'formula',
-                        ],
-                        [{
-                            list: 'ordered'
-                        }, {
-                            list: 'bullet'
-                        }],
-                        ['link', 'video', 'code-block'],
-                        ['image'],
-                    ]
-                },
-                placeholder: 'Output...',
-                theme: 'snow' // or 'bubble'
-            });
-
-            var quill_note = new Quill('#editor-container-note', {
-                modules: {
-                    toolbar: [
-                        [{
-                            header: [1, 2, false]
-                        }],
-                        [
-                            'bold',
-                            'italic',
-                            'underline',
-                            'strike',
-                            'blockquote',
-                            'formula',
-                        ],
-                        [{
-                            list: 'ordered'
-                        }, {
-                            list: 'bullet'
-                        }],
-                        ['link', 'video', 'code-block'],
-                        ['image'],
-                    ]
-                },
-                placeholder: 'Note...',
-                theme: 'snow' // or 'bubble'
-            });
+            });            
 
             var form = document.querySelector("form");
             var statement = document.querySelector('#statement');
