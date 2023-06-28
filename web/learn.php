@@ -38,11 +38,69 @@ if (
             $topicCount = count($result);
             ?>
 
-            <div class="flex flex-wrap justify-center -mx-4 mt-8">
+            <style>
+                .grid-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    align-items: stretch;
+                    /* Stretch grid items to match height */
+                }
+
+                .grid-item {
+                    background-color: white;
+                    border-radius: 8px;
+                    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+                    padding: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                    width: 30%;
+                    margin: 15px;
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+                    overflow: hidden;
+                    /* Hide overflowing content */
+                }
+
+                .grid-item:hover {
+                    transform: scale(1.05);
+                    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+                }
+
+                .grid-item h2 {
+                    font-size: 24px;
+                    margin-bottom: 10px;
+                }
+
+                .grid-item p {
+                    font-size: 16px;
+                    margin-bottom: 20px;
+                    max-height: 75px;
+                    /* Set a maximum height for the description */
+                    overflow: hidden;
+                    /* Hide overflowing description */
+                }
+
+                .grid-item a {
+                    color: #007BFF;
+                    text-decoration: none;
+                }
+                #temp {
+                    text-decoration: none;
+                    color: black;
+                }
+            </style>
+
+
+
+            <div class="grid-container">
                 <?php
                 foreach ($result as $row) {
-                    echo '<div class="w-full sm:w-1/2 lg:w-1/3 px-4 mb-4">';
-                    echo '<div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">';
+                    echo '<a href="' . SITE_URL . '/topic_details.php?topic_id=' . $row['id'] . '" class="text-gray-500" id="temp">';
+                    echo '<div class="grid-item">';
                     echo '<h2 class="text-xl font-bold mb-2">' . $row['title'] . '</h2>';
 
                     // Limit the words in the short description
@@ -50,24 +108,12 @@ if (
                     $words = explode(' ', $shortDescription);
                     $limitedDescription = implode(' ', array_slice($words, 0, 15)); // Limit to 15 words
 
-                    echo '<p>' . $limitedDescription . '...</p>';
+                    echo '<p>' . $limitedDescription . '...</p></a>';
                     echo '<a href="' . SITE_URL . '/topic_details.php?topic_id=' . $row['id'] . '" class="text-blue-500">View Details</a>';
-                    echo '</div>';
                     echo '</div>';
                 }
                 ?>
             </div>
-
-            <style>
-                /* Center align the topics if there is 1, 4, 7, ... topics */
-                <?php if ($topicCount % 3 == 1 || $topicCount % 3 == 2) : ?>.justify-center {
-                    justify-content: center;
-                }
-
-                <?php endif; ?>
-            </style>
-
-
 
             <div class="bg-gray-100 py-4">
                 <div class="container mx-auto flex justify-center">
