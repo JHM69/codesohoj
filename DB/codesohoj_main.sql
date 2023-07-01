@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jun 15, 2023 at 11:17 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Host: 127.0.0.1
+-- Generation Time: Jun 27, 2023 at 01:14 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -49,47 +49,31 @@ INSERT INTO `admin` (`variable`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Blogs`
+-- Table structure for table `blogs`
 --
 
-CREATE TABLE `Blogs` (
+CREATE TABLE `blogs` (
   `id` int(11) NOT NULL,
   `time` datetime NOT NULL DEFAULT current_timestamp(),
   `added` varchar(50) NOT NULL DEFAULT 'admin',
   `title` varchar(100) NOT NULL,
   `description` text DEFAULT NULL,
+  `statement` text DEFAULT NULL,
   `likes` int(11) DEFAULT 0,
-  `views` int(11) DEFAULT 0,
   `dislikes` int(11) DEFAULT 0,
+  `views` int(11) DEFAULT 0,
   `cover` varchar(100) DEFAULT NULL,
   `user_id` varchar(20) NOT NULL DEFAULT 'Admin'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `Blogs`
+-- Dumping data for table `blogs`
 --
 
-INSERT INTO `Blogs` (`id`, `time`, `added`, `title`, `description`, `likes`, `views`, `dislikes`, `cover`, `user_id`) VALUES
-(1, '2023-03-14 11:46:44', 'Code Sohoj admin', 'This is First Blogs in This site', 'Codesohoj = Code + Sohoj + OJ\r\nCodesohoj is an online platform that combines the benefits of an online judge and a coding learning platform. It offers programming problems, educational content, and supports multiple programming languages to provide an engaging learning experience for users of all levels.', 0, 0, 0, NULL, 'admin');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `learn`
---
-
-CREATE TABLE `learn` (
-  `id` int(11) NOT NULL,
-  `time` datetime NOT NULL DEFAULT current_timestamp(),
-  `addedby` varchar(50) NOT NULL DEFAULT 'admin',
-  `title` varchar(100) NOT NULL,
-  `short` text DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `statement` text DEFAULT NULL,
-  `category` int(11) DEFAULT 0,
-  `user_id` varchar(20) NOT NULL DEFAULT 'Admin'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
+INSERT INTO `blogs` (`id`, `time`, `added`, `title`, `description`, `statement`, `likes`, `dislikes`, `views`, `cover`, `user_id`) VALUES
+(1, '2023-03-14 11:46:44', 'Code Sohoj admin', 'This is First Blogs in This site', 'Codesohoj = Code + Sohoj + OJ\r\nCodesohoj is an online platform that combines the benefits of an online judge and a coding learning platform. It offers programming problems, educational content, and supports multiple programming languages to provide an engaging learning experience for users of all levels.', NULL, 0, 0, 0, NULL, 'admin'),
+(2, '2023-06-27 13:58:17', 'admin', 'testing', 'testing 1 2 3', NULL, 0, 0, 0, 'nothing', 'Admin'),
+(9, '2023-06-27 15:05:32', 'test', 'Getting Started with Competitive Programming', '<p>Competitive programming is a mind sport that involves solving algorithmic problems under time constraints. It is a popular activity among coding enthusiasts who enjoy challenging themselves and participating in coding competitions. If you\'re interested in getting started with competitive programming, this blog post will guide you through the initial steps.</p><p><br></p><p><strong>Why Start with Competitive Programming?</strong></p><p><em>Participating in competitive programming offers several advantages:</em></p><p><br></p><p><strong>Improving Problem-Solving Skills:</strong> Competitive programming exposes you to a wide range of problem-solving scenarios. By tackling challenging problems, you will enhance your ability to analyze complex tasks, break them down into smaller subproblems, and develop efficient solutions.</p><p><br></p><p><strong>Learning Efficient Algorithms and Data Structures:</strong> Competitive programming encourages the exploration and implementation of various algorithms and data structures. Through practice, you will become familiar with fundamental concepts such as arrays, linked lists, stacks, queues, trees, graphs, and more. Additionally, you will gain insights into efficient sorting and searching algorithms.</p><p><br></p><p><strong>Enhancing Logical Thinking Abilities:</strong> Competitive programming requires logical thinking to devise algorithms and find optimal solutions. It trains your mind to think critically, consider different approaches, and optimize code for efficiency.</p><p><br></p><p><strong>Gaining Exposure to Real-World Coding Scenarios:</strong> Competitive programming exposes you to real-world coding scenarios and challenges. You will encounter problems similar to those faced by software engineers in the industry, allowing you to gain practical experience and apply theoretical knowledge to solve practical problems.</p><p><br></p><p><strong>Essential Skills and Knowledge:</strong></p><p><br></p><p><em>Before diving into competitive programming, it is essential to have certain skills and knowledge:</em></p><p><br></p><ul><li>Proficiency in at least one programming language (e.g., C++ (recommended), Java, Python).</li><li>Understanding of basic data structures such as arrays, linked lists, stacks, queues, and trees.</li><li>Familiarity with sorting and searching algorithms (e.g., binary search).</li><li>Knowledge of problem-solving techniques, including greedy algorithms, dynamic programming, and backtracking.</li><li>Recommended Online Platforms and Resources</li></ul><p><br></p><p><em>To begin your competitive programming journey, here are some popular online platforms and resources:</em></p><p><br></p><ul><li><strong>CodeSohoj:</strong> A competitive programming platform with regular contests and a vast problem archive.</li><li><strong>Codeforces:</strong> Hosts coding competitions and offers practice problems across various domains.</li><li><strong>Topcoder:</strong> Hosts coding competitions and offers practice problems across various domains.</li><li><strong>LeetCode:</strong> Provides a vast collection of coding problems categorized by difficulty level.</li><li><strong>HackerRank:</strong> Offers coding challenges and contests for beginners to advanced coders.</li><li><strong>CodeChef:</strong> Conducts coding contests and provides practice problems with editorials.</li></ul><p><br></p><p><em>For learning the concepts and techniques of competitive programming, consider the following resources:</em></p><p><br></p><p><strong>Competitive Programming books:</strong></p><p><br></p><ul><li>\"Competitive Programming\" by Steven Halim and Felix Halim</li><li>\"The Competitive Programmer\'s Handbook\" by Antti Laaksonen</li><li>\"Introduction to Algorithms\" by Thomas H. Cormen et al.</li></ul><p><br></p><p><strong>Online courses and tutorials:</strong></p><ul><li>Coursera\'s \"Algorithms: Design and Analysis\" by Stanford University</li><li>Codecademy\'s \"Learn Algorithms\"</li><li><strong>CodeSohoj:</strong> We Offer a wide range of tutorials and practice problems. You can learn from us. Check out our courses at <strong>CodeSohoj.</strong></li></ul><p><br></p><p><strong>Getting Started Guide</strong></p><p><br></p><p><em>To begin your competitive programming journey, follow these steps:</em></p><p><br></p><ul><li><strong>Choose a Programming Language:</strong> Select a programming language you are comfortable with. Popular choices include C++ (most popular) , Java, and Python.</li></ul><p><br></p><ul><li><strong>Set Up a Development Environment:</strong> Install a code editor or Integrated Development Environment (IDE) for your chosen programming language.</li></ul><p><br></p><ul><li><strong>Join Online Coding Communities:</strong> Register on online coding platforms such as CodeSohoj, Codeforces, Topcoder, or LeetCode. Participate in forums and discussions to connect with fellow programmers and learn from their experiences.</li></ul><p><br></p><ul><li><strong>Participate in Practice Contests:</strong> Start with practice contests to get a feel for competitive programming. Solve problems within the given time limit and submit your solutions.</li></ul><p><br></p><ul><li><strong>Gradually Increase Difficulty Level:</strong> Begin with easier problems and gradually progress to more challenging ones. Focus on understanding the problem statements, designing efficient algorithms, and implementing them correctly.</li></ul><p><br></p><p><strong>Tips and Strategies</strong></p><p><em>To improve your performance in competitive programming, consider the following tips and strategies:</em></p><p><br></p><ul><li><strong>Practice Regularly:</strong> Dedicate regular time to solve coding problems. Consistency is key to improving your problem-solving skills.</li></ul><p><br></p><ul><li><strong>Analyze and Learn from Others:</strong> Study solutions submitted by other participants for the problems you solved. Understand different approaches and learn from their coding techniques.</li></ul><p><br></p><ul><li><strong>Participate in Virtual Contests:</strong> Engage in virtual contests to simulate the competitive environment. This will help you improve your speed and accuracy.</li></ul><p><br></p><ul><li><strong>Focus on Problem-Solving Techniques:</strong> Instead of focusing solely on language-specific details, emphasize learning problem-solving techniques such as greedy algorithms, dynamic programming, and efficient data structures.</li></ul><p><br></p><p><strong>Next Steps</strong></p><p><em>Once you have gained some experience in competitive programming, here are some suggested next steps:</em></p><p><br></p><ul><li><strong>Participate in Real Coding Competitions:</strong> Challenge yourself by participating in real coding competitions like ACM ICPC, Google Code Jam, or Facebook Hacker Cup.</li></ul><p><br></p><ul><li><strong>Join Coding Clubs or Communities:</strong> Join local coding clubs or online communities to collaborate with fellow programmers, exchange ideas, and learn advanced techniques.</li></ul><p><br></p><ul><li><strong>Explore Advanced Topics:</strong> Expand your knowledge by delving into advanced topics such as graph algorithms, advanced data structures, and system design.</li></ul><p><br></p><p>Remember, competitive programming is a journey that requires dedication, continuous learning, and practice. Embrace the challenges and enjoy the process of improving your problem-solving skills.</p><p><br></p><p><br></p><p><strong>Start your competitive programming journey today and unlock a world of opportunities! Happy coding!</strong></p>', '', 3, 3, 0, NULL, '3');
 
 -- --------------------------------------------------------
 
@@ -202,6 +186,34 @@ CREATE TABLE `editorials` (
   `pid` int(11) NOT NULL,
   `content` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `learn`
+--
+
+CREATE TABLE `learn` (
+  `id` int(11) NOT NULL,
+  `time` datetime NOT NULL DEFAULT current_timestamp(),
+  `addedby` varchar(50) NOT NULL DEFAULT 'admin',
+  `title` varchar(100) NOT NULL,
+  `short` text DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `statement` text DEFAULT NULL,
+  `category` int(11) DEFAULT 0,
+  `user_id` varchar(20) NOT NULL DEFAULT 'Admin'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `learn`
+--
+
+INSERT INTO `learn` (`id`, `time`, `addedby`, `title`, `short`, `description`, `statement`, `category`, `user_id`) VALUES
+(1, '2023-06-28 11:16:12', 'Farhan Masud Shohag', 'Introduction to Programming', 'Programming is the process of creating sets of instructions that tell a computer what to do. It involves writing code using programming languages to develop software, applications, and websites. Programming is an essential skill for anyone interested in technology and computer science. It allows you to create interactive and functional solutions to various problems.', '<h2><strong>Why Learn Programming?</strong></h2><p>Learning programming opens up a world of opportunities. Here are some reasons why you should consider learning programming:</p><ul><li><strong>Problem-Solving:</strong>&nbsp;Programming helps you develop critical thinking and problem-solving skills. You\'ll learn how to break down complex problems into smaller, manageable steps and create algorithms to solve them.</li><li><strong>Career Opportunities:</strong>&nbsp;Programming skills are in high demand in today\'s digital age. Many industries, including software development, web development, data science, artificial intelligence, and cybersecurity, offer lucrative career opportunities for programmers.</li><li><strong>Creativity and Innovation:</strong>&nbsp;Programming allows you to bring your ideas to life. You can create unique applications, games, websites, and software that solve specific problems or entertain users.</li><li><strong>Automation:</strong>&nbsp;With programming, you can automate repetitive tasks and increase efficiency. This saves time and effort, enabling you to focus on more important and creative aspects of your work.</li><li><strong>Logical Thinking:</strong>&nbsp;Programming requires logical thinking and attention to detail. It improves your ability to analyze problems, identify patterns, and develop structured solutions.</li></ul><p><br></p><h2><strong>Getting Started with Programming</strong></h2><p>If you\'re new to programming, here are some steps to get started:</p><ol><li><strong>Choose a Programming Language:</strong>&nbsp;There are numerous programming languages to choose from, such as Python, JavaScript, Java, C++, and more. Research their features, ease of learning, and application domains to find the best fit for your goals. You can learn C++ and compete with the world as it is faster than another language.</li><li><strong>Set Up Your Development Environment:</strong>&nbsp;Install the necessary software and tools for your chosen programming language. IDEs (Integrated Development Environments) like Visual Studio Code, PyCharm, or Eclipse can provide a streamlined development experience.</li><li><strong>Learn the Basics:</strong>&nbsp;Start with the fundamentals of programming, including variables, data types, conditionals, loops, and functions. Online tutorials, books, and interactive coding platforms like&nbsp;<a href=\"http://localhost/codesohoj/web/topic_details.php?topic=intro_to_programming#\" target=\"_blank\" style=\"color: inherit;\"><strong>Codesohoj</strong></a>&nbsp;can help you learn the basics.</li><li><strong>Practice and Build Projects:</strong>&nbsp;Apply your knowledge by working on small projects or exercises. Practice writing code and solving programming problems regularly to reinforce your skills.</li><li><strong>Join Coding Communities:</strong>&nbsp;Join Coding Communities: Engage with other programmers through forums, online communities, or coding meetups. Collaborating and sharing knowledge with like-minded individuals can enhance your learning journey.</li><li><strong>Expand Your Knowledge:</strong>&nbsp;As you gain proficiency, explore advanced programming concepts, data structures, algorithms, and specialized areas based on your interests and career goals.</li></ol><p><br></p><p>Remember, learning programming is a continuous process. Embrace challenges, be patient, and keep practicing to become a proficient programmer.</p><h2><br></h2><h2><strong>Learn the Basics:</strong></h2><h2><strong>Variables</strong></h2><p>In programming, variables are used to store and manipulate data. They act as named containers that hold value. Here\'s an example of declaring and using variables in C++:</p><pre class=\"ql-syntax\" spellcheck=\"false\">                \r\n#include&lt;iostream&gt;\r\nint main() {\r\n    int age = 25;\r\n    float weight = 65.5;\r\n    char grade = \'A\';\r\n    std::string name = \"John Doe\";\r\n\r\n    std::cout &lt;&lt; \"Name: \" &lt;&lt; name &lt;&lt; std::endl;\r\n    std::cout &lt;&lt; \"Age: \" &lt;&lt; age &lt;&lt; std::endl;\r\n    std::cout &lt;&lt; \"Weight: \" &lt;&lt; weight &lt;&lt; std::endl;\r\n    std::cout &lt;&lt; \"Grade: \" &lt;&lt; grade &lt;&lt; std::endl;\r\n\r\n    return 0;\r\n}                \r\n            \r\n</pre><p>Here, we have declared four variables:&nbsp;<code>age</code>,&nbsp;<code>weight</code>,&nbsp;<code>grade</code>, and&nbsp;<code>name</code>. These variables store the age, weight, grade, and name of a person, respectively. The&nbsp;<code>std::cout</code>&nbsp;statement is used to print the values of these variables to the console.</p><h2><br></h2><h2><strong>Data Types</strong></h2><p>Data types define the type of data that can be stored in a variable. C++ provides various built-in data types, such as integers, floating-point numbers, characters, and strings. Here\'s an example:</p><pre class=\"ql-syntax\" spellcheck=\"false\">                \r\n#include \r\n\r\nint main() {\r\n    int age = 25;\r\n    float weight = 65.5;\r\n    char grade = \'A\';\r\n    std::string name = \"John Doe\";\r\n\r\n    std::cout &lt;&lt; \"Name: \" &lt;&lt; name &lt;&lt; std::endl;\r\n    std::cout &lt;&lt; \"Age: \" &lt;&lt; age &lt;&lt; std::endl;\r\n    std::cout &lt;&lt; \"Weight: \" &lt;&lt; weight &lt;&lt; std::endl;\r\n    std::cout &lt;&lt; \"Grade: \" &lt;&lt; grade &lt;&lt; std::endl;\r\n\r\n    return 0;\r\n}\r\n                \r\n            \r\n</pre><p>Here, we have declared four variables:&nbsp;<code>age</code>,&nbsp;<code>weight</code>,&nbsp;<code>grade</code>, and&nbsp;<code>name</code>. The&nbsp;<code>int</code>&nbsp;keyword indicates that the&nbsp;<code>age</code>&nbsp;variable stores an integer value. Similarly, the&nbsp;<code>float</code>&nbsp;keyword indicates that the&nbsp;<code>weight</code>&nbsp;variable stores a floating-point number. The&nbsp;<code>char</code>&nbsp;keyword indicates that the&nbsp;<code>grade</code>&nbsp;variable stores a single character. Finally, the&nbsp;<code>std::string</code>&nbsp;keyword indicates that the&nbsp;<code>name</code>&nbsp;variable stores a string of characters. Here,&nbsp;<code>int</code>,&nbsp;<code>float</code>,&nbsp;<code>char</code>, and&nbsp;<code>std::string</code>&nbsp;are data types.</p><h2><br></h2><h2><strong>Conditionals</strong></h2><p>Conditionals allow you to make decisions in your code based on certain conditions. They help control the flow of your program. Here\'s an example of using an if statement in C++:</p><pre class=\"ql-syntax\" spellcheck=\"false\">                \r\n#include \r\n\r\nint main() {\r\n    int age = 25;\r\n\r\n    if (age &gt;= 18) {\r\n        std::cout &lt;&lt; \"You are an adult.\" &lt;&lt; std::endl;\r\n    } else {\r\n        std::cout &lt;&lt; \"You are a minor.\" &lt;&lt; std::endl;\r\n    }\r\n\r\n    return 0;\r\n}\r\n                \r\n            \r\n</pre><p>Here, we have used an if statement to check if the&nbsp;<code>age</code>&nbsp;variable is greater than or equal to 18. If the condition is true, the program prints&nbsp;<code>You are an adult.</code>&nbsp;to the console. Otherwise, it prints&nbsp;<code>You are a minor.</code></p><h2><br></h2><h2><strong>Loops</strong></h2><p>Loops allow you to repeat a block of code multiple times. They are useful for performing repetitive tasks. Here\'s an example of using a for loop in C++ to print numbers from 1 to 5:</p><pre class=\"ql-syntax\" spellcheck=\"false\">                \r\n#include \r\n\r\nint main() {\r\n    //for loop\r\n    for (int i = 1; i &lt;= 5; i++) { \r\n        std::cout &lt;&lt; i &lt;&lt; std::endl;\r\n    }\r\n\r\n    //while loop\r\n    int i = 1;\r\n    while (i &lt;= 5) {\r\n        std::cout &lt;&lt; i &lt;&lt; std::endl;\r\n        i++;\r\n    }\r\n    //do-while loop\r\n    int i = 1;\r\n    do {\r\n        std::cout &lt;&lt; i &lt;&lt; std::endl;\r\n        i++;\r\n    } while (i &lt;= 5);\r\n\r\n    return 0;\r\n}\r\n                \r\n            \r\n</pre><p>Here, we have used a for, while, do-while loop to print the value of the&nbsp;<code>i</code>&nbsp;variable from 1 to 5. The loop starts with&nbsp;<code>i = 1</code>&nbsp;and increments the value of&nbsp;<code>i</code>&nbsp;by 1 after each iteration. The loop ends when the value of&nbsp;<code>i</code>&nbsp;becomes greater than 5.</p><h2><br></h2><h2><strong>Functions</strong></h2><p>Functions allow you to break your code into reusable blocks. They help in modularizing your code and improving its readability. Here\'s an example of defining and calling a function in C++:</p><pre class=\"ql-syntax\" spellcheck=\"false\">                \r\n#include \r\n\r\nvoid greet() {\r\n    std::cout &lt;&lt; \"Hello, world!\" &lt;&lt; std::endl;\r\n}\r\n\r\nint main() {\r\n    greet();\r\n\r\n    return 0;\r\n}\r\n                \r\n            \r\n</pre><p>Here, we have defined a function named&nbsp;<code>greet</code>&nbsp;that prints&nbsp;<code>Hello, world!</code>&nbsp;to the console. The&nbsp;<code>void</code>&nbsp;keyword indicates that the function does not return any value. We have called the&nbsp;<code>greet</code>&nbsp;function from the&nbsp;<code>main</code>&nbsp;function.</p><p><br></p><p>These are just some of the fundamental concepts in programming. There\'s a lot more to explore and learn. Practice writing code, experiment with different examples, and gradually build your programming skills.</p>', '', 1, '2'),
+(11, '2023-06-28 12:22:58', 'Farhan Masud Shohag', 'Problem-Solving Techniques', 'Problem Solving techniques are essential skills for programmers to tackle complex challenges and develop efficient solutions. Here are some key problem-solving techniques commonly used in programming:', '<p><strong>Understand the Problem:</strong> Begin by thoroughly understanding the problem statement and requirements. Identify the input, output, constraints, and edge cases. Break down the problem into smaller subproblems if necessary.</p><p><br></p><p><strong>Plan the Solution:</strong> Devise a high-level plan or algorithm to solve the problem. Consider different approaches and choose the most appropriate one. This may involve using well-known algorithms, data structures, or design patterns.</p><p><br></p><p><strong>Divide and Conquer:</strong> If the problem is complex, break it down into smaller, manageable parts. Solve each part independently and then combine the solutions to solve the entire problem. This technique is particularly useful for recursive or divide-and-conquer algorithms.</p><p><br></p><p><strong>Algorithmic Thinking:</strong> Analyze the problem and identify the underlying algorithmic patterns required to solve it. This involves recognizing common algorithms like sorting, searching, graph traversal, dynamic programming, or greedy algorithms that apply to similar problem types.</p><p><br></p><p><strong>Pseudocode:</strong> Write a step-by-step algorithm in pseudocode or plain language before writing the actual code. Pseudocode allows you to plan and visualize the solution without getting bogged down in language-specific syntax.</p><p><br></p><p><strong>Test and Debug:</strong> Test your solution with various inputs and edge cases to ensure it produces correct results. Debug any issues that arise during testing by systematically narrowing down the problem\'s source.</p><p><br></p><p><strong>Space and Time Complexity Analysis:</strong> Analyze the efficiency of your solution in terms of space (memory) and time (execution time). Consider optimizing your code to improve efficiency if necessary.</p><p><br></p><p><strong>Incremental Development:</strong> Start with a basic, working solution and gradually improve it. Add functionality incrementally, test at each step, and ensure it works before moving on to the next enhancement. This approach helps manage complexity and reduces the likelihood of introducing errors.</p><p><br></p><p><strong>Code Reusability:</strong> Write modular and reusable code. Break the problem into functions or modules that perform specific tasks, allowing for easy reuse and maintenance.</p><p><br></p><p><strong>Documentation:</strong> Document your code and algorithms to make them understandable to others and your future self. Include comments, provide explanations for complex sections, and describe the overall solution approach.</p><p><br></p><p>Improving problem-solving skills requires practice and exposure to a wide range of problem types. Engaging in coding challenges, algorithmic competitions, and solving real-world problems can sharpen your problem-solving abilities. Additionally, studying algorithmic design paradigms and data structures will enhance your problem-solving toolkit.</p><p>Remember, problem-solving is not solely about writing code—it\'s about understanding problems deeply, devising efficient strategies, and implementing effective solutions.</p>', '', 7, '2'),
+(17, '2023-06-28 13:29:32', 'Farhan Masud Shohag', 'Data Structures', 'Data Structures Provide problems and tutorials on common data structures such as arrays, linked lists, stacks, queues, trees, heaps, hash tables, and graphs. Emphasize implementation, operations, and time/space complexity analysis.', '<p>Here\'s a comprehensive description along with an example in C++ for each of the common data structures you mentioned:</p><p><br></p><p><strong>Arrays: </strong>Arrays are contiguous blocks of memory that store elements of the same type. They provide constant-time access to elements based on their indices. However, inserting or deleting elements at arbitrary positions can be less efficient. Arrays have a fixed size, and their elements are stored sequentially.</p><p>Example:</p><pre class=\"ql-syntax\" spellcheck=\"false\">#include &lt;iostream&gt;\r\nint main() { \r\n  int arr[5] = {1, 2, 3, 4, 5}; \r\n  // Accessing an element \r\n  int element = arr[2]; \r\n  // element = 3 \r\n  // Modifying an element \r\n  arr[1] = 6; \r\n  // arr = {1, 6, 3, 4, 5} \r\n  return 0;\r\n} \r\n</pre><p><br></p><p><strong>Linked Lists: </strong>Linked lists consist of nodes where each node contains data and a reference to the next node. They allow dynamic memory allocation and efficient insertion and deletion at any position. However, accessing elements by an index is less efficient compared to arrays.</p><p>Example:</p><pre class=\"ql-syntax\" spellcheck=\"false\">#include &lt;iostream&gt;\r\n\r\nstruct Node {\r\n&nbsp; &nbsp; int data;\r\n&nbsp; &nbsp; Node* next;\r\n};\r\n\r\nint main() {\r\n&nbsp; &nbsp; Node* head = new Node();\r\n&nbsp; &nbsp; head-&gt;data = 1;\r\n\r\n&nbsp; &nbsp; Node* second = new Node();\r\n&nbsp; &nbsp; second-&gt;data = 2;\r\n\r\n&nbsp; &nbsp; head-&gt;next = second;\r\n\r\n&nbsp; &nbsp; // Accessing elements\r\n&nbsp; &nbsp; int element = head-&gt;next-&gt;data;&nbsp; // element = 2\r\n\r\n&nbsp; &nbsp; // Inserting a new node\r\n&nbsp; &nbsp; Node* newNode = new Node();\r\n&nbsp; &nbsp; newNode-&gt;data = 3;\r\n&nbsp; &nbsp; newNode-&gt;next = head-&gt;next;\r\n&nbsp; &nbsp; head-&gt;next = newNode;\r\n\r\n&nbsp; &nbsp; return 0;\r\n}\r\n\r\n</pre><p><br></p><p><strong>Stacks: </strong>Stacks follow the Last-In-First-Out (LIFO) principle. Elements can only be inserted or removed from the top of the stack. This can be implemented using arrays or linked lists. Stack operations such as push (inserting), pop (removing), and peek (viewing the top element) have constant time complexity.</p><p>Example:</p><pre class=\"ql-syntax\" spellcheck=\"false\">#include &lt;iostream&gt;\r\n#include &lt;stack&gt;\r\n\r\nint main() {\r\n&nbsp; &nbsp; std::stack&lt;int&gt; myStack;\r\n\r\n&nbsp; &nbsp; // Pushing elements onto the stack\r\n&nbsp; &nbsp; myStack.push(10);\r\n&nbsp; &nbsp; myStack.push(20);\r\n&nbsp; &nbsp; myStack.push(30);\r\n\r\n&nbsp; &nbsp; // Popping elements from the stack\r\n&nbsp; &nbsp; myStack.pop();\r\n\r\n&nbsp; &nbsp; // Accessing the top element\r\n&nbsp; &nbsp; int topElement = myStack.top();&nbsp; // topElement = 20\r\n\r\n&nbsp; &nbsp; // Checking if the stack is empty\r\n&nbsp; &nbsp; bool isEmpty = myStack.empty();&nbsp; // isEmpty = false\r\n\r\n&nbsp; &nbsp; return 0;\r\n}\r\n\r\n</pre><p><br></p><p><strong>Queues: </strong>Queues follow the First-In-First-Out (FIFO) principle. Elements are inserted at the rear (enqueue) and removed from the front (dequeue). Queues can be implemented using arrays or linked lists. Queue operations have constant time complexity.</p><p>Example:</p><pre class=\"ql-syntax\" spellcheck=\"false\">#include &lt;iostream&gt;\r\n#include &lt;queue&gt;\r\n\r\nint main() {\r\n&nbsp; &nbsp; std::queue&lt;int&gt; myQueue;\r\n\r\n&nbsp; &nbsp; // Enqueueing elements\r\n&nbsp; &nbsp; myQueue.push(10);\r\n&nbsp; &nbsp; myQueue.push(20);\r\n&nbsp; &nbsp; myQueue.push(30);\r\n\r\n&nbsp; &nbsp; // Dequeueing an element\r\n&nbsp; &nbsp; myQueue.pop();\r\n\r\n&nbsp; &nbsp; // Accessing the front element\r\n&nbsp; &nbsp; int frontElement = myQueue.front();&nbsp; // frontElement = 20\r\n\r\n&nbsp; &nbsp; // Checking if the queue is empty\r\n&nbsp; &nbsp; bool isEmpty = myQueue.empty();&nbsp; // isEmpty = false\r\n\r\n&nbsp; &nbsp; return 0;\r\n}\r\n\r\n</pre><p><br></p><p><strong>Trees: </strong>Trees are hierarchical data structures consisting of nodes connected by edges. Each node can have child nodes. Trees are commonly used for representing hierarchical relationships. Binary trees are a specific type of tree where each node has at most two children.</p><p>Example:</p><pre class=\"ql-syntax\" spellcheck=\"false\">#include &lt;iostream&gt;\r\n\r\nstruct TreeNode {\r\n&nbsp; &nbsp; int data;\r\n&nbsp; &nbsp; TreeNode* left;\r\n&nbsp; &nbsp; TreeNode* right;\r\n};\r\n\r\nint main() {\r\n&nbsp; &nbsp; TreeNode* root = new TreeNode();\r\n&nbsp; &nbsp; root-&gt;data = 1;\r\n\r\n&nbsp; &nbsp; TreeNode* leftChild = new TreeNode();\r\n&nbsp; &nbsp; leftChild-&gt;data = 2;\r\n\r\n&nbsp; &nbsp; TreeNode* rightChild = new TreeNode();\r\n&nbsp; &nbsp; rightChild-&gt;data = 3;\r\n\r\n&nbsp; &nbsp; root-&gt;left = leftChild;\r\n&nbsp; &nbsp; root-&gt;right = rightChild;\r\n\r\n&nbsp; &nbsp; return 0;\r\n}\r\n</pre><p><br></p><p><strong>Heaps: </strong>Heaps are complete binary trees that satisfy the heap property. In a min-heap, each parent node has a value smaller than or equal to its children. In a max-heap, each parent node has a value greater than or equal to its children. Heaps are commonly used in priority queues and efficient sorting algorithms like heapsort.</p><p><br></p><p><strong>Hash Tables: </strong>Hash tables (also known as hash maps) store data in key-value pairs. They use a hash function to map keys to array indices, enabling fast retrieval and insertion. Hash tables are suitable for quick lookup operations. Collisions may occur when two keys map to the same index, requiring collision resolution techniques like chaining or open addressing.</p><p><br></p><p><strong>Graphs: </strong>Graphs represent connections between entities using nodes (vertices) and edges. They can be directed or undirected, weighted or unweighted. Graphs are used to model relationships between elements and solve problems like shortest path algorithms, network analysis, and social network analysis.</p><p><br></p><p>Understanding the implementation, operations, and time/space complexity analysis of these data structures will help you utilize them effectively to solve various programming problems.</p>', '', 1, '2'),
+(19, '2023-06-27 14:10:32', 'test', '', '', '', '', 2, '3');
 
 -- --------------------------------------------------------
 
@@ -354,10 +366,10 @@ CREATE TABLE `subs_code` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Users`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `Users` (
+CREATE TABLE `users` (
   `uid` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
   `name` varchar(32) DEFAULT NULL,
@@ -377,21 +389,22 @@ CREATE TABLE `Users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Users`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `Users` (`uid`, `username`, `name`, `email`, `pass`, `phone`, `last_visit`, `status`, `ip`, `session`, `platform`, `team_id`, `score`, `penalty`, `rating`, `solved`) VALUES
+INSERT INTO `users` (`uid`, `username`, `name`, `email`, `pass`, `phone`, `last_visit`, `status`, `ip`, `session`, `platform`, `team_id`, `score`, `penalty`, `rating`, `solved`) VALUES
 (1, 'jhm69', 'Jahangir Hossain', 'jahangirhossainm69@gmail.com', 'bec7fffb5c5a8645f88607cf032251c1', '01635191148', '2023-03-29 18:02:09', 'Admin', NULL, NULL, NULL, NULL, 0, 0, 0, 0),
-(2, 'farhan_404', 'Farhan Masud Shohag', 'fsh69711@gmail.com', '73211d0d7098fdc94cf61c4ce2dc7f68', '01648209351', '2023-03-30 13:03:25', 'Admin', NULL, NULL, NULL, NULL, 0, 0, 0, 0);
+(2, 'farhan_404', 'Farhan Masud Shohag', 'fsh69711@gmail.com', '73211d0d7098fdc94cf61c4ce2dc7f68', '01648209351', '2023-03-30 13:03:25', 'Admin', NULL, NULL, NULL, NULL, 0, 0, 0, 0),
+(3, 'test1', 'test', 'xyz@gmail.com', '202cb962ac59075b964b07152d234b70', '01648209351', '2023-06-28 13:39:13', 'Normal', NULL, NULL, NULL, NULL, 0, 0, 0, 0);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `Blogs`
+-- Indexes for table `blogs`
 --
-ALTER TABLE `Blogs`
+ALTER TABLE `blogs`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -428,6 +441,12 @@ ALTER TABLE `editorials`
   ADD PRIMARY KEY (`pid`);
 
 --
+-- Indexes for table `learn`
+--
+ALTER TABLE `learn`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `logs`
 --
 ALTER TABLE `logs`
@@ -452,9 +471,9 @@ ALTER TABLE `subs_code`
   ADD PRIMARY KEY (`rid`);
 
 --
--- Indexes for table `Users`
+-- Indexes for table `users`
 --
-ALTER TABLE `Users`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`uid`),
   ADD UNIQUE KEY `username` (`username`);
 
@@ -463,10 +482,10 @@ ALTER TABLE `Users`
 --
 
 --
--- AUTO_INCREMENT for table `Blogs`
+-- AUTO_INCREMENT for table `blogs`
 --
-ALTER TABLE `Blogs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `blogs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -487,6 +506,12 @@ ALTER TABLE `contest`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `learn`
+--
+ALTER TABLE `learn`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
 -- AUTO_INCREMENT for table `problems`
 --
 ALTER TABLE `problems`
@@ -505,10 +530,10 @@ ALTER TABLE `subs_code`
   MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
--- AUTO_INCREMENT for table `Users`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `Users`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `users`
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

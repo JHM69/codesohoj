@@ -37,12 +37,15 @@ include_once "functions.php";
                         $title = $result['title'];
                         $shortDescription = $result['short'];
                         $description = $result['description'];
+                        $addedby = $result['addedby'];
 
                         // Output the retrieved topic data
                         echo '<h2 class="text-2xl font-bold"><span id="topic-title">' . $title . '</span></h2>';
                         echo '<p><span id="topic-short-description">' . $shortDescription . '</span></p>';
                         echo '</br>';
                         echo '<p><span id="topic-description">' . $description . '</span></p>';
+                        echo '</br>';
+                        echo '<p style="text-align: right"><span id="topic-addedby">This topic is added by <b><i>' . $addedby . '</i></b></span></p>';
                     } else {
                         echo "Topic not found."; // Handle the case when the topic does not exist
                     }

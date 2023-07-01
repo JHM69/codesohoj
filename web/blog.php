@@ -20,46 +20,90 @@ if (
 
     <body class="bg-gray-100">
         <div class="container mx-auto py-8">
-            <h1 class="text-3xl font-bold mb-4">Blog</h1>
+            <h1 class="text-3xl font-bold mb-4">Blogs</h1>
 
             <!-- Blog posts -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
-                    <h2 class="text-xl font-bold mb-2">Getting Started with Competitive Programming</h2>
-                    <p>Learn how to get started with competitive programming and improve your problem-solving skills.</p>
-                    <a href="<?php echo SITE_URL; ?>/view_blog.php?blog=getting_started_cp" class="text-blue-500">Read More</a>
-                </div>
+            <?php
+            $query = "SELECT * FROM blogs";
+            $result = DB::findAllFromQuery($query);
+            $blogCount = count($result);
+            ?>
+            <style>
+                .grid-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    align-items: stretch;
+                    /* Stretch grid items to match height */
+                }
 
-                <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
-                    <h2 class="text-xl font-bold mb-2">Mastering Dynamic Programming</h2>
-                    <p>Explore the concept of dynamic programming and how it can be used to solve complex problems efficiently.</p>
-                    <a href="<?php echo SITE_URL; ?>/view_blog.php?blog=getting_started_cp" class="text-blue-500">Read More</a>
-                </div>
+                .grid-item {
+                    background-color: white;
+                    border-radius: 8px;
+                    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+                    padding: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                    width: 30%;
+                    margin: 15px;
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+                    overflow: hidden;
+                    /* Hide overflowing content */
+                }
 
-                <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
-                    <h2 class="text-xl font-bold mb-2">The Art of Problem Solving</h2>
-                    <p>Discover the art of problem solving and learn strategies to tackle challenging programming problems.</p>
-                    <a href="<?php echo SITE_URL; ?>/view_blog.php?blog=getting_started_cp" class="text-blue-500">Read More</a>
-                </div>
+                .grid-item:hover {
+                    transform: scale(1.05);
+                    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+                }
 
-                <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
-                    <h2 class="text-xl font-bold mb-2">Introduction to Web Development</h2>
-                    <p>Get started with web development and learn the basics of HTML, CSS, and JavaScript.</p>
-                    <a href="<?php echo SITE_URL; ?>/view_blog.php?blog=getting_started_cp" class="text-blue-500">Read More</a>
-                </div>
+                .grid-item h2 {
+                    font-size: 24px;
+                    margin-bottom: 10px;
+                }
 
-                <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
-                    <h2 class="text-xl font-bold mb-2">Understanding Big O Notation</h2>
-                    <p>Learn about Big O notation and how it measures the efficiency of algorithms.</p>
-                    <a href="<?php echo SITE_URL; ?>/view_blog.php?blog=getting_started_cp" class="text-blue-500">Read More</a>
-                </div>
+                .grid-item p {
+                    font-size: 16px;
+                    margin-bottom: 20px;
+                    max-height: 75px;
+                    /* Set a maximum height for the description */
+                    overflow: hidden;
+                    /* Hide overflowing description */
+                }
 
-                <div class="bg-white rounded-lg shadow-lg p-6 hover:bg-blue-100 transition-colors duration-300">
-                    <h2 class="text-xl font-bold mb-2">Database Management with SQL</h2>
-                    <p>Discover the world of databases and learn how to manage data using SQL.</p>
-                    <a href="<?php echo SITE_URL; ?>/view_blog.php?blog=getting_started_cp" class="text-blue-500">Read More</a>
-                </div>
+                .grid-item a {
+                    color: #007BFF;
+                    text-decoration: none;
+                }
+                #temp {
+                    text-decoration: none;
+                    color: black;
+                }
+            </style>
+
+            <div class="grid-container">
+                <?php
+                foreach ($result as $row) {
+                    echo '<a href="' . SITE_URL . '/view_blog.php?blog_id=' . $row['id'] . '" class="text-gray-500" id="temp">';
+                    echo '<div class="grid-item">';
+                    echo '<h2 class="text-xl font-bold mb-2">' . $row['title'] . '</h2>';
+
+                    // Limit the words in the short description
+                    $shortDescription = $row['description'];
+                    $words = explode(' ', $shortDescription);
+                    $limitedDescription = implode(' ', array_slice($words, 0, 15)); // Limit to 15 words
+
+                    echo '<p>' . $limitedDescription . '...</p></a>';
+                    echo '<a href="' . SITE_URL . '/view_blog.php?blog_id=' . $row['id'] . '" class="text-blue-500">Read More</a>';
+                    echo '</div>';
+                }
+                ?>
             </div>
+            
+            
             <div class="bg-gray-100 py-4 mt-4">
                 <div class="container mx-auto flex justify-center">
                     <a href="<?php echo SITE_URL; ?>/add_blog.php" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
