@@ -55,47 +55,20 @@ if (
                         <label for="blog_title" class="block text-gray-700 font-bold mb-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Blog's Title</label>
                         <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="text" name="blog_title" id="blog_title" required>
                     </div>
-                    <div class="mb-4">
-                        <label for="blog_short_description" class="block text-gray-700 font-bold mb-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Short Description</label>
-                        <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="text" name="blog_short_description" id="blog_short_description" required>
-                    </div>
-
                     <label for="editor-container" class="block text-gray-700 font-bold mb-2 flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">Blog's Statement</label>
 
                     <div class="mb-5" id="editor-container">
                     </div>
-                    <input type="hidden" name="blog_statement" id="blog_statement">
+                    <input type="hidden" name="description" id="description">
                     
                     <div class="w-full mb-4">
                             <label for="blog_statement_file" class="block text-gray-700 font-bold mb-2">Statement File</label>
                             <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="file" name="blog_statement_file" id="blog_statement_file">
                             <small class="ml-2 block mt-1 text-xs text-gray-500">(If you have any)</small>
                     </div>
-                    
-                    
-
-                    <div class="form-group">
-                        <label class="block text-gray-700 font-bold mb-2" for="category">Category</label>
-                        <select class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" name="category[]" id="category" multiple>
-                            <!-- Fetch category from category table -->
-
-                            <?php
-                            $sql = "SELECT * FROM category";
-                            $result = DB::findAllFromQuery($sql);
-                            //display the result in chip of tawilwind css
-
-                            foreach ($result as $row) {
-                                echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
-                            }
-                            ?>
-
-
-                        </select>
-                        <small class="ml-2 block mt-1 text-xs text-gray-500">You can select multiple category.</small>
-                    </div>
                 </div>
                 <div class="flex flex-col items-center justify-center py-4">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" name="add_topic" style="transition: all 0.15s ease 0s">Add Blog
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit" name="add_blog" style="transition: all 0.15s ease 0s">Add Blog
                     </button>
                 </div>
             </form>
@@ -129,97 +102,15 @@ if (
                 theme: 'snow' // or 'bubble'
             });
 
-            var quill_input = new Quill('#editor-container-input', {
-                modules: {
-                    toolbar: [
-                        [{
-                            header: [1, 2, false]
-                        }],
-                        [
-                            'bold',
-                            'italic',
-                            'underline',
-                            'strike',
-                            'blockquote',
-                            'formula',
-                        ],
-                        [{
-                            list: 'ordered'
-                        }, {
-                            list: 'bullet'
-                        }],
-                        ['link', 'video', 'code-block'],
-                        ['image'],
-                    ]
-                },
-                placeholder: 'Input...',
-                theme: 'snow' // or 'bubble'
-            });
-
-
-            var quill_output = new Quill('#editor-container-output', {
-                modules: {
-                    toolbar: [
-                        [{
-                            header: [1, 2, false]
-                        }],
-                        [
-                            'bold',
-                            'italic',
-                            'underline',
-                            'strike',
-                            'blockquote',
-                            'formula',
-                        ],
-                        [{
-                            list: 'ordered'
-                        }, {
-                            list: 'bullet'
-                        }],
-                        ['link', 'video', 'code-block'],
-                        ['image'],
-                    ]
-                },
-                placeholder: 'Output...',
-                theme: 'snow' // or 'bubble'
-            });
-
-            var quill_note = new Quill('#editor-container-note', {
-                modules: {
-                    toolbar: [
-                        [{
-                            header: [1, 2, false]
-                        }],
-                        [
-                            'bold',
-                            'italic',
-                            'underline',
-                            'strike',
-                            'blockquote',
-                            'formula',
-                        ],
-                        [{
-                            list: 'ordered'
-                        }, {
-                            list: 'bullet'
-                        }],
-                        ['link', 'video', 'code-block'],
-                        ['image'],
-                    ]
-                },
-                placeholder: 'Note...',
-                theme: 'snow' // or 'bubble'
-            });
-
             var form = document.querySelector("form");
-            var statement = document.querySelector('#statement');
-            var input_statement = document.querySelector('#input_statement');
-            var output_statement = document.querySelector('#output_statement');
+            var statement = document.querySelector('#description');
+            // var input_statement = document.querySelector('#input_statement');
+            // var output_statement = document.querySelector('#output_statement');
 
             form.addEventListener('submit', function(e) {
                 statement.value = quill.root.innerHTML;
-                input_statement.value = quill_input.root.innerHTML;
-                output_statement.value = quill_output.root.innerHTML;
+                // input_statement.value = quill_input.root.innerHTML;
+                // output_statement.value = quill_output.root.innerHTML;
             });
 
 
