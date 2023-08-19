@@ -29,8 +29,16 @@ define("SQL_PASS", "");
 define("SQL_DB", "codesohoj_main");
 define("SQL_HOST", "127.0.0.1");
 define("SQL_PORT", "3306");
-//displayErrors(true);
-// date_default_timezone_set("Asia/Dhaka");
+
+// define("SITE_URL", "codesohoj.thortech.com.bd");
+// define("SQL_USER", "autowayu_codesohoj");
+// define("SQL_PASS", "codesohoj");
+// define("SQL_DB", "autowayu_codesohoj_main");
+// define("SQL_HOST", "127.0.0.1");
+// define("SQL_PORT", "3306");
+
+// displayErrors(true);
+date_default_timezone_set("Asia/Dhaka");
 
 /*
  *
