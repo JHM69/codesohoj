@@ -14,6 +14,7 @@ sudo /etc/init.d/proftpd stop
 sudo /opt/lampp/lampp start
 php -S localhost:8000 -t web/
 
+php -S localhost:8000 -t /
 
 #Windows:
 After setting up Xmapp, run :
