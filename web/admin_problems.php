@@ -106,7 +106,7 @@ if (
                   echo "<td class='px-6 py-4'>" .
                     $row["solved"] .
                     "</td>";
-                  echo "<td class='px-6 py-4'><a href='code/" . $row['code'] . "'>Edit</a></td>";
+                  echo "<td class='px-6 py-4'><a href='edit_problem.php/code=" . $row['code'] . "'>Edit</a></td>";
                   echo "<td class='px-6 py-4'><a href='delete/" . $row['code'] . "'>Delete</a></td>";
                   echo "</tr>";
                 }

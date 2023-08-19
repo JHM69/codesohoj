@@ -37,85 +37,62 @@ if (
                     </div>
                     <hr class="border-t-2 border-gray-300 mt-2 mb-4">
 
-                    <div class=" sm:rounded-lg">
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3">
-                                        Contest name
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        <div class="flex items-center">
-                                            Start Time
-                                            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 320 512">
-                                                    <path d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z" />
-                                                </svg></a>
-                                        </div>
-                                    </th>
 
-                                    <th scope="col" class="px-6 py-3">
-                                        <div class="flex items-center">
-                                            End Time
-                                            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 320 512">
-                                                    <path d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z" />
-                                                </svg></a>
-                                        </div>
-                                    </th>
+                    <div class="w-full flex flex-row justify-center sm:rounded-lg">
 
-                                    <!--<th scope="col" class="px-6 py-3">
-                                        <span class="sr-only">Action</span>
-                                    </th>-->
-                                    <th scope="col" class="px-6 py-3">
-                                        Action
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                        <?php
+                        $sql = "Select * from contest limit 50";
+                        $result = DB::findAllFromQuery($sql);
 
-                                <?php
-                                //                             $sql = "SELECT problems.*, GROUP_CONCAT(category.name SEPARATOR ', ') AS categories
-                                // FROM problems
-                                // INNER JOIN problem_category ON problems.pid = problem_category.problem_id
-                                // INNER JOIN category ON problem_category.category_id = category.id
-                                // GROUP BY problems.pid";
+                        echo "<table class='table-auto min-w-full bg-white'>";
+                        echo "<thead class='bg-gray-200 text-xs text-gray-700 uppercase'>";
+                        echo "<tr>";
+                        echo "<th class='px-4 py-2'>Name</th>";
+                        echo "<th class='px-4 py-2'>Start Time</th>";
+                        echo "<th class='px-4 py-2'>End Time</th>";
+                        echo "<th class='px-4 py-2'>Status</th>";
+                        echo "</tr>";
+                        echo "</thead>";
+                        echo "<tbody class='text-gray-700'>";
 
-                                $sql = "Select * from contest";
-                                $result = DB::findAllFromQuery($sql);
+                        $row_count = 0;
+                        foreach ($result as $row) {
+                            $row_count++;
+                            $current_time = time();
+                            $start_time = $row['starttime'];
+                            $end_time = $row['endtime'];
 
-                                foreach ($result as $row) {
-                                    $current_time = time(); // Current timestamp
-
-                                    $start_time = $row['starttime']; // Start time from the row
-                                    $end_time = $row['endtime']; // End time from the row
-
-                                    if ($current_time >= $start_time && $current_time <= $end_time) {
-                                        $status = "Running";
-                                        $link = "view_contest.php?code=" . $row['code'];
-                                    } elseif ($current_time < $start_time) {
-                                        $status = "Participate";
-                                        $link = "view_contest.php?code=" . $row['code'];
-                                    } elseif ($current_time > $end_time) {
-                                        $status = "View History";
-                                        $link = "contest_history.php?code=" . $row['code'];
-                                    }
-
-                                    echo "<tr>";
-                                    echo "<td class='px-6 py-4'>" . $row["name"] . "</td>";
-                                    echo "<td class='px-6 py-4'>" . date("d-m-Y H:i:s", $start_time) . "</td>";
-                                    echo "<td class='px-6 py-4'>" . date("d-m-Y H:i:s", $end_time) . "</td>";
-                                    echo "<td class='px-6 py-4'><a href='" . SITE_URL . "/" . $link . "'>" . $status . "</a></td>";
-                                    echo "</tr>";
-                                }
+                            $status = "";
+                            $link = "";
+                            $buttonClass = "";
+                            if ($current_time >= $start_time && $current_time <= $end_time) {
+                                $status = "Running";
+                                $link = "view_contest.php?code=" . $row['code'];
+                                $buttonClass = "bg-blue-500 hover:bg-blue-700";
+                            } elseif ($current_time < $start_time) {
+                                $status = "Participate";
+                                $link = "view_contest.php?code=" . $row['code'];
+                                $buttonClass = "bg-green-500 hover:bg-green-700";
+                            } elseif ($current_time > $end_time) {
+                                $status = "View History";
+                                $link = "contest_history.php?code=" . $row['code'];
+                                $buttonClass = "bg-red-500 hover:bg-red-700";
+                            }
 
 
-                                ?>
+                            echo "<tr class='" . ($row_count % 2 == 0 ? 'bg-gray-100' : 'bg-white') . "'>";
+                            echo "<td class='border px-4 py-2'><b>" . $row["name"] . "</b></td>";
+                            echo "<td class='border px-4 py-2'>" . date("l g:i A - j F", $start_time) . "</td>";
+                            echo "<td class='border px-4 py-2'>" . date("l g:i A - j F", $end_time) . "</td>";
+                            echo "<td class='border px-4 py-2'><a href='" . SITE_URL . "/" . $link . "' class='text-white font-bold py-2 px-4 text-xs rounded " . $buttonClass . "'>" . $status . "</a></td>";
+                            echo "</tr>";
+                        }
 
+                        echo "</tbody>";
+                        echo "</table>";
+                        ?>
 
-
-                            </tbody>
-                        </table>
                     </div>
-
 
 
                 </div>

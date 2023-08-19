@@ -371,50 +371,52 @@ if (isset($_POST["login"])) {
   // Handle the file upload (if applicable)
   $statementFile = null;
   if ($_FILES['statement_file']['error'] === UPLOAD_ERR_OK) {
-      $statementFile = file_get_contents($_FILES['statement_file']['tmp_name']);
+    $statementFile = file_get_contents($_FILES['statement_file']['tmp_name']);
   }
 
   // Insert the topic into the database
   $query = "INSERT INTO learn (addedby, title, short, description, statement, category, user_id) VALUES ('" . $_SESSION["Users"]["name"] . "', '$title', '$short', '$description', '$statementFile', '" . implode(',', $categoryIds) . "', '$userId')";
-  
+
   // Execute the query
   DB::query($query);
 
   // Redirect or display a success message
   // ...
   redirectTo(SITE_URL . "/learn.php");
-}
-elseif (isset($_POST['add_blog'])) {
+} elseif (isset($_POST['add_blog'])) {
+
+
+
   $title = $_POST['blog_title'];
   $description = $_POST['description'];
   $userId = $_SESSION['Users']['uid'];
 
+
   // Handle the file upload (if applicable)
   $statementFile = null;
   if ($_FILES['blog_statement_file']['error'] === UPLOAD_ERR_OK) {
-      $statementFile = file_get_contents($_FILES['blog_statement_file']['tmp_name']);
+    $statementFile = file_get_contents($_FILES['blog_statement_file']['tmp_name']);
   }
+
+
 
   // Insert the topic into the database
   $query = "INSERT INTO blogs (added, title, description, statement, user_id) VALUES ('" . $_SESSION["Users"]["name"] . "', '$title', '$description', '$statementFile', '$userId')";
-  
+
   // Execute the query
   DB::query($query);
 
   // Redirect or display a success message
   // ...
   redirectTo(SITE_URL . "/blog.php");
-}
-elseif (isset($_POST['likes'])) {
+} elseif (isset($_POST['likes'])) {
   $blogId = $_POST['blogId'];
   $query = "UPDATE blogs SET likes = likes + 1 WHERE id = '$blogId'";
   DB::query($query);
   redirectTo(SITE_URL . "/view_blog.php?blog_id=" . $blogId);
-}
-elseif (isset($_POST['dislikes'])){
+} elseif (isset($_POST['dislikes'])) {
   $blogId = $_POST['blogId'];
   $query = "UPDATE blogs SET dislikes = dislikes + 1 WHERE id = '$blogId'";
   DB::query($query);
   redirectTo(SITE_URL . "/view_blog.php?blog_id=" . $blogId);
 }
-

@@ -12,7 +12,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin') {
         $res = DB::findOneFromQuery($query);
 ?>
         <div class="flex justify-center">
-            <h1 class="text-3xl font-bold">Contest Settings</h1>
+            <h1 class="text-3xl font-bold">Update Contest</h1>
         </div>
 
         <div class="ml-8 mr-8 lg:ml-20 lg:mr-20 mb-10">

@@ -22,7 +22,7 @@ if ((isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin')) {
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1">
-                <title>Admin Panel | Contest</title>
+                <title>Contest is running</title>
                 <link rel="shortcut icon" href="./assets/img/favicon.ico" />
                 <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/logo.svg" />
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
@@ -57,19 +57,26 @@ if ((isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin')) {
                 <div class="container mx-auto px-4">
                     <div class="py-8">
                         <h1 class="text-3xl text-center"><?php echo $contest['name']; ?></h1>
-                        <div id="contesttimer" class="text-center">
-                            <h4 class="timer">Starts in: N/A</h4>
-                        </div>
+                        Contest is Running...
                     </div>
                 </div>
                 <?php
-                $query = "select * from problems where pgroup = '$_GET[code]' and status != 'Deleted' order by code";
+                $query = "select * from problems where pgroup = '$_GET[code]' and status != 'Deleted' order by score";
+
+
+                //                 $query = `SELECT p.*, COUNT(r.rid) AS submissions_count
+                // FROM problems p
+                // LEFT JOIN runs r ON p.pgroup = r.pgroup
+                // WHERE p.pgroup = '$_GET[code]' AND p.status != 'Deleted'
+                // GROUP BY p.pid
+                // ORDER BY p.score;`;
+
 
                 $prob = DB::findAllFromQuery($query);
                 ?>
                 <div class="container mx-auto px-4">
                     <table class="table-auto w-full">
-                        <thead>
+                        <thead class="bg-gray-200">
                             <tr>
                                 <th class="px-4 py-2">Name</th>
                                 <th class="px-4 py-2">Score</th>
@@ -78,14 +85,18 @@ if ((isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin')) {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if ($prob) {
+                            <?php $row_count = 0;
+                            if ($prob) {
                                 foreach ($prob as $row) {
+                                    $row_count++;
                             ?>
-                                    <tr>
-                                        <td class="border px-4 py-2 items-center " style="text-align:center"><a href="<?php echo SITE_URL . "/view_problem.php?problem_id=$row[code]"; ?>"><?php echo $row['name']; ?></a></td>
-                                        <td class="border px-4 py-2 items-center " style="text-align:center"><a href="<?php echo SITE_URL . "/view_problem.php?problem_id=$row[code]"; ?>"><?php echo $row['score']; ?></a></td>
-                                        <td class="border px-4 py-2 items-center " style="text-align:center"><a href="<?php echo SITE_URL . "/submit/$row[code]"; ?>"><?php echo $row['code']; ?></a></td>
-                                        <td class="border px-4 py-2 items-center " style="text-align:center"><a href="<?php echo SITE_URL . "/status/$row[code]"; ?>"><?php echo $row['solved'] . "/" . $row['total']; ?></a></td>
+                                    <tr class="<?php echo $row_count % 2 == 0 ? 'bg-gray-100' : 'bg-white'; ?>">
+                                        <td class="border px-4 py-2 text-center"><a href="<?php echo SITE_URL . "/view_problem.php?problem_id=$row[code]"; ?>">
+                                                <div class="hover:bg-blue-100 transition-colors"><?php echo $row['name']; ?></div>
+                                            </a></td>
+                                        <td class="border px-4 py-2 text-center"><a href="<?php echo SITE_URL . "/view_problem.php?problem_id=$row[code]"; ?>"><?php echo $row['score']; ?></a></td>
+                                        <td class="border px-4 py-2 text-center"><a href="<?php echo SITE_URL . "/submit/$row[code]"; ?>"><?php echo $row['code']; ?></a></td>
+                                        <td class="border px-4 py-2 text-center"><a href="<?php echo SITE_URL . "/status/$row[code]"; ?>"><?php echo $row['solved'] . "/" . $row['total']; ?></a></td>
                                     </tr>
                             <?php }
                             } ?>
@@ -94,6 +105,7 @@ if ((isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin')) {
                     <h3 class="mt-8">Announcements</h3>
                     <div class="mt-2"><?php echo $contest['announcement']; ?></div>
                 </div>
+
 
                 <?php
                 if (isset($_GET['code'])) {

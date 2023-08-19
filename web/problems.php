@@ -96,58 +96,51 @@ $result = DB::findAllFromQuery($sql);
                 </div>
 
 
-                <div class="sm:rounded-lg">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <div class="sm:rounded-lg lg:m-24">
+                    <table class="table-auto w-full text-sm text-gray-500 dark:text-gray-400">
+                        <thead class="bg-gray-200 text-xs text-gray-700 uppercase">
                             <tr>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" class="px-4 py-2">
                                     Problem name
                                 </th>
-                                <th scope="col" class="px-6 py-3">
-                                    <div class="flex items-center">
-                                        Difficulty
-                                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 320 512">
-                                                <path d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z" />
-                                            </svg></a>
-                                    </div>
+                                <th scope="col" class="px-4 py-2">
+                                    Difficulty
+                                    <!-- SVG Code -->
                                 </th>
-                                <th scope="col" class="px-6 py-3">
-                                    <div class="flex items-center">
-                                        Category
-                                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 320 512">
-                                                <path d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z" />
-                                            </svg></a>
-                                    </div>
+                                <th scope="col" class="px-4 py-2">
+                                    Category
+                                    <!-- SVG Code -->
                                 </th>
-                                <th scope="col" class="px-6 py-3">
-                                    <div class="flex items-center">
-                                        Solved
-                                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 320 512">
-                                                <path d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3288z" />
-                                            </svg></a>
-                                    </div>
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    <div class="flex items-center">
-                                        Action
-
-                                    </div>
+                                <th scope="col" class="px-4 py-2">
+                                    Solved
+                                    <!-- SVG Code -->
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($result as $row) : ?>
-                                <tr>
-                                    <td class='px-6 py-4'><?= $row["pname"] ?></td>
-                                    <td class='px-6 py-4'><?= $row["ptype"] ?></td>
-                                    <td class='px-6 py-4'><?= $row["categories"] ?></td>
-                                    <td class='px-6 py-4'><?= $row["psolve"] ?></td>
-                                    <td class='px-6 py-4'><a href='view_problem.php?problem_id=<?= $row["pcode"] ?>'>Solve</a></td>
+                            <?php $row_count = 0;
+                            foreach ($result as $row) : $row_count++; ?>
+                                <tr class="<?php echo $row_count % 2 == 0 ? 'bg-gray-100' : 'bg-white'; ?>">
+                                    <td class="border px-4 py-2">
+                                        <b><a href="view_problem.php?problem_id=<?= $row['pcode'] ?>"><?= $row['pname'] ?></a></b>
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <a href="view_problem.php?problem_id=<?= $row['pcode'] ?>"><?= $row['ptype'] ?></a>
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <a href="view_problem.php?problem_id=<?= $row['pcode'] ?>"><?= $row['categories'] ?></a>
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <a href="view_problem.php?problem_id=<?= $row['pcode'] ?>"><?= $row['psolve'] ?></a>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
+
+
+
                 <nav aria-label="Page navigation example" class="flex justify-center">
                     <ul class="flex items-center space-x-2">
                         <?php if ($page > 1) : ?>

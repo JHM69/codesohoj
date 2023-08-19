@@ -152,7 +152,7 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
         </div>
         <div id="childDiv2" class="w-5/12 pt-10">
             <form id="form" action="<?php echo SITE_URL; ?>/process.php" method="post" enctype="multipart/form-data" class="flex flex-col items-center">
-                <div class="bg-white p-4 rounded-lg w-full">
+                <div class="bg-white p-4 rounded-lg w-full h-400px">
                     <div class="mb-4">
                         <!-- <label for="lang" class="block text-sm font-medium text-gray-700 mb-1">Language:</label> -->
                         Language:
@@ -166,7 +166,7 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
                         </select>
                     </div>
                     <div id="solve-editor" class="rounded">
-                        <div class="editor" id="editor" style="height: 500px; font-size: 17px; border-radius: 4px;"></div>
+                        <div class="editor" id="editor" style="height: 400px; font-size: 17px; border-radius: 4px;"></div>
 
                         <textarea hidden id="sub" name="sub" rows="17" class="w-full rounded border-none"></textarea>
 
@@ -189,7 +189,7 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
         </div>
     </div>
 
-    <div class="bg-white rounded p-4 m-4">
+    <div class="bg-white rounded p-4 m-4 mt-48">
         <?php
         if (isset($_GET['code'])) {
             $query = "select runs.rid as rid, pid, uid, runs.language as language, time, result, access, submittime, name, code, error, output from runs, subs_code where runs.rid = subs_code.rid and runs.rid = $_GET[code] and " . " uid=" . $_SESSION['Users']['uid'];
@@ -211,6 +211,8 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
                 $resAttr = array('AC' => 'text-green-600', 'RTE' => 'text-yellow-600', 'WA' => 'text-red-600', 'TLE' => 'text-yellow-600', 'CE' => 'text-yellow-600', 'DQ' => 'text-red-600', 'PE' => 'text-blue-600', '...' => 'text-gray-600', '' => 'text-gray-600');
                 $resAttrBg = array('AC' => ' bg-green-200', 'RTE' => ' bg-yellow-200', 'WA' => ' bg-red-200', 'TLE' => ' bg-yellow-200', 'CE' => ' bg-yellow-200', 'DQ' => ' bg-red-200', 'PE' => ' bg-blue-200', '...' => ' bg-gray-200', '' => ' bg-gray-200');
 
+
+
                 echo '<h1 class="text-3xl font-bold mb-4">Submission<div class="float-right btn-group">' . $btn . '</div></h1>';
 
                 echo '<div class="grid grid-cols-5 gap-4 mb-8">';
@@ -227,6 +229,10 @@ $codeStructure = getBasicCodeStructure($selectedLanguage);
                 echo '<div class="col-span-1  bg-white flex items-center justify-center">' . $res['language'] . '</div>';
                 echo '<div class="col-span-1  bg-white flex items-center justify-center">' . date("d F Y, l, H:i:s", $res['submittime']) . '</div>';
                 echo '</div>';
+
+                if ($res['result'] == "...") {
+                    header("Refresh: 3; URL=" . $_SERVER['REQUEST_URI']);
+                }
 
 
                 if (isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin') {
