@@ -23,9 +23,9 @@ function getEnvVar($key, $default)
 //   }
 // }
 
-define("SITE_URL", "http://localhost/codesohoj/web");
+define("SITE_URL", "/codesohoj");
 define("SQL_USER", "root");
-define("SQL_PASS", "");
+define("SQL_PASS", "loJ2athaujnfgiriLfoevfeskiShyumfiyaBsinftaNosor");
 define("SQL_DB", "codesohoj_main");
 define("SQL_HOST", "127.0.0.1");
 define("SQL_PORT", "3306");
