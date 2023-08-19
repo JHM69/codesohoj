@@ -6,8 +6,7 @@ require_once "navigation.php";
 include_once "functions.php";
 
 if (
-    isset($_SESSION["loggedin"]) &&
-    $_SESSION["Users"]["status"] == "Normal" || $_SESSION["Users"]["status"] == "Admin"
+    1
 ) { ?>
 
     <head>

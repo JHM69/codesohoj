@@ -35,4 +35,5 @@ git branch -M main
 git push -u origin main
 
 # Run backend server
+pip install -r requirements.txt
 sudo python3 judge.py -judge -cache

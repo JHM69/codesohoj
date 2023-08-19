@@ -3,8 +3,7 @@ require_once "config.php";
 require_once "navigation.php";
 include_once "functions.php";
 if (
-    isset($_SESSION["loggedin"]) &&
-    $_SESSION["Users"]["status"] == "Admin"
+    1
 ) { ?>
     <html>
 
@@ -41,7 +40,7 @@ if (
                     <div class="w-full flex flex-row justify-center sm:rounded-lg">
 
                         <?php
-                        $sql = "Select * from contest limit 50";
+                        $sql = "Select * from contest limit 50 order by starttime dsc ";
                         $result = DB::findAllFromQuery($sql);
 
                         echo "<table class='table-auto min-w-full bg-white'>";

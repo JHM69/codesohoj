@@ -419,4 +419,10 @@ if (isset($_POST["login"])) {
   $query = "UPDATE blogs SET dislikes = dislikes + 1 WHERE id = '$blogId'";
   DB::query($query);
   redirectTo(SITE_URL . "/view_blog.php?blog_id=" . $blogId);
+} else if (isset($_POST['judgenotice'])) {
+  $_POST['notice'] = $_POST['notice'];
+  $query = "update admin set value='$_POST[notice]' where variable='notice'";
+  DB::query($query);
+  $_SESSION['msg'] = "Notice Updated.";
+  redirectTo(SITE_URL . $_SESSION['url']);
 }
