@@ -48,7 +48,7 @@ def getDockerSecretValue(key, fallback):
 sql_hostname = "127.0.0.1"
 sql_hostport = 3306
 sql_username = "root"
-sql_password = ""
+sql_password = "loJ2athaujnfgiriLfoevfeskiShyumfiyaBsinftaNosor"
 sql_database = "codesohoj_main"
 HOST, PORT = "0.0.0.0", 8723
 timeoffset = 19800
