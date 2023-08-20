@@ -110,18 +110,28 @@ if (isset($_POST["login"])) {
 
         if ($res == null) {
           $query =
-            "Insert into Users (name, pass, username, email, phone) 
-                        values ('" .
-            $_POST["name"] .
-            "', '" .
-            customhash($_POST["password"]) .
-            "', '" .
-            $_POST["username"] .
-            "', '" .
-            $_POST["email"] .
-            "','" .
-            $_POST["phone"] .
-            "')";
+            "Insert into Users (name, pass, username, email, phone, photo, skill, university, dept) 
+                      values (" .
+            (empty($_POST["name"]) ? "NULL" : "'" . $_POST["name"] . "'") .
+            ", " .
+            (empty($_POST["password"]) ? "NULL" : "'" . customhash($_POST["password"]) . "'") .
+            ", " .
+            (empty($_POST["username"]) ? "NULL" : "'" . $_POST["username"] . "'") .
+            ", " .
+            (empty($_POST["email"]) ? "NULL" : "'" . $_POST["email"] . "'") .
+            ", " .
+            (empty($_POST["phone"]) ? "NULL" : "'" . $_POST["phone"] . "'") .
+            ", " .
+            (empty($_POST["photo"]) ? "NULL" : "'" . $_POST["photo"] . "'") .
+            ", " .
+            (empty($_POST["skill"]) ? "NULL" : "'" . $_POST["skill"] . "'") .
+            ", " .
+            (empty($_POST["university"]) ? "NULL" : "'" . $_POST["university"] . "'") .
+            ", " .
+            (empty($_POST["dept"]) ? "NULL" : "'" . $_POST["dept"] . "')");
+
+
+
 
           $res = DB::query($query);
           $query =
