@@ -40,7 +40,7 @@ if (
                     <div class="w-full flex flex-row justify-center sm:rounded-lg">
 
                         <?php
-                        $sql = "Select * from contest limit 50 order by starttime dsc ";
+                        $sql = "Select * from contest limit 50 ";
                         $result = DB::findAllFromQuery($sql);
 
                         echo "<table class='table-auto min-w-full bg-white'>";
