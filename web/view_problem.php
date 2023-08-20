@@ -11,7 +11,9 @@ $sql = "SELECT p.*, GROUP_CONCAT(c.name) AS categories
         FROM problems AS p
         JOIN category_problem AS cp ON p.pid = cp.problem_id
         JOIN category AS c ON cp.category_id = c.id
-        WHERE p.code = '$problem_id'";
+        WHERE p.code = '$problem_id'
+        GROUP BY p.pid;
+        ";
 
 $result = DB::findOneFromQuery($sql);
 
