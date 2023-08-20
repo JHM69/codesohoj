@@ -85,6 +85,7 @@ if (isset($_POST["login"])) {
     );
   }
 } elseif (isset($_POST["register"])) {
+  writeError("Registaring...");
   if (
     isset($_POST["name"]) &&
     $_POST["name"] != "" &&
