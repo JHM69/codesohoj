@@ -9,7 +9,7 @@ function timeformating($a)
     return gmdate("H:i:s", $a);
 }
 
-if ((isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin')) {
+if ((isset($_SESSION['loggedin']))) {
     if (isset($_GET['code'])) {
         $query = "select * from contest where code = '$_GET[code]'";
         $contest = DB::findOneFromQuery($query);
@@ -216,6 +216,10 @@ if ((isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin')) {
         </div>";
     }
     ?>
+
             </body>
+
+
+
 
             </html>

@@ -2,26 +2,19 @@
 require_once "config.php";
 require_once "navigation.php";
 include_once "functions.php";
-#$category_id = $_GET["category"];
-// Check if the "category" key is present in the $_GET array
+
 if (isset($_GET["category"])) {
     $category_id = $_GET["category"];
 } else {
     $category_id = null;
 }
 
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+$perPage = 10;
 
-
-
-// Pagination variables
-$page = isset($_GET['page']) ? $_GET['page'] : 1; // Current page number
-$perPage = 10; // Number of items to display per page
-
-// Retrieve categories for navigation
 $sql = "SELECT * FROM category LIMIT $perPage";
 $categories = DB::findAllFromQuery($sql);
 
-// Retrieve total number of items
 $sqlCount = "SELECT COUNT(DISTINCT p.pid) as total FROM problems p
              INNER JOIN category_problem cp ON p.pid = cp.problem_id
              INNER JOIN category c ON cp.category_id = c.id";
@@ -31,14 +24,13 @@ if ($category_id) {
 $resultCount = DB::findOneFromQuery($sqlCount);
 $totalItems = $resultCount['total'];
 
-// Calculate total number of pages
 $totalPages = ceil($totalItems / $perPage);
-
-// Calculate offset for SQL query
 $offset = ($page - 1) * $perPage;
 
-// Retrieve problems based on category and pagination
-$sql = "SELECT p.name as pname, p.type as ptype, p.solved as psolve, p.code as pcode, GROUP_CONCAT(c.name) AS categories
+$sortColumn = isset($_GET['sort']) ? $_GET['sort'] : 'pname';
+$sortOrder = isset($_GET['order']) ? $_GET['order'] : 'ASC';
+
+$sql = "SELECT p.name as pname, p.total as total, p.type as ptype, p.solved as psolve, p.code as pcode, GROUP_CONCAT(c.name) AS categories
         FROM problems p
         INNER JOIN category_problem cp ON p.pid = cp.problem_id
         INNER JOIN category c ON cp.category_id = c.id ";
@@ -46,6 +38,7 @@ if ($category_id) {
     $sql .= "WHERE c.id = $category_id ";
 }
 $sql .= "GROUP BY p.pid
+          ORDER BY $sortColumn $sortOrder
           LIMIT $perPage OFFSET $offset";
 
 $result = DB::findAllFromQuery($sql);
@@ -65,10 +58,17 @@ $result = DB::findAllFromQuery($sql);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css" />
     <title>Problems | Codesohoj</title>
 </head>
+<style>
+    .sort-icon {
+        font-size: 0.75rem;
+        vertical-align: middle;
+        margin-left: 0.25rem;
+    }
+</style>
 
-<body class="text-gray-100 antialiased">
+<body class=" text-gray-100 antialiased">
 
-    <main>
+    <main style="padding: 20px;">
         <section class="absolute w-full h-full">
 
             <div class="absolute top-0 w-full h-full bg-gray-100">
@@ -101,19 +101,29 @@ $result = DB::findAllFromQuery($sql);
                         <thead class="bg-gray-200 text-xs text-gray-700 uppercase">
                             <tr>
                                 <th scope="col" class="px-4 py-2">
-                                    Problem name
+                                    <a href="?category=<?= $category_id ?>&page=<?= $page ?>&sort=pname&order=<?= $sortColumn === 'pname' && $sortOrder === 'ASC' ? 'DESC' : 'ASC'; ?>">
+                                        Problem name <?php if ($sortColumn === 'pname') echo ($sortOrder === 'ASC' ? '<span class="sort-icon">&#9650;</span>' : '<span class="sort-icon">&#9660;</span>'); ?>
+                                    </a>
                                 </th>
                                 <th scope="col" class="px-4 py-2">
-                                    Difficulty
-                                    <!-- SVG Code -->
+                                    <a href="?category=<?= $category_id ?>&page=<?= $page ?>&sort=ptype&order=<?= $sortColumn === 'ptype' && $sortOrder === 'ASC' ? 'DESC' : 'ASC'; ?>">
+                                        Difficulty <?php if ($sortColumn === 'ptype') echo ($sortOrder === 'ASC' ? '<span class="sort-icon">&#9650;</span>' : '<span class="sort-icon">&#9660;</span>'); ?>
+                                    </a>
                                 </th>
                                 <th scope="col" class="px-4 py-2">
-                                    Category
-                                    <!-- SVG Code -->
+                                    <a href="?category=<?= $category_id ?>&page=<?= $page ?>&sort=categories&order=<?= $sortColumn === 'categories' && $sortOrder === 'ASC' ? 'DESC' : 'ASC'; ?>">
+                                        Category <?php if ($sortColumn === 'categories') echo ($sortOrder === 'ASC' ? '<span class="sort-icon">&#9650;</span>' : '<span class="sort-icon">&#9660;</span>'); ?>
+                                    </a>
                                 </th>
                                 <th scope="col" class="px-4 py-2">
-                                    Solved
-                                    <!-- SVG Code -->
+                                    <a href="?category=<?= $category_id ?>&page=<?= $page ?>&sort=psolve&order=<?= $sortColumn === 'psolve' && $sortOrder === 'ASC' ? 'DESC' : 'ASC'; ?>">
+                                        Solved <?php if ($sortColumn === 'psolve') echo ($sortOrder === 'ASC' ? '<span class="sort-icon">&#9650;</span>' : '<span class="sort-icon">&#9660;</span>'); ?>
+                                    </a>
+                                </th>
+                                <th scope="col" class="px-4 py-2">
+                                    <a href="?category=<?= $category_id ?>&page=<?= $page ?>&sort=total&order=<?= $sortColumn === 'total' && $sortOrder === 'ASC' ? 'DESC' : 'ASC'; ?>">
+                                        Tried <?php if ($sortColumn === 'total') echo ($sortOrder === 'ASC' ? '<span class="sort-icon">&#9650;</span>' : '<span class="sort-icon">&#9660;</span>'); ?>
+                                    </a>
                                 </th>
                             </tr>
                         </thead>
@@ -132,6 +142,9 @@ $result = DB::findAllFromQuery($sql);
                                     </td>
                                     <td class="border px-4 py-2">
                                         <a href="view_problem.php?problem_id=<?= $row['pcode'] ?>"><?= $row['psolve'] ?></a>
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <a href="view_problem.php?problem_id=<?= $row['pcode'] ?>"><?= $row['total'] ?></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -177,9 +190,16 @@ $result = DB::findAllFromQuery($sql);
             </div>
 
         </section>
+
+
     </main>
+
+
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 </body>
+
 <script>
     function toggleNavbar(collapseID) {
         document.getElementById(collapseID).classList.toggle("hidden");

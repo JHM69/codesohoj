@@ -1,4 +1,6 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+    <?php
 require_once "config.php";
 require_once "components.php";
 require_once "navigation.php";

@@ -426,4 +426,24 @@ if (isset($_POST["login"])) {
   DB::query($query);
   $_SESSION['msg'] = "Notice Updated.";
   redirectTo(SITE_URL . $_SESSION['url']);
+} else if (isset($_POST['updateuser'])) {
+  $uid = $_SESSION["Users"]["uid"];
+
+  $user['name'] = $_POST['name'];
+  $user['email'] = $_POST['email'];
+  $user['phone'] = $_POST['number'];
+  $user['photo'] = $_POST['photo'];
+  $user['skill'] = $_POST['skill'];
+  $user['university'] = $_POST['university'];
+  $user['dept'] = $_POST['dept'];
+
+  foreach ($user as $key => $val) {
+    if ($val !== null) {
+      $query = "UPDATE Users SET $key = '$val' WHERE uid = $uid";
+      DB::query($query);
+    }
+  }
+  $_SESSION["Users"]["photo"] =  $_POST['photo'];
+  $_SESSION['msg'] = "User Updated.";
+  redirectTo(SITE_URL . $_SESSION['url']);
 }

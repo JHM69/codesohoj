@@ -1,7 +1,13 @@
+<?php
+require_once "config.php";
+include_once "functions.php";
+?>
+
+
 <nav class="sticky top-0 bg-blue-500 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-1">
   <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
     <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-      <a href='<?php echo SITE_URL; ?>'>
+      <a href='<?php echo SITE_URL; ?>/'>
         <img src="./assets/img/main_logo_white.svg" alt="Codesohoj" style="height: 50px" /></a><button class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none" type="button" onclick="toggleNavbar('example-collapse-navbar')">
         <i class="text-white fas fa-bars"></i>
       </button>
@@ -9,7 +15,7 @@
     <div class="lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none hidden" id="example-collapse-navbar">
       <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
         <li class="p-2" data-te-nav-item-ref>
-          <a class="text-white disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400" href='<?php echo SITE_URL; ?>'>Dashboard</a>
+          <a class="text-white disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400" href='<?php echo SITE_URL; ?>/'>Dashboard</a>
         </li>
         <li class="p-2" data-te-nav-item-ref>
           <a class="p-0 text-white opacity-60 hover:opacity-80 focus:opacity-80 disabled:text-black/30 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400" href="<?php echo SITE_URL; ?>/problems.php">Problems</a>
@@ -38,14 +44,18 @@
 
         <?php if (isset($_SESSION["loggedin"])) { ?>
           <div id="account-button" class="ml-10 flex items-center justify-center text-gray-100 space-x-4">
-            <img class="w-10 h-10 rounded-full" src="./assets/img/user.png" alt="user image">
+            <img class="w-10 h-10 rounded-full" src=<?php if (isset($_SESSION["Users"]['photo'])) {
+                                                      echo $_SESSION["Users"]['photo'];
+                                                    } else {
+                                                      echo "./assets/img/user.png";
+                                                    } ?> alt="user image">
             <div class="mr-3 font-medium dark:text-white">
               <div><?php echo $_SESSION["Users"]["username"]; ?></div>
 
             </div>
           </div>
 
-          <div id="account-modal" tabindex="-1" aria-hidden="true" class="fixed top-10 left-10 right-0 z-50 hidden w-48 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
+          <div id="account-modal" tabindex="-1" aria-hidden="true" class="fixed top-10 right-10 z-50 hidden w-48 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
             <div class="relative w-full h-full max-w-md md:h-auto">
               <!-- Modal content -->
               <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -68,6 +78,12 @@
                     <?php if (
                       $_SESSION["Users"]["status"] == "Admin"
                     ) { ?>
+
+                      <li>
+                        <a href='<?php echo SITE_URL; ?>/profile.php' class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+                          <span class="flex-1 ml-3 whitespace-nowrap">Account Setting</span>
+                        </a>
+                      </li>
 
                       <li>
                         <a href='<?php echo SITE_URL; ?>/adminjudge.php' class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">

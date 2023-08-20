@@ -60,11 +60,11 @@ if (
                     <div class="mb-5" id="editor-container">
                     </div>
                     <input type="hidden" name="description" id="description">
-                    
+
                     <div class="w-full mb-4">
-                            <label for="blog_statement_file" class="block text-gray-700 font-bold mb-2">Statement File</label>
-                            <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="file" name="blog_statement_file" id="blog_statement_file">
-                            <small class="ml-2 block mt-1 text-xs text-gray-500">(If you have any)</small>
+                        <label for="blog_statement_file" class="block text-gray-700 font-bold mb-2">Statement File</label>
+                        <input class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full" type="file" name="blog_statement_file" id="blog_statement_file">
+                        <small class="ml-2 block mt-1 text-xs text-gray-500">(If you have any)</small>
                     </div>
                 </div>
                 <div class="flex flex-col items-center justify-center py-4">
@@ -134,6 +134,39 @@ if (
             });
         </script>
     </body>
+    <nav aria-label="Page navigation example" class="flex justify-center">
+        <ul class="flex items-center space-x-2">
+            <?php if ($page > 1) : ?>
+                <li>
+                    <a href="?category=<?= $category_id ?>&page=<?= $page - 1 ?>" class="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                        <span class="sr-only">Previous</span>
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                </li>
+            <?php endif; ?>
+
+            <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
+                <li>
+                    <a href="?category=<?= $category_id ?>&page=<?= $i ?>" class="px-3 py-2 leading-tight <?= $page == $i ? 'text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white' : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white' ?>">
+                        <?= $i ?>
+                    </a>
+                </li>
+            <?php endfor; ?>
+
+            <?php if ($page < $totalPages) : ?>
+                <li>
+                    <a href="?category=<?= $category_id ?>&page=<?= $page + 1 ?>" class="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover                                :bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                        <span class="sr-only">Next</span>
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                </li>
+            <?php endif; ?>
+        </ul>
+    </nav>
 
     </html>
 <?php } ?>
