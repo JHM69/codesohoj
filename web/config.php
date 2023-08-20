@@ -23,7 +23,7 @@ function getEnvVar($key, $default)
 //   }
 // }
 
-define("SITE_URL", "/codesohoj/web");
+define("SITE_URL", "");
 define("SQL_USER", "root");
 define("SQL_PASS", "loJ2athaujnfgiriLfoevfeskiShyumfiyaBsinftaNosor");
 define("SQL_DB", "codesohoj_main");
