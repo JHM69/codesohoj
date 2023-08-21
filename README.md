@@ -8,15 +8,16 @@ Codesohoj is an online platform that combines the benefits of an online judge an
 - Jahangir Hossain (B190305009)
 - Md. Farhan Masud Shohag (B190305043)
 
-Dr. Sajeeb Saha  
-Associate Professor of Computer Science and Engineering  
-Jagannath University
+Mentor:
+  Dr. Sajeeb Saha  
+  Associate Professor of Computer Science and Engineering  
+  Jagannath University
 ```
-## Architecture 
-# User Journey 
+# Architecture 
+## User Journey 
 <img src="https://github.com/JHM69/codesohoj/blob/master/img/img1.png?raw=true" alt="User Jouerney "  >
 
-# Internal Architecture
+## Internal Architecture
 <img src="https://github.com/JHM69/codesohoj/blob/master/img/img2.png?raw=true" alt="Internal Architecture"  >
 
 
