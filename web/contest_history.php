@@ -9,7 +9,7 @@ function timeformating($a)
     return gmdate("H:i:s", $a);
 }
 
-if ((isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin')) {
+if (1) {
     if (isset($_GET['code'])) {
         $query = "select * from contest where code = '$_GET[code]'";
         $contest = DB::findOneFromQuery($query);
@@ -57,7 +57,10 @@ if ((isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin')) {
                 <div class="container mx-auto px-4">
                     <div class="py-8">
                         <h1 class="text-3xl text-center"><?php echo $contest['name']; ?></h1>
-                        Contest is Running...
+                        Contest is Ended
+
+                        <div id="contesttimer"></div>
+
                     </div>
                 </div>
                 <?php
@@ -134,12 +137,12 @@ if ((isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin')) {
                     }
 
                     $rankTable = json_decode($result['ranktable'], true);
-                    $limit = 10; // Define limit, replace 10 with your desired limit
+                    $limit = 20; // Define limit, replace 10 with your desired limit
 
-                    $table = '<div class="bg-gray-100 rounded mx-100 flex w-full px-10 justify-center">';
-                    $table .= '<table class="w-full table table-bordered table-hover">';
+                    $table = '<div class="container mb-24 mx-auto mx-4 bg-gray-100 rounded mx-auto flex w-full px-10 justify-center">';
+                    $table .= '<table class="w-full table-auto border-collapse">';
                     $table .= '<thead><tr>';
-                    $table .= '<th class="text-center">Rank</th><th class="text-center">Username</th><th class="text-center">Score</th><th class="text-center">Solved</th><th class="text-center">Time</th>';
+                    $table .= '<th class="px-4 py-2 border text-center">Rank</th><th class="px-4 py-2 border text-center">Username</th><th class="px-4 py-2 border text-center">Score</th><th class="px-4 py-2 border text-center">Solved</th><th class="px-4 py-2 border text-center">Time</th>';
                     $table .= '</tr></thead><tbody>';
 
                     $rank = 1;
@@ -148,21 +151,20 @@ if ((isset($_SESSION['loggedin']) && $_SESSION['Users']['status'] == 'Admin')) {
                             $solvedCount = count($row['solved_contest']);
                             $time = $row['time'];
                             $table .= '<tr>';
-                            $table .= '<td class="text-center">' . $rank . '</td><td class="text-center"><a href="' . SITE_URL . '/users/' . $row['username'] . '">' . $row['username'] . '</a></td><td class="text-center">' . $row['score'] . '</td><td class="text-center">' . $solvedCount . '</td><td class="text-center">' . $time . '</td>';
+                            $table .= '<td class="px-4 py-2 border text-center">' . $rank . '</td><td class="px-4 py-2 border text-center"><a href="' . SITE_URL . '/profile.php?id=' . $row['username'] . '" class="text-blue-600">' . $row['username'] . '</a></td><td class="px-4 py-2 border text-center">' . $row['score'] . '</td><td class="px-4 py-2 border text-center">' . $solvedCount . '</td><td class="px-4 py-2 border text-center">' . $time . '</td>';
                             $table .= '</tr>';
-                            if ($rank >= $limit)
-                                break;
+                            if ($rank >= $limit) break;
                             $rank++;
                         }
                     } else {
-                        $table .= "<tr><td class='text-center' colspan='5'>No Data Available.</td></tr>";
+                        $table .= "<tr><td class='px-4 py-2 border text-center' colspan='5'>No Data Available.</td></tr>";
                     }
                     $table .= '</tbody></table>';
                     $table .= '</div>';
 
                     echo $table;
                 } else {
-                    echo "<div class='text-center page-header'><h1>Select a Contest</h1></div>
+                    echo "<div class='container mx-auto px-4 text-center page-header'><h1>Select a Contest</h1></div>
         <div class='row'>";
                     $query = "select * from contest";
                     $res = DB::findAllFromQuery($query);
