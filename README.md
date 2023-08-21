@@ -1,39 +1,52 @@
-# codesohoj
+# Codesohoj
+<img src="https://raw.githubusercontent.com/JHM69/codesohoj/a6cd5cb956d70c71ff039139af3cfc6fd4ff0176/web/assets/img/app_logo.svg" alt="Logo" width="100">
 
-Codesohoj is a online judge and a learning platform for all the coders which is a Web Programming course project by Jahangir Hossain(B190305009) and Md. Farhan Masud Shohag(B190305043) under the supervishon of Dr Sajeeb Saha, Associate Professor of CSE JnU
+Codesohoj is an online platform that combines the benefits of an online judge and a coding learning platform. It offers programming problems, educational content, and supports multiple programming languages to provide an engaging learning experience for users of all levels.
 
-- Online Judge
-- Problem Solving
-- Contests
-- DSA Simulations
+**Project Team:**
+```
+- Jahangir Hossain (B190305009)
+- Md. Farhan Masud Shohag (B190305043)
 
-#Linux:
-sudo /etc/init.d/apache2 stop 
-sudo /etc/init.d/mysql stop 
-sudo /etc/init.d/proftpd stop
-sudo /opt/lampp/lampp start
+Dr. Sajeeb Saha  
+Associate Professor of Computer Science and Engineering  
+Jagannath University
+```
+## Architecture 
+# User Jouerney 
+<img src="https://github.com/JHM69/codesohoj/blob/master/img/img1.png?raw=true" alt="User Jouerney "  >
+
+# Internal Architecture
+<img src="https://github.com/JHM69/codesohoj/blob/master/img/img2.png?raw=true" alt="Internal Architecture"  >
+
+
+## Features
+
+ - User Handle
+ - Collection of Problems
+ - Learning Resources by Topic
+ - Tutorials & Articles
+ - Built-in Blogging Platform
+ - User Interactions & Community Building
+ - Progress Tracking
+ - Solve Practice Problems
+ - Built-in Code Editor & Judge
+ - Contest Arrangement
+ - Find Problems By Catagories
+
+<img src="https://github.com/JHM69/codesohoj/blob/master/img/f.gif?raw=true" alt="Internal Architecture"  >
+
+
+# To start the server: 
+navigate to root/codesohoj directory and run
+```bash
 php -S localhost:8000 -t web/
+```
 
-
-#Windows:
-After setting up Xmapp, run :
-
-php -S localhost:8000 -t web/
-
-#git cli command
-echo "# temp" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/fms-byte/codesohoj.git
-git push -u origin main
-
-
-git remote add origin https://github.com/fms-byte/codesohoj.git
-git branch -M main
-git push -u origin main
-
-# Run backend server
+# Run Judge Server
+navigate to codesohoj/judge directory and run
+```bash
 pip install -r requirements.txt
+pip install lockfile
 sudo python3 judge.py -judge -cache
+```
