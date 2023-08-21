@@ -38,13 +38,21 @@ Mentor:
 <img src="https://github.com/JHM69/codesohoj/blob/master/img/f.gif?raw=true" alt="Internal Architecture"  >
 
 
-# To start the server: 
+## Run the app
+
+## Setting Up MySQL Database
+
+ - create a new Database named ```codesohoj_main``` and import ```DB/codesohoj_main.sql```
+ - update Database Credencials (DB host, pass, ip, port) in ```web/config.php```
+ - go to ```judge/judge.py``` and here also change DB credentials
+
+## To start the server: 
 navigate to root/codesohoj directory and run
 ```bash
 php -S localhost:8000 -t web/
 ```
 
-# Run Judge Server
+## Run Judge Server
 navigate to codesohoj/judge directory and run
 ```bash
 pip install -r requirements.txt
