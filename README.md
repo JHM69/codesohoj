@@ -13,7 +13,7 @@ Associate Professor of Computer Science and Engineering
 Jagannath University
 ```
 ## Architecture 
-# User Jouerney 
+# User Journey 
 <img src="https://github.com/JHM69/codesohoj/blob/master/img/img1.png?raw=true" alt="User Jouerney "  >
 
 # Internal Architecture
