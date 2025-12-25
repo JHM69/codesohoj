@@ -8,8 +8,6 @@ if (isset($_SESSION["loggedin"]) && !isAdmin()) {
   session_destroy();
   session_regenerate_id(true);
   session_start();
-  $_SESSION["msg"] =
-    "Judge is in Lockdown mode and so you have been logged out.";
   redirectTo(SITE_URL . "/");
 }
 ?>

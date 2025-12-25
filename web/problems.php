@@ -2,17 +2,19 @@
 require_once "config.php";
 require_once "navigation.php";
 include_once "functions.php";
-$category_id = $_GET["category"];
 
-// Pagination variables
-$page = isset($_GET['page']) ? $_GET['page'] : 1; // Current page number
-$perPage = 10; // Number of items to display per page
+if (isset($_GET["category"])) {
+    $category_id = $_GET["category"];
+} else {
+    $category_id = null;
+}
 
-// Retrieve categories for navigation
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+$perPage = 10;
+
 $sql = "SELECT * FROM category LIMIT $perPage";
 $categories = DB::findAllFromQuery($sql);
 
-// Retrieve total number of items
 $sqlCount = "SELECT COUNT(DISTINCT p.pid) as total FROM problems p
              INNER JOIN category_problem cp ON p.pid = cp.problem_id
              INNER JOIN category c ON cp.category_id = c.id";
@@ -22,14 +24,13 @@ if ($category_id) {
 $resultCount = DB::findOneFromQuery($sqlCount);
 $totalItems = $resultCount['total'];
 
-// Calculate total number of pages
 $totalPages = ceil($totalItems / $perPage);
-
-// Calculate offset for SQL query
 $offset = ($page - 1) * $perPage;
 
-// Retrieve problems based on category and pagination
-$sql = "SELECT p.name as pname, p.type as ptype, p.solved as psolve, p.code as pcode, GROUP_CONCAT(c.name) AS categories
+$sortColumn = isset($_GET['sort']) ? $_GET['sort'] : 'pname';
+$sortOrder = isset($_GET['order']) ? $_GET['order'] : 'ASC';
+
+$sql = "SELECT p.name as pname, p.total as total, p.type as ptype, p.solved as psolve, p.code as pcode, GROUP_CONCAT(c.name) AS categories
         FROM problems p
         INNER JOIN category_problem cp ON p.pid = cp.problem_id
         INNER JOIN category c ON cp.category_id = c.id ";
@@ -37,6 +38,7 @@ if ($category_id) {
     $sql .= "WHERE c.id = $category_id ";
 }
 $sql .= "GROUP BY p.pid
+          ORDER BY $sortColumn $sortOrder
           LIMIT $perPage OFFSET $offset";
 
 $result = DB::findAllFromQuery($sql);
@@ -56,14 +58,26 @@ $result = DB::findAllFromQuery($sql);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css" />
     <title>Problems | Codesohoj</title>
 </head>
+<style>
+    .sort-icon {
+        font-size: 0.75rem;
+        vertical-align: middle;
+        margin-left: 0.25rem;
+    }
+</style>
 
-<body class="text-gray-100 antialiased">
+<body class=" text-gray-100 antialiased">
 
-    <main>
+    <main style="padding: 20px;">
         <section class="absolute w-full h-full">
-            <div class="absolute top-0 w-full h-full bg-gray-100">
 
+            <div class="absolute top-0 w-full h-full bg-gray-100">
+                <div class="flex justify-center">
+                    <h2 class="text-2xl font-bold text-black">Problem list</h2>
+                </div>
+                <hr class="border-t-2 border-gray-300 mt-2 mb-4">
                 <div class='col-md-9 w-full flex m-2 justify-center' id='mainbar'>
+                    <p class="text-md text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400 mr-2">tag:</p>
                     <?php
                     $colors = ["blue", "green", "yellow", "red", "purple"]; // Define an array of colors
                     $colorIndex = 0; // Initialize color index
@@ -82,58 +96,64 @@ $result = DB::findAllFromQuery($sql);
                 </div>
 
 
-                <div class="sm:rounded-lg">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <div class="sm:rounded-lg lg:m-24">
+                    <table class="table-auto w-full text-sm text-gray-500 dark:text-gray-400">
+                        <thead class="bg-gray-200 text-xs text-gray-700 uppercase">
                             <tr>
-                                <th scope="col" class="px-6 py-3">
-                                    Problem name
+                                <th scope="col" class="px-4 py-2">
+                                    <a href="?category=<?= $category_id ?>&page=<?= $page ?>&sort=pname&order=<?= $sortColumn === 'pname' && $sortOrder === 'ASC' ? 'DESC' : 'ASC'; ?>">
+                                        Problem name <?php if ($sortColumn === 'pname') echo ($sortOrder === 'ASC' ? '<span class="sort-icon">&#9650;</span>' : '<span class="sort-icon">&#9660;</span>'); ?>
+                                    </a>
                                 </th>
-                                <th scope="col" class="px-6 py-3">
-                                    <div class="flex items-center">
-                                        Difficulty
-                                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 320 512">
-                                                <path d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z" />
-                                            </svg></a>
-                                    </div>
+                                <th scope="col" class="px-4 py-2">
+                                    <a href="?category=<?= $category_id ?>&page=<?= $page ?>&sort=ptype&order=<?= $sortColumn === 'ptype' && $sortOrder === 'ASC' ? 'DESC' : 'ASC'; ?>">
+                                        Difficulty <?php if ($sortColumn === 'ptype') echo ($sortOrder === 'ASC' ? '<span class="sort-icon">&#9650;</span>' : '<span class="sort-icon">&#9660;</span>'); ?>
+                                    </a>
                                 </th>
-                                <th scope="col" class="px-6 py-3">
-                                    <div class="flex items-center">
-                                        Category
-                                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 320 512">
-                                                <path d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3 288z" />
-                                            </svg></a>
-                                    </div>
+                                <th scope="col" class="px-4 py-2">
+                                    <a href="?category=<?= $category_id ?>&page=<?= $page ?>&sort=categories&order=<?= $sortColumn === 'categories' && $sortOrder === 'ASC' ? 'DESC' : 'ASC'; ?>">
+                                        Category <?php if ($sortColumn === 'categories') echo ($sortOrder === 'ASC' ? '<span class="sort-icon">&#9650;</span>' : '<span class="sort-icon">&#9660;</span>'); ?>
+                                    </a>
                                 </th>
-                                <th scope="col" class="px-6 py-3">
-                                    <div class="flex items-center">
-                                        Solved
-                                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 320 512">
-                                                <path d="M27.66 224h264.7c24.6 0 36.89-29.78 19.54-47.12l-132.3-136.8c-5.406-5.406-12.47-8.107-19.53-8.107c-7.055 0-14.09 2.701-19.45 8.107L8.119 176.9C-9.229 194.2 3.055 224 27.66 224zM292.3 288H27.66c-24.6 0-36.89 29.77-19.54 47.12l132.5 136.8C145.9 477.3 152.1 480 160 480c7.053 0 14.12-2.703 19.53-8.109l132.3-136.8C329.2 317.8 316.9 288 292.3288z" />
-                                            </svg></a>
-                                    </div>
+                                <th scope="col" class="px-4 py-2">
+                                    <a href="?category=<?= $category_id ?>&page=<?= $page ?>&sort=psolve&order=<?= $sortColumn === 'psolve' && $sortOrder === 'ASC' ? 'DESC' : 'ASC'; ?>">
+                                        Solved <?php if ($sortColumn === 'psolve') echo ($sortOrder === 'ASC' ? '<span class="sort-icon">&#9650;</span>' : '<span class="sort-icon">&#9660;</span>'); ?>
+                                    </a>
                                 </th>
-                                <th scope="col" class="px-6 py-3">
-                                    <div class="flex items-center">
-                                        Action
-
-                                    </div>
+                                <th scope="col" class="px-4 py-2">
+                                    <a href="?category=<?= $category_id ?>&page=<?= $page ?>&sort=total&order=<?= $sortColumn === 'total' && $sortOrder === 'ASC' ? 'DESC' : 'ASC'; ?>">
+                                        Tried <?php if ($sortColumn === 'total') echo ($sortOrder === 'ASC' ? '<span class="sort-icon">&#9650;</span>' : '<span class="sort-icon">&#9660;</span>'); ?>
+                                    </a>
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($result as $row) : ?>
-                                <tr>
-                                    <td class='px-6 py-4'><?= $row["pname"] ?></td>
-                                    <td class='px-6 py-4'><?= $row["ptype"] ?></td>
-                                    <td class='px-6 py-4'><?= $row["categories"] ?></td>
-                                    <td class='px-6 py-4'><?= $row["psolve"] ?></td>
-                                    <td class='px-6 py-4'><a href='view_problem.php?problem_id=<?= $row["pcode"] ?>'>Solve</a></td>
+                            <?php $row_count = 0;
+                            foreach ($result as $row) : $row_count++; ?>
+                                <tr class="<?php echo $row_count % 2 == 0 ? 'bg-gray-100' : 'bg-white'; ?>">
+                                    <td class="border px-4 py-2">
+                                        <b><a href="view_problem.php?problem_id=<?= $row['pcode'] ?>"><?= $row['pname'] ?></a></b>
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <a href="view_problem.php?problem_id=<?= $row['pcode'] ?>"><?= $row['ptype'] ?></a>
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <a href="view_problem.php?problem_id=<?= $row['pcode'] ?>"><?= $row['categories'] ?></a>
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <a href="view_problem.php?problem_id=<?= $row['pcode'] ?>"><?= $row['psolve'] ?></a>
+                                    </td>
+                                    <td class="border px-4 py-2">
+                                        <a href="view_problem.php?problem_id=<?= $row['pcode'] ?>"><?= $row['total'] ?></a>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
+
+
+
                 <nav aria-label="Page navigation example" class="flex justify-center">
                     <ul class="flex items-center space-x-2">
                         <?php if ($page > 1) : ?>
@@ -170,9 +190,16 @@ $result = DB::findAllFromQuery($sql);
             </div>
 
         </section>
+
+
     </main>
+
+
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 </body>
+
 <script>
     function toggleNavbar(collapseID) {
         document.getElementById(collapseID).classList.toggle("hidden");

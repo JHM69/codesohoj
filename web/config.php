@@ -23,14 +23,22 @@ function getEnvVar($key, $default)
 //   }
 // }
 
-define("SITE_URL", "http://localhost/codesohoj/web");
+define("SITE_URL", "/codesohoj");
 define("SQL_USER", "root");
-define("SQL_PASS", "");
+define("SQL_PASS", "loJ2athaujnfgiriLfoevfeskiShyumfiyaBsinftaNosor");
 define("SQL_DB", "codesohoj_main");
 define("SQL_HOST", "127.0.0.1");
 define("SQL_PORT", "3306");
-displayErrors(true);
-// date_default_timezone_set("Asia/Dhaka");
+
+// define("SITE_URL", "codesohoj.thortech.com.bd");
+// define("SQL_USER", "autowayu_codesohoj");
+// define("SQL_PASS", "loJ2athaujnfgiriLfoevfeskiShyumfiyaBsinftaNosor");
+// define("SQL_DB", "autowayu_codesohoj_main");
+// define("SQL_HOST", "127.0.0.1");
+// define("SQL_PORT", "3306");
+
+// displayErrors(true);
+date_default_timezone_set("Asia/Dhaka");
 
 /*
  *
@@ -86,5 +94,28 @@ foreach ($_POST as $key => $value) {
 foreach ($_GET as $key => $value) {
   $_GET[$key] = addslashes($value);
 }
+function getrankings($code)
+{
+  $result =  Leaderboard::getStaticRankTableInJSON($code);
+  return json_decode($result['ranktable'], true);
+}
 
+function getCurrentContest()
+{
+  $result = DB::findOneFromQuery("SELECT value from admin where variable = 'currentContest'");
+  $contestCode = $result['value'];
+  return $contestCode;
+}
+
+function getCurrentContestRanking()
+{
+  $contestCode = getCurrentContest();
+  $printTable = liveContestRanking($contestCode, 10);
+  echo $printTable;
+}
+
+function errorMessageHTML($msg)
+{
+  return '<br /><div class="alert alert-danger" role="alert">' . $msg . '</div>';
+}
 require_once "functions.php";

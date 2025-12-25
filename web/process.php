@@ -41,7 +41,7 @@ if (isset($_POST["login"])) {
       $save = $_SESSION;
       session_regenerate_id(true);
       $_SESSION = $save;
-      $_SESSION["Users"]["id"] = $res["id"];
+      $_SESSION["Users"]["uid"] = $res["uid"];
       $_SESSION["Users"]["username"] = $res["username"];
       $_SESSION["Users"]["name"] = $res["name"];
       $_SESSION["loggedin"] = "true";
@@ -85,6 +85,7 @@ if (isset($_POST["login"])) {
     );
   }
 } elseif (isset($_POST["register"])) {
+  writeError("Registaring...");
   if (
     isset($_POST["name"]) &&
     $_POST["name"] != "" &&
@@ -155,7 +156,7 @@ if (isset($_POST["login"])) {
 } elseif (isset($_POST["add_problem"])) {
   $query =
     "INSERT INTO problems (" .
-    "name , code , score , type , pgroup , contest , timelimit , status , displayio , maxfilesize , statement , input , output , sampleinput , sampleoutput" .
+    "name , code , score , type , pgroup , contest , timelimit , status , displayio , maxfilesize , statement , input_statement , output_statement , note , input , output , sampleinput , sampleoutput , image" .
     ") values ('" .
     $_POST["name"] .
     "', '" .
@@ -179,26 +180,35 @@ if (isset($_POST["login"])) {
     "', '" .
     $_POST["statement"] .
     "', '" .
+    $_POST["input_statement"] .
+    "', '" .
+    $_POST["output_statement"] .
+    "', '" .
+    $_POST["note"] .
+    "', '" .
     addslashes(file_get_contents($_FILES["input"]["tmp_name"])) .
     "', '" .
     addslashes(file_get_contents($_FILES["output"]["tmp_name"])) .
     "', '" .
-    addslashes(file_get_contents($_FILES["sampleinput"]["tmp_name"])) .
+    $_POST["sampleinput"] .
     "', '" .
-    addslashes(file_get_contents($_FILES["sampleoutput"]["tmp_name"])) .
+    $_POST["sampleoutput"] .
+    "', '" .
     "')";
+  #addslashes(file_get_contents($_FILES["sampleinput"]["tmp_name"])) .
+  #"', '" .
+  #addslashes(file_get_contents($_FILES["sampleoutput"]["tmp_name"])) .
+  #"')";
 
   DB::query($query);
 
-  $problemId = DB
-    ::findOneFromQuery(
-      "SELECT pid FROM problems WHERE code = '" . $_POST["code"] . "'"
-    );
+  $problemId = DB::findOneFromQuery(
+    "SELECT pid FROM problems WHERE code = '" . $_POST["code"] . "'"
+  );
 
   echo "Problem ID: " . $problemId["pid"] . " Code : " . $_POST["code"] . "<br>";
 
   $problemIdInt = intval($problemId["pid"]);
-
 
 
   $categories = implode(', ', $_POST['category']);
@@ -225,9 +235,6 @@ if (isset($_POST["login"])) {
     $updateQuery = "UPDATE category SET count = count + 1 WHERE id = " . $categoryIdInt;
     DB::query($updateQuery);
   }
-
-  //$_SESSION["msg"] = "Problem Added.";
-  //redirectTo(SITE_URL . "/add_problem.php");
 } elseif (isset($_POST['addcontest'])) {
   writeError("addcontest");
 
@@ -268,5 +275,175 @@ if (isset($_POST["login"])) {
     DB::query($query);
   }
   $_SESSION['msg'] = "Contest Updated.";
+  redirectTo(SITE_URL . $_SESSION['url']);
+} else if (isset($_POST['submitcode'])) {
+  echo "submitcode";
+  $_SESSION['subcode'] = addslashes($_POST['sub']);
+
+  if (isset($_SESSION['loggedin'])) {
+    $allowed = array('application/octet-stream', 'text/x-csrc', 'text/x-c++src', 'text/x-csharp', 'text/x-java', 'text/javascript', 'text/x-pascal', 'text/x-perl', 'text/x-php', 'text/x-python', 'text/x-ruby', 'text/plain');
+    if ((isset($_POST['lang']) && $_POST['lang'] != "") && ($_FILES['code_file']['size'] > 0 || (isset($_POST['sub']) && $_POST['sub'] != "")) && (isset($_POST['probcode']) && $_POST['probcode'] != "")) {  // Lvl 2
+      if ($_FILES['code_file']['size'] > 0 && $_FILES['code']['error'] == 0 && in_array($_FILES['code_file']['type'], $allowed)) {
+        $sourcecode = addslashes(file_get_contents($_FILES['code_file']['tmp_name']));
+      } else {
+        $sourcecode = $_POST['sub'];
+      }
+
+      $query = "select * from admin where variable ='mode' or variable ='endtime' or variable='ip' or variable ='port'";
+      $check = DB::findAllFromQuery($query);
+      $admin = array();
+      foreach ($check as $row) {
+        $admin[$row['variable']] = $row['value'];
+      }
+
+
+
+
+
+      $query = "select pid, total from problems where code = '$_POST[probcode]'";
+      $res = DB::findOneFromQuery($query);
+
+
+      $submittime = time();
+      $query = "INSERT INTO runs (pid,uid,language,access,submittime) VALUES ('$res[pid]', '" . $_SESSION["Users"]["uid"] . "', '$_POST[lang]', 'private', '" . $submittime . "')";
+      $res2 = DB::query($query);
+
+
+
+      DB::query("update problems set total=" . ($res['total'] + 1) . " where pid = $res[pid]");
+      $query = "select rid from runs where uid = " . $_SESSION["Users"]["uid"] . " and pid = $res[pid] and submittime = $submittime";
+      $result = DB::findOneFromQuery($query);
+
+      if ($result) {
+        echo "pid: " . $res['pid'] . "<br>";
+        echo "total: " . $res['total'] . "<br>";
+        $rid = $result['rid'];
+
+
+
+
+        $query = "INSERT INTO subs_code (rid, name, code) VALUES ('$rid', 'Main', '$sourcecode')";
+        $result = DB::query($query);
+        $query = "select rid from subs_code where rid = $rid";
+        $result = DB::findOneFromQuery($query);
+        if ($result) {
+          echo "admin: " . $admin['mode'] . "<br>";
+          echo "admin: " . $admin['endtime'] . "<br>";
+          echo "admin: " . $admin['ip'] . "<br>";
+          echo "admin: " . $admin['port'] . "<br>";
+          echo "time : " . $submittime . "<br>";
+
+          unset($_SESSION['subcode']);
+          writeError("Submitted");
+          echo "Problem submitted successfully. If your problem is not judged then contact admin.";
+          $_SESSION['msg'] = "Problem submitted successfully. If your problem is not judged then contact admin.";
+          $client = stream_socket_client($admin['ip'] . ":" . $admin['port'], $errno, $errorMessage);
+          if ($client === false) {
+            $_SESSION["msg"] .= "<br/>Cannot connect to Judge: Contact Admin";
+          }
+          fwrite($client, $rid);
+          fclose($client);
+          redirectTo(SITE_URL . "/view_problem.php?" . "problem_id=" . $_POST["probcode"] . "&code=" . $rid);
+        } else {
+          DB::query("Delete from runs where rid = $rid");
+          $_SESSION['msg'] = "Some error occured during submission. If the problem continues contact Admin";
+          redirectTo(SITE_URL . $_SESSION['url']);
+        }
+      } else {
+        $_SESSION['msg'] = "Some error occured during submission. If the problem continues contact Admin";
+        redirectTo(SITE_URL . $_SESSION['url']);
+      }
+    } else {
+      $_SESSION['msg'] = "You missed some necessary values.";
+      redirectTo(SITE_URL . $_SESSION['url']);
+    }
+  } else {
+    $_SESSION['msg'] = "You should be logged in to make a submission.";
+    redirectTo(SITE_URL . $_SESSION['url']);
+  }
+} elseif (isset($_POST['add_topic'])) {
+  // Retrieve the form data
+  $title = $_POST['title'];
+  $short = $_POST['short'];
+  $description = $_POST['statement'];
+  $categoryIds = $_POST['category'];
+  $userId = $_SESSION['Users']['uid'];
+
+  // Handle the file upload (if applicable)
+  $statementFile = null;
+  if ($_FILES['statement_file']['error'] === UPLOAD_ERR_OK) {
+    $statementFile = file_get_contents($_FILES['statement_file']['tmp_name']);
+  }
+
+  // Insert the topic into the database
+  $query = "INSERT INTO learn (addedby, title, short, description, statement, category, user_id) VALUES ('" . $_SESSION["Users"]["name"] . "', '$title', '$short', '$description', '$statementFile', '" . implode(',', $categoryIds) . "', '$userId')";
+
+  // Execute the query
+  DB::query($query);
+
+  // Redirect or display a success message
+  // ...
+  redirectTo(SITE_URL . "/learn.php");
+} elseif (isset($_POST['add_blog'])) {
+
+
+
+  $title = $_POST['blog_title'];
+  $description = $_POST['description'];
+  $userId = $_SESSION['Users']['uid'];
+
+
+  // Handle the file upload (if applicable)
+  $statementFile = null;
+  if ($_FILES['blog_statement_file']['error'] === UPLOAD_ERR_OK) {
+    $statementFile = file_get_contents($_FILES['blog_statement_file']['tmp_name']);
+  }
+
+
+
+  // Insert the topic into the database
+  $query = "INSERT INTO blogs (added, title, description, statement, user_id) VALUES ('" . $_SESSION["Users"]["name"] . "', '$title', '$description', '$statementFile', '$userId')";
+
+  // Execute the query
+  DB::query($query);
+
+  // Redirect or display a success message
+  // ...
+  redirectTo(SITE_URL . "/blog.php");
+} elseif (isset($_POST['likes'])) {
+  $blogId = $_POST['blogId'];
+  $query = "UPDATE blogs SET likes = likes + 1 WHERE id = '$blogId'";
+  DB::query($query);
+  redirectTo(SITE_URL . "/view_blog.php?blog_id=" . $blogId);
+} elseif (isset($_POST['dislikes'])) {
+  $blogId = $_POST['blogId'];
+  $query = "UPDATE blogs SET dislikes = dislikes + 1 WHERE id = '$blogId'";
+  DB::query($query);
+  redirectTo(SITE_URL . "/view_blog.php?blog_id=" . $blogId);
+} else if (isset($_POST['judgenotice'])) {
+  $_POST['notice'] = $_POST['notice'];
+  $query = "update admin set value='$_POST[notice]' where variable='notice'";
+  DB::query($query);
+  $_SESSION['msg'] = "Notice Updated.";
+  redirectTo(SITE_URL . $_SESSION['url']);
+} else if (isset($_POST['updateuser'])) {
+  $uid = $_SESSION["Users"]["uid"];
+
+  $user['name'] = $_POST['name'];
+  $user['email'] = $_POST['email'];
+  $user['phone'] = $_POST['number'];
+  $user['photo'] = $_POST['photo'];
+  $user['skill'] = $_POST['skill'];
+  $user['university'] = $_POST['university'];
+  $user['dept'] = $_POST['dept'];
+
+  foreach ($user as $key => $val) {
+    if ($val !== null) {
+      $query = "UPDATE Users SET $key = '$val' WHERE uid = $uid";
+      DB::query($query);
+    }
+  }
+  $_SESSION["Users"]["photo"] =  $_POST['photo'];
+  $_SESSION['msg'] = "User Updated.";
   redirectTo(SITE_URL . $_SESSION['url']);
 }

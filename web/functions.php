@@ -195,17 +195,10 @@ class DB
     }
     try {
       self::$connection = new PDO(
-        "mysql:dbname=" .
-          SQL_DB .
-          ";host=" .
-          SQL_HOST .
-          ";port=" .
-          SQL_PORT .
-          "",
+        "mysql:dbname=" . SQL_DB . ";host=" . SQL_HOST . ";port=" . SQL_PORT,
         SQL_USER,
         SQL_PASS,
         [
-          PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
           PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
           PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
         ]
@@ -256,6 +249,8 @@ class DB
         return self::$connection->query($query);
       }
     } catch (PDOException $e) {
+      echo $e->getMessage();
+      writeError("Query error:\n" . $query);
       self::handleError($e, $query);
       return false;
     }
@@ -370,6 +365,7 @@ class DB
       }
       return $stmt->fetch(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
+      echo $e->getMessage();
       self::handleError($e, $query);
       return false;
     }

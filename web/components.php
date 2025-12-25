@@ -12,7 +12,7 @@ function loginbox()
             <form action="<?php echo SITE_URL; ?>/process.php" method="post" role="form">
                 <div class="input-group" style="margin-bottom: -1px;">
                     <span class="input-group-addon" style="border-bottom-left-radius: 0;"><i class="glyphicon glyphicon-user"></i></span>
-                    <input class="form-control" style="border-bottom-right-radius: 0;" type="text" name="teamname" placeholder="Teamname" required />
+                    <input class="form-control" style="border-bottom-right-radius: 0;" type="text" name="username" placeholder="Username" required />
                 </div>
                 <div class="input-group">
                     <span style="border-top-left-radius: 0;" class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
@@ -20,13 +20,13 @@ function loginbox()
                 </div><br />
                 <input type="submit" name="login" value="Log In" class="btn btn-primary btn-block" />
             </form>
-            <a href='<?php echo SITE_URL; ?>/register'>New Team? Register Here.</a>
+            <a href='<?php echo SITE_URL; ?>/register'>New User? Register Here.</a>
         </div>
     <?php
     } else {
     ?>
         <div class="panel-heading text-center">
-            <h3 class="panel-title">Team</h3>
+            <h3 class="panel-title">User</h3>
         </div>
         <div class="panel-body text-center">
 
@@ -39,9 +39,9 @@ function loginbox()
                     </tr>
                 </thead>
                 <?php
-                $query = "SELECT count(*)+1 as rank, (select score from teams where tid = " . $_SESSION['team']['id'] . ") as sco FROM `teams` WHERE (score > (select score from teams where tid = " . $_SESSION['team']['id'] . ") and status = 'Normal') or (score = (select score from teams where tid = " . $_SESSION['team']['id'] . ") and penalty < (select penalty from teams where tid = " . $_SESSION['team']['id'] . ") and status='Normal') ";
+                $query = "SELECT count(*)+1 as rank, (select score from Users where uid = " . $_SESSION['team']['id'] . ") as sco FROM `Users` WHERE (score > (select score from Users where uid = " . $_SESSION['team']['id'] . ") and status = 'Normal') or (score = (select score from Users where uid = " . $_SESSION['team']['id'] . ") and penalty < (select penalty from Users where uid = " . $_SESSION['team']['id'] . ") and status='Normal') ";
                 $res = DB::findOneFromQuery($query);
-                echo "<tr><td><a href='" . SITE_URL . "/teams/" . $_SESSION['team']['name'] . "'>" . $_SESSION['team']['name'] . "</a></td><td>$res[sco]</td><td style='text-align: center'>$res[rank]</td></tr>";
+                echo "<tr><td><a href='" . SITE_URL . "/Users/" . $_SESSION['team']['name'] . "'>" . $_SESSION['team']['name'] . "</a></td><td>$res[sco]</td><td style='text-align: center'>$res[rank]</td></tr>";
                 ?>
             </table>
         </div>
@@ -85,10 +85,7 @@ function pagination($noofpages, $url, $page, $maxcontent)
 }
 
 
-function errorMessageHTML($msg)
-{
-    return '<br /><div class="alert alert-danger" role="alert">' . $msg . '</div>';
-}
+
 
 function doCompetitionCheck()
 {

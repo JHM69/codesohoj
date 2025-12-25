@@ -281,6 +281,33 @@ if (
         theme: 'snow' // or 'bubble'
       });
 
+      var quill_note = new Quill('#editor-container-note', {
+        modules: {
+          toolbar: [
+            [{
+              header: [1, 2, false]
+            }],
+            [
+              'bold',
+              'italic',
+              'underline',
+              'strike',
+              'blockquote',
+              'formula',
+            ],
+            [{
+              list: 'ordered'
+            }, {
+              list: 'bullet'
+            }],
+            ['link', 'video', 'code-block'],
+            ['image'],
+          ]
+        },
+        placeholder: 'Note...',
+        theme: 'snow' // or 'bubble'
+      });
+
       var form = document.querySelector("form");
       var statement = document.querySelector('#statement');
       var input_statement = document.querySelector('#input_statement');
